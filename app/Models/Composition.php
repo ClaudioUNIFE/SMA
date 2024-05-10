@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Composition extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'id_reperto',
+        'multiplo',
+        'originale',
+        'fossile',
+        'materiale',
+    ];
 }

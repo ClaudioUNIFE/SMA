@@ -5,7 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class 3DModel extends Model
+class Render extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'id_reperto',
+        'rendeer_flag',
+        'render_file',
+    ];
 }

@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Museum extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'nome_museo',
+    ];
 }

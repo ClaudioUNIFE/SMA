@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Gigapixel extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'id_reperto',
+        'gigapixel_flag',
+        'gigapixel_file',
+    ];
 }

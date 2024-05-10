@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Deposit extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'collocazione',
+        'deposito',
+        'cartellino_storico',
+        'cartellino_attuale',
+        'codice_stanza',
+    ];
 }
