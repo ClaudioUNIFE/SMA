@@ -13,4 +13,7 @@ class Gigapixel extends Model
         'gigapixel_flag',
         'gigapixel_file',
     ];
+    public function Find(){
+        return this->belongsTo(Find::class, 'id_find');
+    }
 }

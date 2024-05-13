@@ -25,5 +25,5 @@ class User extends Authenticatable
         'data_uscita',
         'data_entrata',
     ];
-    
+
 }

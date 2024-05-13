@@ -15,4 +15,7 @@ class Composition extends Model
         'fossile',
         'materiale',
     ];
+    public function Find(){
+        return this->belongsTo(Find::class, 'id_find');
+    }
 }
