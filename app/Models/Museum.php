@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 use App\Models\Find;
 use App\Models\Thesis;
 use App\Models\SMA;
@@ -14,6 +15,10 @@ class Museum extends Model
     protected $fillable = [
         'nome_museo',
     ];
+
+    public function user(){
+        return $this->hasMany(User::class);
+    }
 
     public function Find()
     {

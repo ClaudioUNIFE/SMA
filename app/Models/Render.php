@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Model\RenderParadata;
 
 class Render extends Model
 {
@@ -13,4 +14,10 @@ class Render extends Model
         'rendeer_flag',
         'render_file',
     ];
+    public function Find(){
+        return this->belongsTo(Find::class, 'id_find');
+    }
+    public function Paradata(){
+        return this->hasOne(RenderParadata::class, 'id_render');
+    }
 }
