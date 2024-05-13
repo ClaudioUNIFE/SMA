@@ -11,21 +11,6 @@ class Thesis extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id_deposito',
-                            'autore',
-                            'titolo',
-                            'anno_accademico',
-                            'disciplina',
-                            'relatore',
-                            'correlatore',
-                            'contro_relatore',
-                            'percorso_file',
-                            'note'];
-
-
-    public function deposit(){
-        return $this->belongsTo(Deposit::class, 'id_deposito');
-    }
     protected $fillable = [
         'id_deposito',
         'autore',
@@ -38,6 +23,12 @@ class Thesis extends Model
         'percorso_file',
         'note'
     ];
+
+
+    public function deposit()
+    {
+        return $this->belongsTo(Deposit::class, 'id_deposito');
+    }
 
     public function Museum()
     {

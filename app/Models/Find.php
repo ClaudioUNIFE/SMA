@@ -4,18 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Model\Acquisition;
-use App\Model\Composition;
-use App\Model\Render;
-use App\Model\Gigapixel;
-use App\Model\Deposit;
-use App\Model\Collection;
-use App\Model\Restoreation;
-use App\Model\Museum;
-use App\Model\BiologicalEntity;
+use App\Models\Acquisition;
+use App\Models\Composition;
+use App\Models\Render;
+use App\Models\Gigapixel;
+use App\Models\Deposit;
+use App\Models\Collection;
+use App\Models\Restoration;
+use App\Models\Museum;
+use App\Models\BiologicalEntity;
 use App\Models\Catalog;
 use App\Models\Xit;
-use App\Models\Museum;
 
 class Find extends Model
 {
@@ -38,28 +37,28 @@ class Find extends Model
         'categoria',
     ];
 
-    public function Aquisition(){
-        return this->hasOne(Acquisition::class, 'id_find');
+    public function acquisition(){
+        return $this->hasOne(Acquisition::class);
     }
 
-    public function Compostion(){
-        return this->hasOne(Composition::class, 'id_find');
+    public function composition(){
+        return $this->hasOne(Composition::class);
     }
 
-    public function Render(){
-        return this->hasMany(Render::class, 'id_find');
+    public function render(){
+        return $this->hasMany(Render::class);
     }
 
-    public function Gigapixel(){
-        return this->hasMany(Gigapixel::class, 'id_find');
+    public function gigapixel(){
+        return $this->hasMany(Gigapixel::class);
     }
 
     public function deposit(){
         return $this->belongsTo(Deposit::class, 'id_deposito');
     }
 
-    public function restoreation(){
-        return $this->hasMany(Restoreation::class);
+    public function restoration(){
+        return $this->hasMany(Restoration::class);
     }
 
     public function collection(){
@@ -70,23 +69,18 @@ class Find extends Model
         return $this->hasOne(BiologicalEntity::class);
     }
 
-
-
-
-
-
-    public function Catalog()
+    public function catalog()
     {
         return $this->belongsToMany(Catalog::class);
     }
 
-    public function Xit()
+    public function xit()
     {
-        return $this->hasMany(Xit::class, 'id_reperto');
+        return $this->hasMany(Xit::class);
     }
 
-    public function Museum()
+    public function museum()
     {
-        return $this->hasMany(Museum::class, 'id_museo');
+        return $this->belongsTo(Museum::class, 'id_museo');
     }
 }

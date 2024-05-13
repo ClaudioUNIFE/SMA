@@ -15,7 +15,7 @@ class Gigapixel extends Model
         'gigapixel_file',
     ];
     public function Find(){
-        return this->belongsTo(Find::class, 'id_find');
+        return $this->belongsTo(Find::class, 'id_find');
     }
 
     public function GigapixelParadata()
