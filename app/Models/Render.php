@@ -14,10 +14,10 @@ class Render extends Model
         'rendeer_flag',
         'render_file',
     ];
-    public function Find(){
-        return this->belongsTo(Find::class, 'id_find');
+    public function find(){
+        return this->belongsTo(Find::class, 'id_reperto');
     }
-    public function Paradata(){
-        return this->hasOne(RenderParadata::class, 'id_render');
+    public function renderparadata(){
+        return this->hasOne(RenderParadata::class);
     }
 }

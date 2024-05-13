@@ -12,6 +12,7 @@ class Thesis extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id_museo',
         'id_deposito',
         'autore',
         'titolo',
