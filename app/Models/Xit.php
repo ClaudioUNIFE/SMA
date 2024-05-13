@@ -25,6 +25,7 @@ class User extends Authenticatable
         'data_uscita',
         'data_entrata',
     ];
+    
 
     /**
      * The attributes that should be hidden for serialization.

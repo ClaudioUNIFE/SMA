@@ -17,4 +17,7 @@ class Acquisition extends Model
         'codice_patrimonio',
         'provenienza',
     ];
+    public function Find(){
+        return this->belongsTo(Find::class, 'id_find');
+    }
 }
