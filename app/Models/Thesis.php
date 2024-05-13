@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Deposit;
 
 class Thesis extends Model
 {
@@ -19,5 +20,10 @@ class Thesis extends Model
                             'contro_relatore',
                             'percorso_file',
                             'note'];
+
+
+    public function deposit(){
+        return $this->belongsTo(Deposit::class, 'id_deposito');
+    }
 }
 
