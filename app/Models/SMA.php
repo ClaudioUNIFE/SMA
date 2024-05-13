@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Museum;
 
 class SMA extends Model
 {
@@ -11,4 +12,9 @@ class SMA extends Model
     protected $fillable = [
         'id_museo',
     ];
+
+    public function Museum()
+    {
+        return $this->hasMany(Museum::class, 'id_museo');
+    }
 }

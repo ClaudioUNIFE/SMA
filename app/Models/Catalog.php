@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Find;
 
 class Catalog extends Model
 {
@@ -15,4 +16,9 @@ class Catalog extends Model
         'pater',
         'vecchio_db',
     ];
+
+    public function Find()
+    {
+        return $this->belongsToMany(Find::class);
+    }
 }

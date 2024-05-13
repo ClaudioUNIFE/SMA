@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Catalog;
+use App\Models\Xit;
+use App\Models\Museum;
 
 class Find extends Model
 {
@@ -25,4 +28,19 @@ class Find extends Model
         'tipo_entita',
         'categoria',
     ];
+
+    public function Catalog()
+    {
+        return $this->belongsToMany(Catalog::class);
+    }
+
+    public function Xit()
+    {
+        return $this->hasMany(Xit::class, 'id_reperto');
+    }
+
+    public function Museum()
+    {
+        return $this->hasMany(Museum::class, 'id_museo');
+    }
 }

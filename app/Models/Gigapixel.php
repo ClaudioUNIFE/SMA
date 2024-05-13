@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\GigapixelParadara;
 
 class Gigapixel extends Model
 {
@@ -13,4 +14,10 @@ class Gigapixel extends Model
         'gigapixel_flag',
         'gigapixel_file',
     ];
+
+    public function GigapixelParadata()
+    {
+        return $this->hasOne(GigapixelParadata::class);
+    }
 }
+    
