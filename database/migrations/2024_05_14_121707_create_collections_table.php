@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('collections', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->date('data_acquizione_collezione');
+            $table->text('descrizione');
+            $table->string('nome_collezione');
         });
     }
 

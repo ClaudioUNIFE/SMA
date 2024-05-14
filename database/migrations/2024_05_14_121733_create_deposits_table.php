@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('deposits', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('collocazione');
+            $table->string('deposito');
+            $table->string('cartellino_storico');
+            $table->string('cartellino_attuale');
+            $table->string('codice_stanza');
         });
     }
 

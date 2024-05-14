@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('compositions', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('id_reperto')->constrained()->onDelete('cascade');
+            $table->boolean('multiplo');
+            $table->boolean('originale');
+            $table->boolean('fossile');
+            $table->string('materiale');
         });
     }
 

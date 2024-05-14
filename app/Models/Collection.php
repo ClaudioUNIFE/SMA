@@ -9,7 +9,7 @@ use App\Models\Find;
 class Collection extends Model
 {
     use HasFactory;
-    protected $fillable = ['dato_acquizione_collezione',
+    protected $fillable = ['data_acquizione_collezione',
                             'descrizione',
                             'nome_collezione'];
 

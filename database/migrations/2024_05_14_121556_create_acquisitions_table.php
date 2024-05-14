@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('acquisitions', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('id_reperto')->constrained()->onDelete('cascade');
+            $table->string('modalita_acquisizione');
+            $table->date('data_inventario');
+            $table->date('data_acquisizione');
+            $table->string('proprieta');
+            $table->string('codice_patrimonio');
+            $table->string('provenienza');
         });
     }
 
