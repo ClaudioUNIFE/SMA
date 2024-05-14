@@ -11,15 +11,12 @@ class GigapixelParadata extends Model
     use HasFactory;
     protected $fillable = [
         'id_gigapixel',
-        
-    ];
-
-    protected $fillable = [
-        'id_gigapixel',
 
     ];
 
-    public function Gigapixel()
+
+
+    public function gigapixel()
     {
         return $this->belongsTo(Gigapixel::class, 'id_gigapixel');
     }

@@ -31,7 +31,7 @@ class Thesis extends Model
         return $this->belongsTo(Deposit::class, 'id_deposito');
     }
 
-    public function Museum()
+    public function museum()
     {
         return $this->belongsTo(Museum::class, 'id_museo');
     }

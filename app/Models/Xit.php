@@ -27,7 +27,7 @@ class Xit extends Model
         'data_entrata',
     ];
 
-    public function Find()
+    public function find()
     {
         return $this->belongsTo(Find::class, 'id_reperto');
     }

@@ -13,7 +13,7 @@ class SMA extends Model
         'id_museo',
     ];
 
-    public function Museum()
+    public function museum()
     {
         return $this->hasMany(Museum::class, 'id_museo');
     }

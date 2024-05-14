@@ -17,7 +17,7 @@ class Catalog extends Model
         'vecchio_db',
     ];
 
-    public function Find()
+    public function find()
     {
         return $this->belongsToMany(Find::class, 'id_reperto');
     }

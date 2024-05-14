@@ -17,7 +17,7 @@ class Gigapixel extends Model
         return $this->belongsTo(Find::class, 'id_reperto');
     }
 
-    public function GigapixelParadata()
+    public function gigapixelParadata()
     {
         return $this->hasOne(GigapixelParadata::class);
     }

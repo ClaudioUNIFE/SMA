@@ -11,7 +11,7 @@ class RenderParadata extends Model
     use HasFactory;
     protected $fillable = ['id_render'];
 
-    public function Render()
+    public function render()
     {
         return $this->belongsTo(Render::class, 'id_render');
     }

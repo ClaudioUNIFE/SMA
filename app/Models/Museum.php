@@ -20,17 +20,17 @@ class Museum extends Model
         return $this->hasMany(User::class);
     }
 
-    public function Find()
+    public function find()
     {
         return $this->belongsTo(Find::class);
     }
 
-    public function Thesis()
+    public function thesis()
     {
         return $this->hasMany(Thesis::class);
     }
 
-    public function SMA()
+    public function sma()
     {
         return $this->belongsTo(SMA::class);
     }
