@@ -73,7 +73,7 @@ class Find extends Model
 
     public function catalog()
     {
-        return $this->belongsToMany(Catalog::class);
+        return $this->belongsToMany(Catalog::class, 'id_catalogo');
     }
 
     public function xit()

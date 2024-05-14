@@ -14,6 +14,11 @@ class GigapixelParadata extends Model
         
     ];
 
+    protected $fillable = [
+        'id_gigapixel',
+
+    ];
+
     public function Gigapixel()
     {
         return $this->belongsTo(Gigapixel::class, 'id_gigapixel');
