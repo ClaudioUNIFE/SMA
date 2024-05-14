@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('biologicalentities', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_reperto')->constrained()->onDelete('cascade');
+            $table->boolean('olotipo');
+            $table->string('riferimento_tassonomico');
+            $table->string('nome_comune');
+            $table->string('taxon_group');
+            $table->string('riferimento_cronologico');
             $table->timestamps();
         });
     }
