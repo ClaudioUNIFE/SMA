@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('cartellino_storico');
             $table->string('cartellino_attuale');
             $table->string('codice_stanza');
+            $table->timestamps();
         });
     }
 

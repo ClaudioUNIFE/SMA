@@ -18,6 +18,7 @@ return new class extends Migration
             $table->boolean('originale');
             $table->boolean('fossile');
             $table->string('materiale');
+            $table->timestamps();
         });
     }
 

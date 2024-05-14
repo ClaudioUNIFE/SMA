@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nome_comune');
             $table->string('taxon_group');
             $table->string('riferimento_cronologico');
+            $table->timestamps();
         });
     }
 

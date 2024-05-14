@@ -16,6 +16,7 @@ return new class extends Migration
             $table->date('data_acquizione_collezione');
             $table->text('descrizione');
             $table->string('nome_collezione');
+            $table->timestamps();
         });
     }
 

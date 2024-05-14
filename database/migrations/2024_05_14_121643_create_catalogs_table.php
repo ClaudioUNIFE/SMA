@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('iccd');
             $table->string('pater');
             $table->string('vecchio_db');
+            $table->timestamps();
         });
     }
 
