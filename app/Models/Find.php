@@ -35,6 +35,8 @@ class Find extends Model
         'validato',
         'tipo_entita',
         'categoria',
+        'gigapixel_flag',
+        'rendeer_flag',
     ];
 
     public function acquisition(){

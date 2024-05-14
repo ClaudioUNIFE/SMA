@@ -18,6 +18,6 @@ class Acquisition extends Model
         'provenienza',
     ];
     public function Find(){
-        return this->belongsTo(Find::class, 'id_find');
+        return this->belongsTo(Find::class, 'id_reperto');
     }
 }

@@ -11,11 +11,10 @@ class Gigapixel extends Model
     use HasFactory;
     protected $fillable = [
         'id_reperto',
-        'gigapixel_flag',
         'gigapixel_file',
     ];
     public function Find(){
-        return $this->belongsTo(Find::class, 'id_find');
+        return $this->belongsTo(Find::class, 'id_reperto');
     }
 
     public function GigapixelParadata()
@@ -23,4 +22,3 @@ class Gigapixel extends Model
         return $this->hasOne(GigapixelParadata::class);
     }
 }
-    

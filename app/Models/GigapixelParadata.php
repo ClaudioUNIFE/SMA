@@ -9,10 +9,14 @@ use App\Models\Gigapixel;
 class GigapixelParadata extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'id_gigapixel',
+        
+    ];
 
     public function Gigapixel()
     {
-        return $this->belongsTo(Gigapixel::class);
+        return $this->belongsTo(Gigapixel::class, 'id_gigapixel');
     }
 }
 

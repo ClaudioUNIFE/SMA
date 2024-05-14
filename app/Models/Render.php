@@ -11,13 +11,12 @@ class Render extends Model
     use HasFactory;
     protected $fillable = [
         'id_reperto',
-        'rendeer_flag',
         'render_file',
     ];
     public function Find(){
-        return this->belongsTo(Find::class, 'id_find');
+        return this->belongsTo(Find::class, 'id_reperto');
     }
     public function Paradata(){
-        return this->hasOne(RenderParadata::class, 'id_render');
+        return this->hasOne(RenderParadata::class);
     }
 }
