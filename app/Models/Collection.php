@@ -9,12 +9,15 @@ use App\Models\Find;
 class Collection extends Model
 {
     use HasFactory;
-    protected $fillable = ['data_acquizione_collezione',
-                            'descrizione',
-                            'nome_collezione'];
+    protected $fillable = [
+        'data_acquizione_collezione',
+        'descrizione',
+        'nome_collezione'
+    ];
 
 
-    public function find(){
-    return $this->hasMany(Find::class);
+    public function find()
+    {
+        return $this->hasMany(Find::class);
     }
 }
