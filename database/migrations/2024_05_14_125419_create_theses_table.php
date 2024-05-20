@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('disciplina');
             $table->string('relatore');
             $table->string('correlatore')->nullable();
-            $table->string('controrelatore')->nullable();
+            $table->string('contro_relatore')->nullable();
             $table->string('percorso_file');
             $table->text('note')->nullable();
             $table->timestamps();

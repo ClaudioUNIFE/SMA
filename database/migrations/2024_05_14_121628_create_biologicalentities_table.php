@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('biologicalentities', function (Blueprint $table) {
+        Schema::create('biological_entities', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_reperto')->constrained('finds')->onDelete('cascade');
             $table->boolean('olotipo')->default(false);

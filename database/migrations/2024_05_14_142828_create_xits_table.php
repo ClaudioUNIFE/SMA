@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('motivazione')->nullable();
             $table->string('sede_temporanea');
             $table->date('data_uscita');
-            $table->date('data_rientro')->nullable();
+            $table->date('data_entrata')->nullable();
             $table->timestamps();
         });
     }

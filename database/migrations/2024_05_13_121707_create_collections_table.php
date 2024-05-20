@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('collections', function (Blueprint $table) {
             $table->id();
-            $table->date('data_acquizione_collezione');
+            $table->date('data_acquisizione_collezione');
             $table->text('descrizione');
             $table->string('nome_collezione');
             $table->timestamps();

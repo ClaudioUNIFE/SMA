@@ -12,6 +12,21 @@ use App\Models\SMA;
 use App\Models\User;
 use App\Models\Museum;
 use App\Models\Find;
+use App\Models\Collection;
+use App\Models\Find_Catalog;
+use App\Models\Catalog;
+use App\Models\Deposit;
+use App\Models\Gigapixel;
+use App\Models\Render;
+use App\Models\Restoration;
+use App\Models\BiologicalEntity;
+use App\Models\Xit;
+use App\Models\Acquisition;
+use App\Models\Composition;
+use App\Models\Thesis;
+use Illuminate\Support\Facades\DB;
+
+
 
 
 class DatabaseSeeder extends Seeder
@@ -63,7 +78,6 @@ class DatabaseSeeder extends Seeder
             'digitalizzato'=>true,
             'catalogato'=>true,
             'restaurato'=>false,
-            'id_catalogo'=>1,
             'id_deposito'=>1,
             'id_collezione'=>1,
             'validato'=>true,
@@ -79,7 +93,7 @@ class DatabaseSeeder extends Seeder
             'id_museo' =>1,
             'nome' => 'Giorgio',
             'cognome'=>'Ciano',
-            'mail' => 'admin@museum.com',
+            'email' => 'admin@museum.com',
             'password' => Hash::make('password'),
             'telefono' => '3333333333',
             'numero_ufficio'=> '604',
@@ -113,10 +127,18 @@ class DatabaseSeeder extends Seeder
             'descrizione' => 'Raccolta di reperti archeologici provenienti dagli sc',
             'nome_collezione' => 'Reperi archeologici del foro',]);
         }
+        public function seedFinds_Catalog(){
+
+
+            DB::table('finds_catalogs')->insert([
+                'id_reperto' => 1,
+                'id_catalogo' => 1,
+            ]);
+        }
 
         public function seedCatalogs() {
             Catalog::factory()->create([
-                'id_reperto' => 1,
+
                 'catalogo' => 'catalogo generale',
                 'iccd' => 'IT012345',
                 'pater' => 'LA-VR 123456',
@@ -164,7 +186,7 @@ class DatabaseSeeder extends Seeder
         public function seedRenders() {
             Render::factory()->create([
                 'id_reperto' => 1,
-                'rendering_file'=>'Ercole.obj',
+                'render_file'=>'Ercole.obj',
             ]);
         }
 
@@ -178,7 +200,7 @@ class DatabaseSeeder extends Seeder
                 'disciplina' => 'Archeologia',
                 'relatore' => 'Prof. Bianchi',
                 'correlatore' => 'Prof. Verdi',
-                'controrelatore' => 'Prof. Gialli',
+                'contro_relatore' => 'Prof. Gialli',
                 'percorso_file' => 'tesi/mario_rossi.pdf',
                 'note' => 'Tesi svolta sugli scavi del foro tra il 1998 e il 2000',
                 ]);
@@ -207,11 +229,11 @@ class DatabaseSeeder extends Seeder
     {
         $this->seedPermissions();
         $this->seedRoles();
-        $this->seedUsers();
         $this->seedMuseums();
-        $this->seedFinds();
         $this->seedDeposits();
         $this->seedCollections();
+        $this->seedUsers();
+        $this->seedFinds();
         $this->seedCatalogs();
         $this->seedAcquisitions();
         $this->seedCompositions();
@@ -221,6 +243,7 @@ class DatabaseSeeder extends Seeder
         $this->seedTheses();
         $this->seedXits();
         $this->seedBiologicalEntities();
+        $this->seedFinds_Catalog();
 
     }
 }

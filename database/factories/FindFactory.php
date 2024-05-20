@@ -20,14 +20,13 @@ class FindFactory extends Factory
             'digitalizzato' => $this->faker->boolean(false),
             'catalogato' => $this->faker->boolean(false),
             'restaurato' => $this->faker->boolean(false),
-            'id_catalogo' => $this->faker->numberBetween(1, 100),
             'id_deposito' => $this->faker->numberBetween(1, 100),
             'id_collezione' => $this->faker->numberBetween(1, 100),
             'validato' => $this->faker->boolean(false),
             'tipo_entita' => $this->faker->text(),
             'categoria' => $this->faker->text(),
             'gigapixel_flag' => $this->faker->boolean(false),
-            'rendeer_flag' => $this->faker->boolean(false),
+            'render_flag' => $this->faker->boolean(false),
         ];
     }
 }

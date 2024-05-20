@@ -10,7 +10,7 @@ class Collection extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'data_acquizione_collezione',
+        'data_acquisizione_collezione',
         'descrizione',
         'nome_collezione'
     ];

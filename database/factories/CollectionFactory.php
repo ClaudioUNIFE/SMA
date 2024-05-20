@@ -12,7 +12,7 @@ class CollectionFactory extends Factory
     public function definition(): array
     {
         return [
-            'data_acquizione_collezione' => $this->faker->date(),
+            'data_acquisizione_collezione' => $this->faker->date(),
             'descrizione' => $this->faker->text(),
             'nome_collezione' => $this->faker->text(),
         ];
