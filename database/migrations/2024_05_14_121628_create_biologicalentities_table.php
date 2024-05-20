@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('biologicalentities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_reperto')->constrained()->onDelete('cascade');
+            $table->foreignId('id_reperto')->constrained('finds')->onDelete('cascade');
             $table->boolean('olotipo')->default(false);
             $table->string('riferimento_tassonomico');
             $table->string('nome_comune');

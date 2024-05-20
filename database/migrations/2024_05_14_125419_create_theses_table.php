@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('theses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_museo')->constrained();
-            $table->foreignId('id_deposito')->constrained();
+            $table->foreignId('id_museo')->constrained('museums');
+            $table->foreignId('id_deposito')->constrained('deposits');
             $table->string('autore');
             $table->string('titolo');
             $table->string('anno_accademico');

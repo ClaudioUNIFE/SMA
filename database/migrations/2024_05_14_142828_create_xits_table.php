@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('xits', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_reperto')->constrained()->OnDelete('cascade');
+            $table->foreignId('id_reperto')->constrained('finds')->OnDelete('cascade');
             $table->boolean('uscita_reperto')->default(false);
             $table->string('motivazione')->nullable();
             $table->string('sede_temporanea');

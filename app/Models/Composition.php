@@ -16,6 +16,6 @@ class Composition extends Model
         'materiale',
     ];
     public function find(){
-        return this->belongsTo(Find::class, 'id_reperto');
+        return $this->belongsTo(Find::class, 'id_reperto');
     }
 }

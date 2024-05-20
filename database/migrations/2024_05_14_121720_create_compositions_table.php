@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('compositions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_reperto')->constrained()->onDelete('cascade');
+            $table->foreignId('id_reperto')->constrained('finds')->onDelete('cascade');
             $table->boolean('multiplo');
             $table->boolean('originale');
             $table->boolean('fossile');

@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('catalogs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_reperto')->constrained()->onDelete('cascade');
             $table->string('catalogo');
             $table->string('iccd');
             $table->string('pater');

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('renders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_reperto')->constrained()->OnDelete('cascade');
+            $table->foreignId('id_reperto')->constrained('finds')->OnDelete('cascade');
             $table->string('render_file');
             $table->timestamps();
         });

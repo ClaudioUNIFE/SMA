@@ -81,8 +81,5 @@ class Find extends Model
         return $this->hasMany(Xit::class);
     }
 
-    public function museum()
-    {
-        return $this->belongsTo(Museum::class, 'id_museo');
-    }
+
 }

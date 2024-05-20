@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('acquisitions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_reperto')->constrained()->onDelete('cascade');
+            $table->foreignId('id_reperto')->constrained('finds')->onDelete('cascade');
             $table->string('modalita_acquisizione');
             $table->date('data_inventario');
             $table->date('data_acquisizione');

@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('smas', function (Blueprint $table) {
+        Schema::create('finds_catalogs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_museo')->constrained();
+            $table->foreignId('id_reperto')->constrained('finds');
+            $table->foreignId('id_catalogo')->constrained('catalogs');
             $table->timestamps();
         });
     }
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('smas');
+        Schema::dropIfExists('finds_catalogs');
     }
 };

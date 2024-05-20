@@ -20,10 +20,7 @@ class Museum extends Model
         return $this->hasMany(User::class);
     }
 
-    public function find()
-    {
-        return $this->belongsTo(Find::class);
-    }
+
 
     public function thesis()
     {

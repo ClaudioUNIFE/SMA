@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('finds', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_museo')->constrained();
+            $table->bigInteger('id_museo')->unsigned();
+            $table->foreign('id_museo')
+              ->references('id')
+              ->on('museums')  // Ensure this matches the actual table name
+              ->onDelete('cascade');
             $table->string('id_vecchio');
             $table->text('descrizione')->nullable();
             $table->text('note')->nullable();
@@ -21,9 +25,8 @@ return new class extends Migration
             $table->boolean('digitalizzato')->default(false);
             $table->boolean('catalogato')->default(false);
             $table->boolean('restaurato')->default(false);
-            $table->foreignId('id_catalogo')->constrained();
-            $table->foreignId('id_deposito')->constrained();
-            $table->foreignId('id_collezione')->constrained();
+            $table->foreignId('id_deposito')->constrained('deposits');
+            $table->foreignId('id_collezione')->constrained('collections');
             $table->boolean('validato')->default(false);
             $table->string('tipo_entita')->nullable();
             $table->string('categoria')->nullable();

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('restaurations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_reperto')->constrained()->onDelete('cascade');
+            $table->foreignId('id_reperto')->constrained('finds')->onDelete('cascade');
             $table->date('data_valutazione');
             $table->boolean('necessita_di_restauro')->default(false);
             $table->timestamps();
