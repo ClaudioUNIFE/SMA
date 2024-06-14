@@ -15,8 +15,6 @@ class Deposit extends Model
     protected $fillable = [
         'collocazione',
         'deposito',
-        'cartellino_storico',
-        'cartellino_attuale',
         'codice_stanza',
     ];
 

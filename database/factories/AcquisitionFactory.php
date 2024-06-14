@@ -20,6 +20,7 @@ class AcquisitionFactory extends Factory
             'proprieta' => $this->faker->text(),
             'codice_patrimonio' => $this->faker->text(),
             'provenienza' => $this->faker->text(),
+            'fornitore' => $this->faker->text(),
         ];
     }
 }

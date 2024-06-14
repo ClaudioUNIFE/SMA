@@ -85,6 +85,8 @@ class DatabaseSeeder extends Seeder
             'categoria'=>'uomo',
             'gigapixel_flag'=>true,
             'render_flag'=>false,
+            'cartellino_storico'=>"S/N",
+            'cartellino_attuale'=>"S/N",
             ]);
     }
 
@@ -115,8 +117,7 @@ class DatabaseSeeder extends Seeder
         Deposit::factory()->create([
             'collocazione'=>'Magazzino 1',
             'deposito'=>'Deposito A',
-            'cartellino_storico'=>"S/N",
-            'cartellino_attuale'=>"S/N",
+
             'codice_stanza'=>"A01",
         ]);
     }
@@ -155,6 +156,7 @@ class DatabaseSeeder extends Seeder
                 'proprieta'=>'Museo SMA',
                 'codice_patrimonio'=>'SMA-0001',
                 'provenienza'=>'Scavo archeologico del foro di Siena',
+                'fornitore'=>'Signor Alfonso Di Siena',
             ]);
         }
 

@@ -32,6 +32,8 @@ return new class extends Migration
             $table->string('categoria')->nullable();
             $table->boolean('gigapixel_flag')->default(false);
             $table->boolean('render_flag')->default(false);
+            $table->string('cartellino_storico');
+            $table->string('cartellino_attuale');
             $table->timestamps();
         });
     }

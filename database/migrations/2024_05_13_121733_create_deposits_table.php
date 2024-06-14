@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('collocazione');
             $table->string('deposito');
-            $table->string('cartellino_storico');
-            $table->string('cartellino_attuale');
             $table->string('codice_stanza');
             $table->timestamps();
         });

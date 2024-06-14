@@ -37,6 +37,8 @@ class Find extends Model
         'categoria',
         'gigapixel_flag',
         'rendeer_flag',
+        'cartellino_storico',
+        'cartellino_attuale',
     ];
 
     public function acquisition(){

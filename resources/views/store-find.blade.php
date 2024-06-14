@@ -174,6 +174,11 @@
 <tr>
 <th><label for="codice_patrimonio"><b>Codice di Patrimonio</b></label></th>
 <td><input type="text" name="codice_patrimonio" id="codice_patrimonio" class="form-control" placeholder="Codice di Patrimonio" /></td>
+
+</tr>
+<tr>
+    <th><label for="descrizione_tecnica"><b>Fornitore</b></label></th>
+    <td><input type="text" name="fornitore" id="fornitore" class="form-control" placeholder="Fornitore" /></td>
 </tr>
 <tr>
 <th><label for="gigapixel_file"><b>Gigapixel File</b></label></th>

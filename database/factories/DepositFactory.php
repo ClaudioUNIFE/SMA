@@ -12,8 +12,6 @@ class DepositFactory extends Factory
         return [
             'collocazione' => $this->faker->text(),
             'deposito' => $this->faker->text(),
-            'cartellino_storico' => $this->faker->text(),
-            'cartellino_attuale' => $this->faker->text(),
             'codice_stanza' => $this->faker->text(),
         ];
     }

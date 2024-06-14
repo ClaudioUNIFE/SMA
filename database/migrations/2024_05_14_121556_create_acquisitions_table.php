@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('proprieta');
             $table->string('codice_patrimonio');
             $table->string('provenienza');
+            $table->string('fornitore');
             $table->timestamps();
         });
     }

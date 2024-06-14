@@ -16,6 +16,7 @@ class Acquisition extends Model
         'proprieta',
         'codice_patrimonio',
         'provenienza',
+        'fornitore',
     ];
     public function find(){
         return $this->belongsTo(Find::class, 'id_reperto');
