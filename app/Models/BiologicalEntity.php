@@ -8,7 +8,7 @@ use App\Models\Find;
 
 class BiologicalEntity extends Model
 {
-    use HasFactory;
+    use HasFactory; 
     protected $fillable = [
         'id_reperto',
         'olotipo',

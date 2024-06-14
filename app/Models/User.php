@@ -24,7 +24,7 @@ class User extends Authenticatable
         'id_museo',
         'nome',
         'cognome',
-        'mail',
+        'email',
         'password',
         'telefono',
         'numero_ufficio'

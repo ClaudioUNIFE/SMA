@@ -22,3 +22,4 @@ class Gigapixel extends Model
         return $this->hasOne(GigapixelParadata::class);
     }
 }
+ 

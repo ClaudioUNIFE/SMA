@@ -15,6 +15,7 @@ use App\Models\Museum;
 use App\Models\BiologicalEntity;
 use App\Models\Catalog;
 use App\Models\Xit;
+use Illuminate\Support\Facades\DB;
 
 class Find extends Model
 {
@@ -29,7 +30,6 @@ class Find extends Model
         'digitalizzato',
         'catalogato',
         'restaurato',
-
         'id_deposito',
         'id_collezione',
         'validato',
@@ -52,7 +52,7 @@ class Find extends Model
     }
 
     public function gigapixel(){
-        return $this->hasMany(Gigapixel::class);
+        return $this->hasMany(Gigapixel::class, 'id_reperto');
     }
 
     public function deposit(){
@@ -68,7 +68,7 @@ class Find extends Model
     }
 
     public function biologicalEntity(){
-        return $this->hasOne(BiologicalEntity::class);
+        return $this->hasOne(BiologicalEntity::class, 'id_reperto');
     }
 
     public function catalog()
@@ -79,6 +79,14 @@ class Find extends Model
     public function xit()
     {
         return $this->hasMany(Xit::class);
+    }
+
+    public static function getUtilsforCard(){
+        return DB::table('finds')
+        ->join('biological_entities', 'finds.id', '=', 'biological_entities.id_reperto')
+        ->join('gigapixels', 'finds.id', '=', 'gigapixels.id_reperto')
+        ->select('*')
+        ->get();
     }
 
 

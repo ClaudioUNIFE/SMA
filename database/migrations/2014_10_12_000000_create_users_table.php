@@ -14,9 +14,9 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_museo')->constrained('museums')->onDelete('cascade');
-            $table->string('nome');
-            $table->string('cognome');
+            $table->foreignId('id_museo')->default(1)->constrained('museums')->onDelete('cascade');
+            $table->string('nome')->nullable();
+            $table->string('cognome')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
