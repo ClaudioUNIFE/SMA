@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FindViewController;
+use App\Http\Controllers\DepositController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,15 @@ Route::get('/action', [FindViewController::class, 'action'])->name('finds.action
 
 
 Route::get('/store-find', [FindViewController::class,'showStore'])->name('find.showstore');
+
+Route::get('/manage-deposits', [DepositController::class, 'index'] )->name('deposits.index');
+Route::get('/deposits/create', [DepositController::class, 'create'] )->name('deposits.create');
+Route::post('/deposits/store', [DepositController::class,'store'] )->name('deposits.store');
+Route::get('/deposits/{deposit}/show', [DepositController::class,'show'] )->name('deposits.show');
+Route::get('/deposits/{deposit}/edit', [DepositController::class, 'edit'] )->name('deposits.edit');
+Route::post('/deposits/{deposit}/update', [DepositController::class, 'update'] )->name('deposits.update');
+Route::delete('/deposits/{id}', [DepositController::class, 'destroy'])->name('deposits.destroy');
+
 
 
 require __DIR__.'/auth.php';
