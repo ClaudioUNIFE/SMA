@@ -5,68 +5,44 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
     <body>
-        <div class="container mt-5">
-            <h1 class="text-white">Modifica Collezione</h1>
+        <div style="background-color: grey; padding: 30px; border-radius: 15px; margin: 5%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); max-width: 600px; margin-left: auto; margin-right: auto;">
+            <h2 style="color: white; margin-bottom: 20px; text-align: center;">Modifica Collezione</h2>
 
             @if($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
+                <div style="color: white; background-color: #e74c3c; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                    <ul style="list-style-type: none; padding: 0;">
                         @foreach($errors->all() as $error)
-                            <li>{{ $error }}</li>
+                            <li style="margin-bottom: 5px;">{{ $error }}</li>
                         @endforeach
                     </ul>
                 </div>
             @endif
 
-            <form action="{{ route('collection.update', $collection->id) }}" method="POST">
+            <form action="{{ route('collection.update', $collection->id) }}" method="POST" style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
                 @csrf
+                @method('PUT')
 
-                <div class="form-group">
-                    <label for="data_acquisizione_collezione" class="text-white">Data di Acquisizione</label>
-                    <input type="date" name="data_acquisizione_collezione" class="form-control" value="{{ $collection->data_acquisizione_collezione }}" required>
+                <div class="form-group" style="width: 100%;">
+                    <label for="nome_collezione" style="color: white;">Nome Collezione</label>
+                    <input type="text" name="nome_collezione" class="form-control" value="{{ $collection->nome_collezione }}" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                </div>
+                
+                <div class="form-group" style="width: 100%;">
+                    <label for="data_acquisizione_collezione" style="color: white;">Data di Acquisizione</label>
+                    <input type="date" name="data_acquisizione_collezione" class="form-control" value="{{ $collection->data_acquisizione_collezione }}" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
                 </div>
 
-                <div class="form-group">
-                    <label for="descrizione" class="text-white">Descrizione</label>
-                    <textarea name="descrizione" class="form-control" rows="3" required>{{ $collection->descrizione }}</textarea>
+                <div class="form-group" style="width: 100%;">
+                    <label for="descrizione" style="color: white;">Descrizione</label>
+                    <textarea name="descrizione" class="form-control" rows="3" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">{{ $collection->descrizione }}</textarea>
                 </div>
 
-                <div class="form-group">
-                    <label for="nome_collezione" class="text-white">Nome Collezione</label>
-                    <input type="text" name="nome_collezione" class="form-control" value="{{ $collection->nome_collezione }}" required>
-                </div>
 
-                <button type="submit" class="btn btn-primary">Aggiorna</button>
+
+                <button type="submit" style="background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 14px; cursor: pointer; transition: background-color 0.3s ease; margin-top: 20px;">
+                    Aggiorna
+                </button>
             </form>
         </div>
     </body>
-    <style>
-        body {
-            background-color: #343a40; /* Colore di sfondo scuro */
-            color: #ffffff; /* Testo bianco per contrasto */
-        }
-
-        .container {
-            margin-top: 20px;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-
-        .btn-primary:hover {
-            opacity: 0.8;
-        }
-
-        .form-group label {
-            color: #ffffff;
-        }
-
-        .alert-danger {
-            color: #721c24;
-            background-color: #f8d7da;
-            border-color: #f5c6cb;
-        }
-    </style>
-    </x-app-layout>
+</x-app-layout>

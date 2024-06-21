@@ -1,45 +1,64 @@
+<!-- resources/views/collezioni/index.blade.php -->
 <x-app-layout>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="text-white">Elenco Collezioni</h2>
-                <a href="{{ route('collection.create') }}" class="btn btn-primary mb-3">Aggiungi Collezione</a>
-                <div class="table-responsive">
-                    <table class="table table-dark table-striped">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Data Acquisizione</th>
-                                <th>Descrizione</th>
-                                <th>Nome Collezione</th>
-                                <th>Azioni</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($collections as $collection)
-                                <tr>
-                                    <td>{{ $collection->id }}</td>
-                                    <td>{{ $collection->data_acquisizione_collezione }}</td>
-                                    <td>{{ $collection->descrizione }}</td>
-                                    <td>{{ $collection->nome_collezione }}</td>
-                                    <td>
-                                        <a href="{{ route('collection.edit', $collection->id) }}" class="btn btn-sm btn-primary">Modifica</a>
-                                        <form action="{{ route('collection.destroy', $collection->id) }}" method="POST" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Sei sicuro di voler eliminare questa collezione?')">Elimina</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+    <div style="text-align: center; margin-bottom: 20px;">
+        <h2 class="font-semibold" style="font-size: 2.5rem; color: white;">Elenco Collezioni</h2>
+
+        @if ($message = Session::get('success'))
+            <div style="color: white; background-color: #28a745; padding: 10px; margin-top: 10px;">
+                {{ $message }}
             </div>
-        </div>
+        @endif
     </div>
 
-    <!-- Aggiungi del CSS per migliorare ulteriormente l'estetica -->
+
+
+        <div class="table-responsive">
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead style="background-color: grey;">
+                    <tr>
+                        <th style="color: white; padding: 10px; text-align: left;">ID</th>
+                        <th style="color: white; padding: 10px; text-align: left;">Data Acquisizione</th>
+                        <th style="color: white; padding: 10px; text-align: left;">Descrizione</th>
+                        <th style="color: white; padding: 10px; text-align: left;">Nome Collezione</th>
+                        <th style="color: white; padding: 10px; text-align: left;">Azioni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($collections as $collection)
+                        <tr style="background-color: #444;">
+                            <td style="color: white; padding: 10px;">{{ $collection->id }}</td>
+                            <td style="color: white; padding: 10px;">{{ $collection->data_acquisizione_collezione }}</td>
+                            <td style="color: white; padding: 10px;">{{ $collection->descrizione }}</td>
+                            <td style="color: white; padding: 10px;">{{ $collection->nome_collezione }}</td>
+                            <td style="padding: 10px;">
+                                <a href="{{ route('collection.edit', $collection->id) }}" style="color: white; margin-right: 10px; text-decoration: none; background-color: #ffc107; padding: 5px 10px; border-radius: 3px;">Modifica</a>
+                                <form id="delete-form-{{ $collection->id }}" action="{{ route('collection.destroy', $collection->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button" onclick="confirmDelete({{ $collection->id }})" style="background-color: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Elimina</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <div style="margin: 5%;">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <a href="{{ route('collection.create') }}" style="color: white; background-color: #007bff; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Aggiungi Collezione</a>
+                </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        function confirmDelete(id) {
+            if (confirm("Sei sicuro di voler eliminare questa collezione?")) {
+                document.getElementById('delete-form-' + id).submit();
+            }
+        }
+    </script>
+
     <style>
         body {
             background-color: #343a40; /* Colore di sfondo scuro */

@@ -11,7 +11,7 @@
         @endif
     </div>
 
-    <div style="margin: 5%">
+    <div style="margin-left:5%; margin-right:5%">
         <table style="width: 100%; border-collapse: collapse;">
             <thead style="background-color: grey;">
                 <tr>
