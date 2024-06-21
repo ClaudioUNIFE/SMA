@@ -3,6 +3,10 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FindViewController;
+use App\Http\Controllers\CollectionsController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +35,14 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/find-consultation', [FindViewController::class, 'showlist'] )->name('find.showlist');
 Route::get('/action', [FindViewController::class, 'action'])->name('finds.action');
+
+
+Route::get('/manage-collections', [CollectionsController::class,'index'])->name('collection.index');
+Route::get('/collection/create', [CollectionsController::class,'create'])->name('collection.create');
+Route::get('/collection/{collection}/edit', [CollectionsController::class,'edit'])->name('collection.edit');
+Route::delete('/collection/{id}', [CollectionsController::class,'destroy'])->name('collection.destroy');
+Route::post('/collection/store', [CollectionsController::class, 'store'])->name('collection.store');
+Route::post('/collection/{id}/update', [CollectionsController::class, 'update'])->name('collection.update');
 
 
 Route::get('/store-find', [FindViewController::class,'showStore'])->name('find.showstore');
