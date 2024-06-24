@@ -17,16 +17,15 @@
                     </ul>
                 </div>
             @endif
-
             <form action="{{ route('collection.update', $collection->id) }}" method="POST" style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
                 @csrf
-                @method('PUT')
+
 
                 <div class="form-group" style="width: 100%;">
                     <label for="nome_collezione" style="color: white;">Nome Collezione</label>
                     <input type="text" name="nome_collezione" class="form-control" value="{{ $collection->nome_collezione }}" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
                 </div>
-                
+
                 <div class="form-group" style="width: 100%;">
                     <label for="data_acquisizione_collezione" style="color: white;">Data di Acquisizione</label>
                     <input type="date" name="data_acquisizione_collezione" class="form-control" value="{{ $collection->data_acquisizione_collezione }}" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
