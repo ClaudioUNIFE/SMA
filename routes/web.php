@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FindViewController;
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\CollectionsController;
-
+use App\Http\Controllers\ImportController;
 
 
 
@@ -44,6 +44,9 @@ Route::get('/collection/{collection}/edit', [CollectionsController::class,'edit'
 Route::delete('/collection/{id}', [CollectionsController::class,'destroy'])->name('collection.destroy');
 Route::post('/collection/store', [CollectionsController::class, 'store'])->name('collection.store');
 Route::post('/collection/{id}/update', [CollectionsController::class, 'update'])->name('collection.update');
+
+Route::get('/import', [ImportController::class, 'showImportForm']);
+Route::post('/import', [ImportController::class, 'import'])->name('import');
 
 
 Route::get('/store-find', [FindViewController::class,'showStore'])->name('find.showstore');
