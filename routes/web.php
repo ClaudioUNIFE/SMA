@@ -45,8 +45,7 @@ Route::delete('/collection/{id}', [CollectionsController::class,'destroy'])->nam
 Route::post('/collection/store', [CollectionsController::class, 'store'])->name('collection.store');
 Route::post('/collection/{id}/update', [CollectionsController::class, 'update'])->name('collection.update');
 
-Route::get('/import', [ImportController::class, 'showImportForm']);
-Route::post('/import', [ImportController::class, 'import'])->name('import');
+Route::post('/import', [ImportController::class,'import'])->name('import');
 
 
 Route::get('/store-find', [FindViewController::class,'showStore'])->name('find.showstore');
