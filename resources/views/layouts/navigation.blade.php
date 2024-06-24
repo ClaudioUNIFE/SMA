@@ -24,11 +24,7 @@
                     </x-nav-link>
                 </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('collection.index')" :active="request()->routeIs('collection.index')">
-                        {{ __('Gestione collezioni') }}
-                    </x-nav-link>
-                </div>
+
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('find.showstore')" :active="request()->routeIs('find.showstore')">
@@ -39,6 +35,11 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('deposits.index')" :active="request()->routeIs('deposits.index')">
                         {{ __('Gestione depositi') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('collection.index')" :active="request()->routeIs('collection.index')">
+                        {{ __('Gestione collezioni') }}
                     </x-nav-link>
                 </div>
             </div>
