@@ -23,7 +23,6 @@ class FindFactory extends Factory
             'id_deposito' => $this->faker->numberBetween(1, 100),
             'id_collezione' => $this->faker->numberBetween(1, 100),
             'validato' => $this->faker->boolean(false),
-            'tipo_entita' => $this->faker->text(),
             'categoria' => $this->faker->text(),
             'gigapixel_flag' => $this->faker->boolean(false),
             'render_flag' => $this->faker->boolean(false),

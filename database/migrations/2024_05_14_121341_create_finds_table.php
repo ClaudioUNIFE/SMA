@@ -28,7 +28,6 @@ return new class extends Migration
             $table->foreignId('id_deposito')->constrained('deposits');
             $table->foreignId('id_collezione')->constrained('collections');
             $table->boolean('validato')->default(false);
-            $table->string('tipo_entita')->nullable();
             $table->string('categoria')->nullable();
             $table->boolean('gigapixel_flag')->default(false);
             $table->boolean('render_flag')->default(false);

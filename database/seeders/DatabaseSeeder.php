@@ -81,7 +81,6 @@ class DatabaseSeeder extends Seeder
             'id_deposito'=>1,
             'id_collezione'=>1,
             'validato'=>true,
-            'tipo_entita'=>'entita biologica',
             'categoria'=>'uomo',
             'gigapixel_flag'=>true,
             'render_flag'=>false,

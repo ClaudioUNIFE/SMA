@@ -33,7 +33,6 @@ class Find extends Model
         'id_deposito',
         'id_collezione',
         'validato',
-        'tipo_entita',
         'categoria',
         'gigapixel_flag',
         'rendeer_flag',

@@ -82,8 +82,16 @@
                     <td><input type="text" name="tipo_entita" id="tipo_entita" class="form-control" placeholder="Tipo Entità" /></td>
                 </tr>
                 <tr>
-                    <th><label for="categoria"><b>Categoria</b></label></th>
-                    <td><input type="text" name="categoria" id="categoria" class="form-control" placeholder="Categoria" /></td>
+                    <th><label for="categoria"><b>Categoria Reperto</b></label></th>
+                    <td>
+                        <select name="taxon_group" id="taxon_group" class="form-control" required>
+                            <option value="Geologico">Geologico</option>
+                            <option value="Paleontologico">Paleontologico</option>
+                            <option value="Biologico">Biologico</option>
+                            <option value="Antropologico">Antropologico</option>
+                            <option value="Archeologico">Archeologico</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <th><label for="gigapixel_flag"><b>Gigapixel</b></label></th>
