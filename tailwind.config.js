@@ -17,5 +17,7 @@ export default {
         },
     },
 
+    darkMode: false, // Disables dark mode
+
     plugins: [forms],
 };
