@@ -37,16 +37,12 @@ Route::middleware('auth')->group(function () {
 Route::get('/find-consultation', [FindViewController::class, 'showlist'] )->name('find.showlist');
 Route::get('/action', [FindViewController::class, 'action'])->name('finds.action');
 
-
 Route::get('/manage-collections', [CollectionsController::class,'index'])->name('collection.index');
 Route::get('/collection/create', [CollectionsController::class,'create'])->name('collection.create');
 Route::get('/collection/{collection}/edit', [CollectionsController::class,'edit'])->name('collection.edit');
 Route::delete('/collection/{id}', [CollectionsController::class,'destroy'])->name('collection.destroy');
 Route::post('/collection/store', [CollectionsController::class, 'store'])->name('collection.store');
 Route::post('/collection/{id}/update', [CollectionsController::class, 'update'])->name('collection.update');
-
-Route::post('/import', [ImportController::class,'import'])->name('import');
-
 
 Route::get('/store-find', [FindViewController::class,'showStore'])->name('find.showstore');
 
@@ -57,7 +53,5 @@ Route::get('/deposits/{deposit}/show', [DepositController::class,'show'] )->name
 Route::get('/deposits/{deposit}/edit', [DepositController::class, 'edit'] )->name('deposits.edit');
 Route::post('/deposits/{deposit}/update', [DepositController::class, 'update'] )->name('deposits.update');
 Route::delete('/deposits/{id}', [DepositController::class, 'destroy'])->name('deposits.destroy');
-
-
 
 require __DIR__.'/auth.php';
