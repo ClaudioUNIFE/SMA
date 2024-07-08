@@ -164,6 +164,7 @@ class DatabaseSeeder extends Seeder
             Composition::factory()->create([
                 'id_reperto' => 1,
                 'multiplo' => false,
+                'molteplicita' => 1,
                 'originale'=>true,
                 'fossile'=>false,
                 'materiale'=>'umano',

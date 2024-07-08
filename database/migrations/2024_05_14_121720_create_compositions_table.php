@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_reperto')->constrained('finds')->onDelete('cascade');
             $table->boolean('multiplo');
+            $table->integer('molteplicita')->default(1);
             $table->boolean('originale');
             $table->boolean('fossile');
             $table->string('materiale');

@@ -11,6 +11,7 @@ class Composition extends Model
     protected $fillable = [
         'id_reperto',
         'multiplo',
+        'molteplicita',
         'originale',
         'fossile',
         'materiale',
