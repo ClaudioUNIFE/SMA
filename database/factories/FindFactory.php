@@ -29,6 +29,7 @@ class FindFactory extends Factory
             'cartellino_storico' => $this->faker->text(),
             'cartellino_attuale' => $this->faker->text(),
             'foto_principale' => $this->faker->text(),
+            'didascalia' => $this->faker->text(),
         ];
     }
 }

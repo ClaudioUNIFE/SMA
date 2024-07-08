@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('cartellino_storico');
             $table->string('cartellino_attuale');
             $table->string('foto_principale');
+            $table->string('didascalia')->nullable();
             $table->timestamps();
         });
     }

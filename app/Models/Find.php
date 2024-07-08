@@ -39,6 +39,7 @@ class Find extends Model
         'cartellino_storico',
         'cartellino_attuale',
         'foto_principale',
+        'didascalia',
     ];
 
     public function acquisition(){

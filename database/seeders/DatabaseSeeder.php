@@ -87,6 +87,7 @@ class DatabaseSeeder extends Seeder
             'cartellino_storico'=>"S/N",
             'cartellino_attuale'=>"S/N",
             'foto_principale'=>"S/N",
+            'didascalia'=>"Homo sapiens, 4000ac",
             ]);
     }
 
