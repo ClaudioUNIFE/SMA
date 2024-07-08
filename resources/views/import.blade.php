@@ -50,6 +50,7 @@
 
         <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('POST')
             <table class="center-table">
                 <tr>
                     <th><label for="file">Choose CSV File</label></th>

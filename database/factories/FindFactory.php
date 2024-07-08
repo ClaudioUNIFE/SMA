@@ -28,6 +28,7 @@ class FindFactory extends Factory
             'render_flag' => $this->faker->boolean(false),
             'cartellino_storico' => $this->faker->text(),
             'cartellino_attuale' => $this->faker->text(),
+            'foto_principale' => $this->faker->text(),
         ];
     }
 }

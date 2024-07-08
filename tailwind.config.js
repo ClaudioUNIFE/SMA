@@ -17,7 +17,7 @@ export default {
         },
     },
 
-    darkMode: true, // Disables dark mode
+    darkMode: false, // Utilizza la modalità scura basata sulla classe
 
     plugins: [forms],
 };

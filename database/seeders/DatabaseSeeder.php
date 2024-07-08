@@ -86,6 +86,7 @@ class DatabaseSeeder extends Seeder
             'render_flag'=>false,
             'cartellino_storico'=>"S/N",
             'cartellino_attuale'=>"S/N",
+            'foto_principale'=>"S/N",
             ]);
     }
 

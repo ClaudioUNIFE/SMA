@@ -6,7 +6,7 @@
 
 
          <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-            <img src="{{ asset('storage/gigapixel/' . $find->gigapixel_file) }}" alt="Find Image"/>
+            <img src="{{ asset('storage/gigapixel/' . $find->foto_principale) }}" alt="Find Image"/>
         </p>
 
         <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">{{ $find->riferimento_tassonomico }}</h2>

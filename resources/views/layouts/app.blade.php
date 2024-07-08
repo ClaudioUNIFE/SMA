@@ -14,7 +14,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased" >
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @include('layouts.navigation')
 
@@ -34,10 +34,20 @@
         </div>
 
     </body>
-    <footer>
-    <br>
-    <br>
-    <br>
-    <br>
+    <style>
+        .bg-custom-navbar {
+            background-color: rgb(18, 24, 38) !important;
+        }
+    </style>
+
+
+   <style> footer.footer {
+        text-align: center; /* Centered footer */
+        padding: 20px 0;
+        color: #ccc; /* Light text for footer */
+        background-color: rgb(18, 24, 38)
+    }</style>
+    <footer class="footer">
+        <p>© 2024 SMA, Museo P. Leonardi.</p>
     </footer>
 </html>

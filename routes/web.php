@@ -49,6 +49,7 @@ Route::post('/import', [ImportController::class,'import'])->name('import');
 
 
 Route::get('/store-find', [FindViewController::class,'showStore'])->name('find.showstore');
+Route::post('/store-find', [FindViewController::class,'store'])->name('find.store');
 
 Route::get('/manage-deposits', [DepositController::class, 'index'] )->name('deposits.index');
 Route::get('/deposits/create', [DepositController::class, 'create'] )->name('deposits.create');

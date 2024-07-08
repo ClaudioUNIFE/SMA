@@ -127,6 +127,11 @@ public function convertJPGMethod($finds)
         return view('store-find', compact('catalogs', 'deposits','museums', 'collections'));
     }
 
+
+    public function store(Request $request){
+        
+    }
+
 }
 
 

@@ -33,6 +33,7 @@ return new class extends Migration
             $table->boolean('render_flag')->default(false);
             $table->string('cartellino_storico');
             $table->string('cartellino_attuale');
+            $table->string('foto_principale');
             $table->timestamps();
         });
     }

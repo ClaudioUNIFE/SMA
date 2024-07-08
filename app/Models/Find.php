@@ -38,6 +38,7 @@ class Find extends Model
         'rendeer_flag',
         'cartellino_storico',
         'cartellino_attuale',
+        'foto_principale',
     ];
 
     public function acquisition(){
@@ -85,7 +86,6 @@ class Find extends Model
     public static function getUtilsforCard(){
         return DB::table('finds')
         ->join('biological_entities', 'finds.id', '=', 'biological_entities.id_reperto')
-        ->join('gigapixels', 'finds.id', '=', 'gigapixels.id_reperto')
         ->select('*')
         ->get();
     }

@@ -1,30 +1,95 @@
 <x-app-layout>
     <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .form-container {
+            margin: 5% auto;
+            max-width: 800px;
+            background-color: #2c3e50;
+            padding: 2%;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            color: #ecf0f1;
+        }
         .form-control {
-            color: #000; /* Set the text color to black */
-            width: 100%; /* Ensure inputs take full width */
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #bdc3c7;
+            border-radius: 6px;
+            box-sizing: border-box;
+            background-color: #ecf0f1;
+            color: #2c3e50;
+        }
+        .form-control::placeholder {
+            color: #7f8c8d;
         }
         .center-table {
-            margin: 0 auto; /* Center the table horizontally */
-            width: 80%; /* Set the table width */
-            border: 1px solid #ccc; /* Add border to the table */
-            border-collapse: collapse; /* Collapse borders for a cleaner look */
+            margin: 0 auto;
+            width: 100%;
+            border: none;
+            border-collapse: separate;
         }
         .center-table th,
         .center-table td {
-            padding: 8px; /* Add padding inside table cells */
-            text-align: left; /* Align text to the left */
-            border: 1px solid #ccc; /* Add border to table cells */
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #7f8c8d;
+        }
+        .center-table th {
+            background-color: #34495e;
+            color: #fff;
+        }
+        .center-table tr:nth-child(even) {
+            background-color: #34495e;
+        }
+        .center-table tr:hover {
+            background-color: #3a5168;
+        }
+        button[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="file"] {
+            background-color: #ecf0f1;
+            padding: 5px;
+        }
+        textarea.form-control {
+            height: 100px;
+            resize: vertical;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #2c3e50;
+            color: #ecf0f1;
         }
     </style>
 
-    <div style="margin: 5%; color: #FFF;">
-        <form action="{{ route('finds.action') }}" method="POST" enctype="multipart/form-data">
+    <div class="form-container">
+        <form action="{{ route('find.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <table class="center-table">
                 <tr>
-                    <th><label for="id_museo"><b>Museo di Riferimento</b></label></th>
+                    <th><label for="id_museo">Museo di Riferimento</label></th>
                     <td>
                         <select name="id_museo" id="id_museo" class="form-control">
                             @foreach ($museums as $museum)
@@ -34,27 +99,27 @@
                     </td>
                 </tr>
                 <tr>
-                    <th><label for="id_vecchio"><b>ID reperto (ICCD o altro)</b></label></th>
+                    <th><label for="id_vecchio">ID reperto (ICCD o altro)</label></th>
                     <td><input type="text" name="id_vecchio" id="id_vecchio" class="form-control" placeholder="ID reperto (ICCD o altro)" /></td>
                 </tr>
                 <tr>
-                    <th><label for="descrizione"><b>Descrizione</b></label></th>
+                    <th><label for="descrizione">Descrizione</label></th>
                     <td><input type="text" name="descrizione" id="descrizione" class="form-control" placeholder="Descrizione" /></td>
                 </tr>
                 <tr>
-                    <th><label for="note"><b>Note</b></label></th>
+                    <th><label for="note">Note</label></th>
                     <td><textarea name="note" id="note" class="form-control" placeholder="Note"></textarea></td>
                 </tr>
                 <tr>
-                    <th><label for="esposto"><b>Esposto</b></label></th>
+                    <th><label for="esposto">Esposto</label></th>
                     <td><input type="checkbox" id="esposto" name="esposto"></td>
                 </tr>
                 <tr>
-                    <th><label for="digitalizzato"><b>Digitalizzato</b></label></th>
+                    <th><label for="digitalizzato">Digitalizzato</label></th>
                     <td><input type="checkbox" id="digitalizzato" name="digitalizzato"></td>
                 </tr>
                 <tr>
-                    <th><label for="id_deposito"><b>Deposito</b></label></th>
+                    <th><label for="id_deposito">Deposito</label></th>
                     <td>
                         <select name="id_deposito" id="id_deposito" class="form-control">
                             @foreach ($deposits as $deposit)
@@ -64,7 +129,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th><label for="id_collezione"><b>Collezione</b></label></th>
+                    <th><label for="id_collezione">Collezione</label></th>
                     <td>
                         <select name="id_collezione" id="id_collezione" class="form-control">
                             @foreach ($collections as $collection)
@@ -74,17 +139,17 @@
                     </td>
                 </tr>
                 <tr>
-                    <th><label for="validato"><b>Validato</b></label></th>
+                    <th><label for="validato">Validato</label></th>
                     <td><input type="checkbox" id="validato" name="validato"></td>
                 </tr>
                 <tr>
-                    <th><label for="tipo_entita"><b>Tipo Entità</b></label></th>
+                    <th><label for="tipo_entita">Tipo Entità</label></th>
                     <td><input type="text" name="tipo_entita" id="tipo_entita" class="form-control" placeholder="Tipo Entità" /></td>
                 </tr>
                 <tr>
-                    <th><label for="categoria"><b>Categoria Reperto</b></label></th>
+                    <th><label for="categoria">Categoria Reperto</label></th>
                     <td>
-                        <select name="taxon_group" id="taxon_group" class="form-control" required>
+                        <select name="categoria" id="categoria" class="form-control" required>
                             <option value="Geologico">Geologico</option>
                             <option value="Paleontologico">Paleontologico</option>
                             <option value="Biologico">Biologico</option>
@@ -94,27 +159,27 @@
                     </td>
                 </tr>
                 <tr>
-                    <th><label for="gigapixel_flag"><b>Gigapixel</b></label></th>
+                    <th><label for="gigapixel_flag">Gigapixel</label></th>
                     <td><input type="checkbox" id="gigapixel_flag" name="gigapixel_flag"></td>
                 </tr>
                 <tr>
-                    <th><label for="render_flag"><b>Render</b></label></th>
+                    <th><label for="render_flag">Render</label></th>
                     <td><input type="checkbox" id="render_flag" name="render_flag"></td>
                 </tr>
                 <tr>
-                    <th><label for="olotipo"><b>Olotipo</b></label></th>
+                    <th><label for="olotipo">Olotipo</label></th>
                     <td><input type="checkbox" name="olotipo" id="olotipo"></td>
                 </tr>
                 <tr>
-                    <th><label for="riferimento_tassonomico"><b>Riferimento Tassonomico</b></label></th>
+                    <th><label for="riferimento_tassonomico">Riferimento Tassonomico</label></th>
                     <td><input type="text" name="riferimento_tassonomico" id="riferimento_tassonomico" class="form-control" placeholder="Riferimento Tassonomico" /></td>
                 </tr>
                 <tr>
-                    <th><label for="nome_comune"><b>Nome Comune</b></label></th>
+                    <th><label for="nome_comune">Nome Comune</label></th>
                     <td><input type="text" name="nome_comune" id="nome_comune" class="form-control" placeholder="Nome Comune" /></td>
                 </tr>
                 <tr>
-                    <th><label for="taxon_group"><b>Taxon Group</b></label></th>
+                    <th><label for="taxon_group">Taxon Group</label></th>
                     <td>
                         <select name="taxon_group" id="taxon_group" class="form-control" required>
                             <option value="V">Vertebrate</option>
@@ -130,11 +195,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <th><label for="riferimento_cronologico"><b>Riferimento Cronologico</b></label></th>
+                    <th><label for="riferimento_cronologico">Riferimento Cronologico</label></th>
                     <td><input type="text" name="riferimento_cronologico" id="riferimento_cronologico" class="form-control" placeholder="Riferimento Cronologico" /></td>
                 </tr>
                 <tr>
-                    <th><label for="id_catalogo"><b>Catalogo</b></label></th>
+                    <th><label for="id_catalogo">Catalogo</label></th>
                     <td>
                         <select name="id_catalogo" id="id_catalogo" class="form-control">
                             @foreach ($catalogs as $catalog)
@@ -144,61 +209,66 @@
                     </td>
                 </tr>
                 <tr>
-                    <th><label for="multiplo"><b>Multiplo</b></label></th>
+                    <th><label for="multiplo">Multiplo</label></th>
                     <td><input type="checkbox" name="multiplo" id="multiplo"></td>
                 </tr>
                 <tr>
-                    <th><label for="originale"><b>Originale</b></label></th>
+                    <th><label for="originale">Originale</label></th>
                     <td><input type="checkbox" name="originale" id="originale"></td>
                 </tr>
                 <tr>
-                    <th><label for="fossile"><b>Fossile</b></label></th>
+                    <th><label for="fossile">Fossile</label></th>
                     <td><input type="checkbox" name="fossile" id="fossile"></td>
                 </tr>
                 <tr>
-                    <th><label for="materiale"><b>Materiale</b></label></th>
+                    <th><label for="materiale">Materiale</label></th>
                     <td><input type="text" name="materiale" id="materiale" class="form-control" placeholder="Materiale" /></td>
                 </tr>
                 <tr>
-                    <th><label for="modalita_acquisizione"><b>Modalità di Acquisizione</b></label></th>
+                    <th><label for="modalita_acquisizione">Modalità di Acquisizione</label></th>
                     <td><input type="text" name="modalita_acquisizione" id="modalita_acquisizione" class="form-control" placeholder="Modalità di Acquisizione" /></td>
                 </tr>
                 <tr>
-                    <th><label for="data_acquisizione"><b>Data di Acquisizione</b></label></th>
-<td><input type="date" name="data_acquisizione" id="data_acquisizione" class="form-control" /></td>
-</tr>
-<tr>
-<th><label for="data_inventario"><b>Data di Inventariazione</b></label></th>
-<td><input type="date" name="data_inventario" id="data_inventario" class="form-control" /></td>
-</tr>
-<tr>
-<th><label for="proprieta"><b>Proprietà</b></label></th>
-<td><input type="text" name="proprieta" id="proprieta" class="form-control" placeholder="Proprietà" /></td>
-</tr>
-<tr>
-<th><label for="provenienza"><b>Provenienza</b></label></th>
-<td><input type="text" name="provenienza" id="provenienza" class="form-control" placeholder="Provenienza" /></td>
-</tr>
-<tr>
-<th><label for="codice_patrimonio"><b>Codice di Patrimonio</b></label></th>
-<td><input type="text" name="codice_patrimonio" id="codice_patrimonio" class="form-control" placeholder="Codice di Patrimonio" /></td>
-
-</tr>
-<tr>
-    <th><label for="descrizione_tecnica"><b>Fornitore</b></label></th>
-    <td><input type="text" name="fornitore" id="fornitore" class="form-control" placeholder="Fornitore" /></td>
-</tr>
-<tr>
-<th><label for="gigapixel_file"><b>Gigapixel File</b></label></th>
-<td><input type="file" name="gigapixel_file" id="gigapixel_file" class="form-control" style="color: white"/></td>
-</tr>
-<tr>
-<th><label for="render_file"><b>Render File</b></label></th>
-<td><input type="file" name="render_file" id="render_file" class="form-control" style="color: white" /></td>
-</tr>
-</table>
-</form>
-</div>
-<footer><br><br><br></footer>
+                    <th><label for="data_acquisizione">Data di Acquisizione</label></th>
+                    <td><input type="date" name="data_acquisizione" id="data_acquisizione" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th><label for="data_inventario">Data di Inventariazione</label></th>
+                    <td><input type="date" name="data_inventario" id="data_inventario" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th><label for="proprieta">Proprietà</label></th>
+                    <td><input type="text" name="proprieta" id="proprieta" class="form-control" placeholder="Proprietà" /></td>
+                </tr>
+                <tr>
+                    <th><label for="provenienza">Provenienza</label></th>
+                    <td><input type="text" name="provenienza" id="provenienza" class="form-control" placeholder="Provenienza" /></td>
+                </tr>
+                <tr>
+                    <th><label for="codice_patrimonio">Codice di Patrimonio</label></th>
+                    <td><input type="text" name="codice_patrimonio" id="codice_patrimonio" class="form-control" placeholder="Codice di Patrimonio" /></td>
+                </tr>
+                <tr>
+                    <th><label for="fornitore">Fornitore</label></th>
+                    <td><input type="text" name="fornitore" id="fornitore" class="form-control" placeholder="Fornitore" /></td>
+                </tr>
+                <tr>
+                    <th><label for="gigapixel_file">Gigapixel File</label></th>
+                    <td><input type="text" name="gigapixel_file" id="gigapixel_file" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th><label for="render_file">Render File</label></th>
+                    <td><input type="text" name="render_file" id="render_file" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th><label for="foto_principale">Foto reperto</label></th>
+                    <td><input type="file" name="foto_principale" id="foto_principale" class="form-control" /></td>
+                </tr>
+            </table>
+            <div style="text-align: center; margin-top: 20px;">
+                <button type="submit">INSERISCI</button>
+            </div>
+        </form>
+    </div>
+      
 </x-app-layout>
-
