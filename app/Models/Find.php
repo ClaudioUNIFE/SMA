@@ -29,6 +29,7 @@ class Find extends Model
         'esposto',
         'digitalizzato',
         'catalogato',
+        'id_catalogo',
         'restaurato',
         'id_deposito',
         'id_collezione',

@@ -118,19 +118,19 @@ public function convertJPGMethod($finds)
 
 
 
-    public function showStore(){
-        $catalogs = Catalog::all();
-        $deposits = Deposit::all();
-        $museums = DB::table('museums')->get();
-        $collections = Collection::all();
-        $catalogs = Catalog::all();
-        return view('store-find', compact('catalogs', 'deposits','museums', 'collections'));
-    }
+   public function showStore(){
+       $catalogs = Catalog::all();
+       $deposits = Deposit::all();
+       $museums = DB::table('museums')->get();
+       $collections = Collection::all();
+       $catalogs = Catalog::all();
+       return view('store-find', compact('catalogs', 'deposits','museums', 'collections'));
+   }
 
 
-    public function store(Request $request){
+   public function store(Request $request){
         
-    }
+   }
 
 }
 
