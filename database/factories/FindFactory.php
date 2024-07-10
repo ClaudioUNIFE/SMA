@@ -19,6 +19,7 @@ class FindFactory extends Factory
             'esposto' => $this->faker->boolean(false),
             'digitalizzato' => $this->faker->boolean(false),
             'catalogato' => $this->faker->boolean(false),
+            'id_catalogo' => $this->faker->numberBetween(1, 50),
             'restaurato' => $this->faker->boolean(false),
             'id_deposito' => $this->faker->numberBetween(1, 100),
             'id_collezione' => $this->faker->numberBetween(1, 100),

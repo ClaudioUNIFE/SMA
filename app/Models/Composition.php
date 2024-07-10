@@ -20,3 +20,4 @@ class Composition extends Model
         return $this->belongsTo(Find::class, 'id_reperto');
     }
 }
+ 

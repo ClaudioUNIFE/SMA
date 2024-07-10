@@ -10,7 +10,7 @@ class CatalogFactory extends Factory
     public function definition(): array
     {
         return [
-
+            'id_reperto' => $this->faker->numberBetween(1, 100),
             'catalogo' => $this->faker->text(),
             'iccd' => $this->faker->text(),
             'pater' => $this->faker->text(),

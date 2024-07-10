@@ -77,6 +77,7 @@ class DatabaseSeeder extends Seeder
             'esposto'=>true,
             'digitalizzato'=>true,
             'catalogato'=>true,
+            'id_collezione'=>1,
             'restaurato'=>false,
             'id_deposito'=>1,
             'id_collezione'=>1,
@@ -129,18 +130,11 @@ class DatabaseSeeder extends Seeder
             'descrizione' => 'Raccolta di reperti archeologici provenienti dagli sc',
             'nome_collezione' => 'Reperi archeologici del foro',]);
         }
-        public function seedFinds_Catalog(){
 
-
-            DB::table('finds_catalogs')->insert([
-                'id_reperto' => 1,
-                'id_catalogo' => 1,
-            ]);
-        }
 
         public function seedCatalogs() {
             Catalog::factory()->create([
-
+                'id_reperto' => 1,
                 'catalogo' => 'catalogo generale',
                 'iccd' => 'IT012345',
                 'pater' => 'LA-VR 123456',
@@ -247,7 +241,7 @@ class DatabaseSeeder extends Seeder
         $this->seedTheses();
         $this->seedXits();
         $this->seedBiologicalEntities();
-        $this->seedFinds_Catalog();
+
 
     }
 }
