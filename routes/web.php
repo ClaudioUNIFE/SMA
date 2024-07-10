@@ -59,5 +59,9 @@ Route::delete('/deposits/{id}', [DepositController::class, 'destroy'])->name('de
 Route::get('/thesis-consultation', [ThesisViewController::class, 'showList'])->name('theses.showList');
 Route::get('/theses/action', [ThesisViewController::class, 'action'])->name('theses.action');
 
+Route::get('/store-theses', [ThesisViewController::class, 'showStore'])->name('theses.showStore');
+Route::post('/store-theses', [ThesisViewController::class, 'store'])->name('theses.store');
+
+
 
 require __DIR__.'/auth.php';

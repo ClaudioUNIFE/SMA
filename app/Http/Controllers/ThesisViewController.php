@@ -97,29 +97,38 @@ class ThesisViewController extends Controller
     {
         $deposits = Deposit::all();
         $museums = Museum::all();
-        return view('store-thesis', compact('deposits', 'museums'));
+        return view('store-theses', compact('deposits', 'museums'));
     }
 
     public function store(Request $request)
-    {
-        // Implementa la logica di salvataggio della tesi
-        // Esempio:
-         $validatedData = $request->validate([
-             'id_museo' => 'required|integer',
-             'id_deposito' => 'required|integer',
-             'autore' => 'required|string|max:255',
-             'titolo' => 'required|string|max:255',
-             'anno_accademico' => 'required|string|max:9',
-             'disciplina' => 'required|string|max:255',
-             'relatore' => 'required|string|max:255',
-             'correlatore' => 'nullable|string|max:255',
-             'contro_relatore' => 'nullable|string|max:255',
-             'percorso_file' => 'required|string|max:255',
-             'note' => 'nullable|string'
-         ]);
+{
+    $request->validate([
+        'titolo' => 'required|string|max:255',
+        'autore' => 'required|string|max:255',
+        'anno_accademico' => 'required|string|max:255',
+        'disciplina' => 'required|string|max:255',
+        'relatore' => 'required|string|max:255',
+        'percorso_file' => 'required|file|mimes:pdf,doc,docx',
+    ]);
 
-         Thesis::create($validatedData);
+    $path = $request->file('percorso_file')->store('theses', 'public');
 
-         return redirect()->route('thesis-consultation');
-    }
+    $thesis = new Thesis();
+    $thesis->titolo = $request->input('titolo');
+    $thesis->autore = $request->input('autore');
+    $thesis->anno_accademico = $request->input('anno_accademico');
+    $thesis->disciplina = $request->input('disciplina');
+    $thesis->relatore = $request->input('relatore');
+    $thesis->percorso_file = $path;
+    $thesis->abstract = $request->input('abstract');
+    $thesis->bibliografia = $request->input('bibliografia');
+    $thesis->tags = $request->input('tags');
+    $thesis->save();
+
+    return redirect()->route('theses.index')->with('success', 'Tesi inserita con successo');
+}
+
+
+
+
 }
