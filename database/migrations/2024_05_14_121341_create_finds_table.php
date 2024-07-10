@@ -24,7 +24,6 @@ return new class extends Migration
             $table->boolean('esposto')->default(false);
             $table->boolean('digitalizzato')->default(false);
             $table->boolean('catalogato')->default(false);
-            $table->foreignId('id_catalogo')->constrained('catalogs');
             $table->boolean('restaurato')->default(false);
             $table->foreignId('id_deposito')->constrained('deposits');
             $table->foreignId('id_collezione')->constrained('collections');
