@@ -6,6 +6,7 @@ use App\Http\Controllers\FindViewController;
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\CollectionsController;
 use App\Http\Controllers\ImportController;
+use App\Http\Controllers\ThesisViewController;
 
 
 
@@ -35,7 +36,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/find-consultation', [FindViewController::class, 'showlist'] )->name('find.showlist');
-Route::get('/action', [FindViewController::class, 'action'])->name('finds.action');
+Route::get('find/action', [FindViewController::class, 'action'])->name('finds.action');
 
 Route::get('/manage-collections', [CollectionsController::class,'index'])->name('collection.index');
 Route::get('/collection/create', [CollectionsController::class,'create'])->name('collection.create');
@@ -54,5 +55,9 @@ Route::get('/deposits/{deposit}/show', [DepositController::class,'show'] )->name
 Route::get('/deposits/{deposit}/edit', [DepositController::class, 'edit'] )->name('deposits.edit');
 Route::post('/deposits/{deposit}/update', [DepositController::class, 'update'] )->name('deposits.update');
 Route::delete('/deposits/{id}', [DepositController::class, 'destroy'])->name('deposits.destroy');
+
+Route::get('/thesis-consultation', [ThesisViewController::class, 'showList'])->name('theses.showList');
+Route::get('/theses/action', [ThesisViewController::class, 'action'])->name('theses.action');
+
 
 require __DIR__.'/auth.php';
