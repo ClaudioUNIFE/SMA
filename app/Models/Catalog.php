@@ -19,6 +19,6 @@ class Catalog extends Model
 
     public function find()
     {
-        return $this->belongsToMany(Find::class, 'id_reperto');
+        return $this->belongsTo(Find::class, 'id_reperto');
     }
 }

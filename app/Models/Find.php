@@ -29,7 +29,6 @@ class Find extends Model
         'esposto',
         'digitalizzato',
         'catalogato',
-        'id_catalogo',
         'restaurato',
         'id_deposito',
         'id_collezione',
@@ -77,7 +76,7 @@ class Find extends Model
 
     public function catalog()
     {
-        return $this->belongsToMany(Catalog::class, 'id_catalogo');
+        return $this->hasOne(Catalog::class, 'id_reperto');
     }
 
     public function xit()
