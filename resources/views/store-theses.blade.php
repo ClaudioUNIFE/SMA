@@ -11,7 +11,7 @@
             padding: 2%;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            color: #ecf0f1;
+            color: #000000;
         }
         .form-control {
             width: 100%;
@@ -86,48 +86,52 @@
     <div class="form-container">
         <form action="{{ route('theses.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-
-            <table class="center-table">
-                <tr>
-                    <th><label for="titolo">Titolo</label></th>
-                    <td><input type="text" name="titolo" id="titolo" class="form-control" placeholder="Titolo della Tesi" required /></td>
-                </tr>
-                <tr>
-                    <th><label for="autore">Autore</label></th>
-                    <td><input type="text" name="autore" id="autore" class="form-control" placeholder="Autore" required /></td>
-                </tr>
-                <tr>
-                    <th><label for="anno_accademico">Anno Accademico</label></th>
-                    <td><input type="text" name="anno_accademico" id="anno_accademico" class="form-control" placeholder="Anno Accademico" required /></td>
-                </tr>
-                <tr>
-                    <th><label for="disciplina">Disciplina</label></th>
-                    <td><input type="text" name="disciplina" id="disciplina" class="form-control" placeholder="Disciplina" required /></td>
-                </tr>
-                <tr>
-                    <th><label for="relatore">Relatore</label></th>
-                    <td><input type="text" name="relatore" id="relatore" class="form-control" placeholder="Relatore" required /></td>
-                </tr>
-                <tr>
-                    <th><label for="percorso_file">Percorso File</label></th>
-                    <td><input type="file" name="percorso_file" id="percorso_file" class="form-control" required /></td>
-                </tr>
-                <tr>
-                    <th><label for="abstract">Abstract</label></th>
-                    <td><textarea name="abstract" id="abstract" class="form-control" placeholder="Abstract"></textarea></td>
-                </tr>
-                <tr>
-                    <th><label for="bibliografia">Bibliografia</label></th>
-                    <td><textarea name="bibliografia" id="bibliografia" class="form-control" placeholder="Bibliografia"></textarea></td>
-                </tr>
-                <tr>
-                    <th><label for="tags">Tag</label></th>
-                    <td><input type="text" name="tags" id="tags" class="form-control" placeholder="Tag" /></td>
-                </tr>
-            </table>
-            <div style="text-align: center; margin-top: 20px;">
-                <button type="submit">INSERISCI</button>
+            <div>
+                <label for="id_museo">ID Museo:</label>
+                <input type="number" id="id_museo" name="id_museo" required>
             </div>
+            <div>
+                <label for="id_deposito">ID Deposito:</label>
+                <input type="number" id="id_deposito" name="id_deposito" required>
+            </div>
+            <div>
+                <label for="autore">Autore:</label>
+                <input type="text" id="autore" name="autore" required>
+            </div>
+            <div>
+                <label for="titolo">Titolo:</label>
+                <input type="text" id="titolo" name="titolo" required>
+            </div>
+            <div>
+                <label for="anno_accademico">Anno Accademico:</label>
+                <input type="text" id="anno_accademico" name="anno_accademico" required>
+            </div>
+            <div>
+                <label for="disciplina">Disciplina:</label>
+                <input type="text" id="disciplina" name="disciplina" required>
+            </div>
+            <div>
+                <label for="relatore">Relatore:</label>
+                <input type="text" id="relatore" name="relatore" required>
+            </div>
+            <div>
+                <label for="correlatore">Correlatore:</label>
+                <input type="text" id="correlatore" name="correlatore">
+            </div>
+            <div>
+                <label for="contro_relatore">Contro Relatore:</label>
+                <input type="text" id="contro_relatore" name="contro_relatore">
+            </div>
+            <div>
+                <label for="percorso_file">Percorso File:</label>
+                <input type="file" id="percorso_file" name="percorso_file" required>
+            </div>
+            <div>
+                <label for="note">Note:</label>
+                <textarea id="note" name="note"></textarea>
+            </div>
+            <button type="submit">Submit</button>
         </form>
+
     </div>
 </x-app-layout>

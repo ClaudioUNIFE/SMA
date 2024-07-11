@@ -103,29 +103,38 @@ class ThesisViewController extends Controller
     public function store(Request $request)
 {
     $request->validate([
-        'titolo' => 'required|string|max:255',
+        'id_museo' => 'required|integer', // Aggiungi questo se id_museo è obbligatorio
+        'id_deposito' => 'required|integer', // Aggiungi questo se id_deposito è obbligatorio
         'autore' => 'required|string|max:255',
+        'titolo' => 'required|string|max:255',
         'anno_accademico' => 'required|string|max:255',
         'disciplina' => 'required|string|max:255',
         'relatore' => 'required|string|max:255',
         'percorso_file' => 'required|file|mimes:pdf,doc,docx',
+        // Aggiungi altre validazioni se necessario
     ]);
 
-    $path = $request->file('percorso_file')->store('theses', 'public');
+    try {
+        $path = $request->file('percorso_file')->store('theses', 'public');
 
-    $thesis = new Thesis();
-    $thesis->titolo = $request->input('titolo');
-    $thesis->autore = $request->input('autore');
-    $thesis->anno_accademico = $request->input('anno_accademico');
-    $thesis->disciplina = $request->input('disciplina');
-    $thesis->relatore = $request->input('relatore');
-    $thesis->percorso_file = $path;
-    $thesis->abstract = $request->input('abstract');
-    $thesis->bibliografia = $request->input('bibliografia');
-    $thesis->tags = $request->input('tags');
-    $thesis->save();
+        $thesis = new Thesis();
+        $thesis->id_museo = $request->input('id_museo');
+        $thesis->id_deposito = $request->input('id_deposito');
+        $thesis->autore = $request->input('autore');
+        $thesis->titolo = $request->input('titolo');
+        $thesis->anno_accademico = $request->input('anno_accademico');
+        $thesis->disciplina = $request->input('disciplina');
+        $thesis->relatore = $request->input('relatore');
+        $thesis->correlatore = $request->input('correlatore');
+        $thesis->contro_relatore = $request->input('contro_relatore');
+        $thesis->percorso_file = $path;
+        $thesis->note = $request->input('note');
+        $thesis->save();
 
-    return redirect()->route('theses.index')->with('success', 'Tesi inserita con successo');
+        return redirect()->route('theses.show', $thesis->id)->with('success', 'Tesi inserita con successo');
+    } catch (\Exception $e) {
+        return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+    }
 }
 
 
