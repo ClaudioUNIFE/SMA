@@ -35,7 +35,7 @@ class Find extends Model
         'validato',
         'categoria',
         'gigapixel_flag',
-        'rendeer_flag',
+        'render_flag',
         'cartellino_storico',
         'cartellino_attuale',
         'foto_principale',

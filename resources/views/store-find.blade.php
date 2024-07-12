@@ -112,11 +112,31 @@
                 </tr>
                 <tr>
                     <th><label for="esposto">Esposto</label></th>
-                    <td><input type="checkbox" id="esposto" name="esposto"></td>
+                    <td>
+                        <input type="hidden" name="esposto" value="0">
+                        <input type="checkbox" id="esposto" name="esposto" value="1">
+                    </td>
                 </tr>
                 <tr>
                     <th><label for="digitalizzato">Digitalizzato</label></th>
-                    <td><input type="checkbox" id="digitalizzato" name="digitalizzato"></td>
+                    <td>
+                        <input type="hidden" name="digitalizzato" value="0">
+                        <input type="checkbox" id="digitalizzato" name="digitalizzato" value="1">
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="digitalizzato">Catalogato</label></th>
+                    <td>
+                        <input type="hidden" name="catalogato" value="0">
+                        <input type="checkbox" id="catalogato" name="catalogato" value="1">
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="restaurato">Restaurato</label></th>
+                    <td>
+                        <input type="hidden" name="restaurato" value="0">
+                        <input type="checkbox" id="restaurato" name="restaurato" value="1">
+                    </td>
                 </tr>
                 <tr>
                     <th><label for="id_deposito">Deposito</label></th>
@@ -140,7 +160,10 @@
                 </tr>
                 <tr>
                     <th><label for="validato">Validato</label></th>
-                    <td><input type="checkbox" id="validato" name="validato"></td>
+                    <td>
+                        <input type="hidden" name="validato" value="0">
+                        <input type="checkbox" id="validato" name="validato" value="1">
+                    </td>
                 </tr>
                 <tr>
                     <th><label for="tipo_entita">Tipo Entità</label></th>
@@ -160,15 +183,24 @@
                 </tr>
                 <tr>
                     <th><label for="gigapixel_flag">Gigapixel</label></th>
-                    <td><input type="checkbox" id="gigapixel_flag" name="gigapixel_flag"></td>
+                    <td>
+                        <input type="hidden" name="gigapixel_flag" value="0">
+                        <input type="checkbox" id="gigapixel_flag" name="gigapixel_flag" value="1">
+                    </td>
                 </tr>
                 <tr>
                     <th><label for="render_flag">Render</label></th>
-                    <td><input type="checkbox" id="render_flag" name="render_flag"></td>
+                    <td>
+                        <input type="hidden" name="render_flag" value="0">
+                        <input type="checkbox" id="render_flag" name="render_flag" value="1">
+                    </td>
                 </tr>
                 <tr>
                     <th><label for="olotipo">Olotipo</label></th>
-                    <td><input type="checkbox" name="olotipo" id="olotipo"></td>
+                    <td>
+                        <input type="hidden" name="olotipo" value="0">
+                        <input type="checkbox" name="olotipo" id="olotipo" value="1">
+                    </td>
                 </tr>
                 <tr>
                     <th><label for="riferimento_tassonomico">Riferimento Tassonomico</label></th>
@@ -210,15 +242,27 @@
                 </tr>
                 <tr>
                     <th><label for="multiplo">Multiplo</label></th>
-                    <td><input type="checkbox" name="multiplo" id="multiplo"></td>
+                    <td>
+                        <input type="hidden" name="multiplo" value="0">
+                        <input type="checkbox" id="multiplo" name="multiplo" value="1">
+                    </td>
                 </tr>
                 <tr>
+                    <th><label for="molteplicita">Molteplicità</label></th>
+                    <td><input type="text" name="molteplicita" id="molteplicita" class="form-control" placeholder="Molteplicità" /></td>
+                <tr>
                     <th><label for="originale">Originale</label></th>
-                    <td><input type="checkbox" name="originale" id="originale"></td>
+                    <td>
+                        <input type="hidden" name="originale" value="0">
+                        <input type="checkbox" name="originale" id="originale" value="1">
+                    </td>
                 </tr>
                 <tr>
                     <th><label for="fossile">Fossile</label></th>
-                    <td><input type="checkbox" name="fossile" id="fossile"></td>
+                    <td>
+                        <input type="hidden" name="fossile" value="0">
+                        <input type="checkbox" name="fossile" id="fossile" value="1">
+                    </td>
                 </tr>
                 <tr>
                     <th><label for="materiale">Materiale</label></th>
@@ -261,6 +305,19 @@
                     <td><input type="text" name="render_file" id="render_file" class="form-control" /></td>
                 </tr>
                 <tr>
+                    <th><label for="cartellino_storico">Cartellino Storico</label></th>
+                    <td><input type="text" name="cartellino_storico" id="cartellino_storico" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th><label for="cartellino_attuale">Cartellino Attuale</label></th>
+                    <td><input type="text" name="cartellino_attuale" id="cartellino_attuale" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th><label for="didascalia">Didascalia</label></th>
+                    <td><input type="text" name="didascalia" id="didascalia" class="form-control" /></td>
+                </tr>
+
+                <tr>
                     <th><label for="foto_principale">Foto reperto</label></th>
                     <td><input type="file" name="foto_principale" id="foto_principale" class="form-control" /></td>
                 </tr>
@@ -270,5 +327,5 @@
             </div>
         </form>
     </div>
-      
+
 </x-app-layout>

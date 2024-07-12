@@ -15,6 +15,9 @@ use App\Models\Catalog;
 use App\Models\Deposit;
 use pp\Models\Museum;
 use App\Models\Collection;
+use App\Models\Acquisition;
+use App\Models\Composition;
+use App\Models\Render;
 
 class FindViewController extends Controller
 {
@@ -28,32 +31,6 @@ class FindViewController extends Controller
 
 
 
-function convertToJpeg($filePath)
-{
-    // Get the original image
-    $image = ImageManagerStatic::make(Storage::path($filePath));
-
-    // Define the path for the new image
-    $newFilePath = preg_replace('/\.(png|gif|bmp|webp)$/i', '.jpg', $filePath);
-
-    // Convert and save the image as a JPEG with reduced quality (e.g., 75 out of 100)
-    $image->encode('jpg', 75);
-    Storage::put($newFilePath, (string) $image);
-
-    // Return the new file path
-    return $newFilePath;
-}
-
-public function convertJPGMethod($finds)
-    {
-        foreach ($finds as $find) {
-            $gigapixelFilePath = 'storage/gigapixel/' . $find->gigapixel_file;
-            $newGigapixelFilePath = $this->convertToJpeg($gigapixelFilePath);
-            $find->gigapixel_file = $newGigapixelFilePath;
-        }
-
-        return $finds;
-    }
 
 
     public function action(Request $request) {
@@ -128,11 +105,124 @@ public function convertJPGMethod($finds)
    }
 
 
-   public function store(Request $request){
-        
-   }
+   public function store(Request $request) {
+    try {
+        // Validazione dei dati in input
+        $validatedData = $request->validate([
+            'id_museo' => 'nullable|integer',
+            'id_vecchio' => 'nullable|string',
+            'descrizione' => 'nullable|string',
+            'note' => 'nullable|string',
+            'esposto' => 'nullable|boolean',
+            'digitalizzato' => 'nullable|boolean',
+            'catalogato' => 'nullable|boolean',
+            'restaurato' => 'nullable|boolean',
+            'id_deposito' => 'nullable|integer',
+            'id_collezione' => 'nullable|integer',
+            'validato' => 'nullable|boolean',
+            'categoria' => 'nullable|string',
+            'gigapixel_flag' => 'nullable|boolean',
+            'render_flag' => 'nullable|boolean',
+            'cartellino_storico' => 'nullable|string',
+            'cartellino_attuale' => 'nullable|string',
+            'foto_principale' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'didascalia' => 'nullable|string',
+            'olotipo' => 'nullable|boolean',
+            'riferimento_tassonomico' => 'nullable|string',
+            'nome_comune' => 'nullable|string',
+            'taxon_group' => 'nullable|string',
+            'riferimento_cronologico' => 'nullable|string',
+            'modalita_acquisizione' => 'nullable|string',
+            'data_inventario' => 'nullable|date',
+            'data_acquisizione' => 'nullable|date',
+            'proprieta' => 'nullable|string',
+            'codice_patrimonio' => 'nullable|string',
+            'provenienza' => 'nullable|string',
+            'fornitore' => 'nullable|string',
+            'multiplo' => 'nullable|boolean',
+            'molteplicita' => 'nullable|integer',
+            'originale' => 'nullable|boolean',
+            'fossile' => 'nullable|boolean',
+            'materiale' => 'nullable|string',
+            'gigapixel_file' => 'nullable|string',
+            'render_file' => 'nullable|string',
+        ]);
+
+        // Gestione del caricamento del file
+        if ($request->hasFile('foto_principale')) {
+            $filePath = $request->file('foto_principale')->store('find_photo', 'public');
+            $validatedData['foto_principale'] = $filePath;
+        }
+
+        // Creazione del nuovo record
+        $find = Find::create($validatedData);
+        $id_reperto = $find->id;
+
+        $biologicalEntitiesData = [
+            'id_reperto' => $id_reperto,
+            'olotipo' => $validatedData['olotipo'] ?? false,
+            'riferimento_tassonomico' => $validatedData['riferimento_tassonomico'] ?? '',
+            'nome_comune' => $validatedData['nome_comune'] ?? '',
+            'taxon_group' => $validatedData['taxon_group'] ?? '',
+            'riferimento_cronologico' => $validatedData['riferimento_cronologico'] ?? '',
+        ];
+
+        $biologicalEntities = BiologicalEntity::create($biologicalEntitiesData);
+
+        $acquisitionData = [
+            'id_reperto' => $id_reperto,
+            'modalita_acquisizione' => $validatedData['modalita_acquisizione'] ?? '',
+            'data_inventario' => $validatedData['data_inventario'] ?? null,
+            'data_acquisizione' => $validatedData['data_acquisizione'] ?? null,
+            'proprieta' => $validatedData['proprieta'] ?? '',
+            'codice_patrimonio' => $validatedData['codice_patrimonio'] ?? '',
+            'provenienza' => $validatedData['provenienza'] ?? '',
+            'fornitore' => $validatedData['fornitore'] ?? '',
+        ];
+        $acquisition = Acquisition::create($acquisitionData);
+
+        $compositionData = [
+            'id_reperto' => $id_reperto,
+            'multiplo' => $validatedData['multiplo'] ?? false,
+            'molteplicita' => $validatedData['molteplicita'] ?? 0,
+            'originale' => $validatedData['originale'] ?? false,
+            'fossile' => $validatedData['fossile'] ?? false,
+            'materiale' => $validatedData['materiale'] ?? '',
+        ];
+
+        $composition = Composition::create($compositionData);
+
+        $gigapixelData = [
+            'id_reperto' => $id_reperto,
+            'gigapixel_file' => $validatedData['gigapixel_file'] ?? '',
+        ];
+        $gigapixel = Gigapixel::create($gigapixelData);
+
+        $renderData = [
+            'id_reperto' => $id_reperto,
+            'render_file' => $validatedData['render_file'] ?? '',
+        ];
+        $render = Render::create($renderData);
+
+        // Se il record è stato creato, ritorna la view con il messaggio di successo
+        if ($find) {
+            Log::info('Find creato con successo: ', $find->toArray());
+            return redirect()->route('find.showstore')->with('success', 'Find created successfully');
+        } else {
+            Log::error('Errore nella creazione del find.');
+            return redirect()->route('find.showstore')->with('error', 'Error creating find');
+        }
+    } catch (Exception $e) {
+        Log::error('Eccezione nella creazione del find: ' . $e->getMessage());
+        return redirect()->route('find.showstore')->with('error', 'Exception occurred: ' . $e->getMessage());
+    }
+}
+
+
 
 }
+
+
 
 
 

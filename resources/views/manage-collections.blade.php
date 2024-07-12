@@ -29,7 +29,7 @@
                             <td style="color: white; padding: 10px;">{{ $collection->data_acquisizione_collezione }}</td>
                             <td style="color: white; padding: 10px;">{{ $collection->descrizione }}</td>
                             <td style="padding: 10px;">
-                                <a href="{{ route('collection.edit', $collection->id) }}" style="color: white; margin-right: 10px; text-decoration: none; background-color: #ffc107; padding: 5px 10px; border-radius: 3px;">Modifica</a>
+                                <a href="{{ route('collection.edit', $collection->id) }}" style="color: white; margin-right: 10px; text-decoration: none; background-color: rgb(73,159,164); padding: 5px 10px; border-radius: 3px;">Modifica</a>
                                 <form id="delete-form-{{ $collection->id }}" action="{{ route('collection.destroy', $collection->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
