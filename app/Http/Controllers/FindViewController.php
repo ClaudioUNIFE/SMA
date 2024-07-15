@@ -18,6 +18,7 @@ use App\Models\Collection;
 use App\Models\Acquisition;
 use App\Models\Composition;
 use App\Models\Render;
+use App\Models\Xit;
 
 
 class FindViewController extends Controller
@@ -417,24 +418,45 @@ public function update(Request $request, $id) {
 
         // Se il record è stato aggiornato, ritorna la view con il messaggio di successo
         Log::info('Find aggiornato con successo: ', $find->toArray());
-        return redirect()->route('find.showstore')->with('success', 'Find updated successfully');
+        return redirect()->route('find.showlist')->with('success', 'Find updated successfully');
     } catch (Exception $e) {
         Log::error('Eccezione nell\'aggiornamento del find: ' . $e->getMessage());
-        return redirect()->route('find.showstore')->with('error', 'Exception occurred: ' . $e->getMessage());
+        return redirect()->route('find.showlist')->with('error', 'Exception occurred: ' . $e->getMessage());
     }
 }
 
 
+public function destroy($id) {
+    try {
+        DB::transaction(function() use ($id) {
+            // Trova il record esistente
+            $find = Find::findOrFail($id);
 
-public function showfindform(Request $request, $id){
-    $find= Find::getUtilsforFindForm($id);
-    $museum = DB::table('museums')->where('id', '=', $find->id_museo)->get()->first();
-    $deposit = DB::table('deposits')->where('id', '=', $find->id_deposito)->get()->first();
-    $collection = DB::table('collections')->where('id', '=', $find->id_collezione)->get()->first();
-    return view('find-form', compact('find' ,'museum' , 'deposit' , 'collection'));
+            // Elimina la foto principale dallo storage, se esiste
+            if ($find->foto_principale) {
+                Storage::disk('public')->delete($find->foto_principale);
+            }
+
+            // Elimina le entità correlate usando id_reperto come chiave esterna
+            BiologicalEntity::where('id_reperto', $find->id)->delete();
+            Acquisition::where('id_reperto', $find->id)->delete();
+            Composition::where('id_reperto', $find->id)->delete();
+            Gigapixel::where('id_reperto', $find->id)->delete();
+            Render::where('id_reperto', $find->id)->delete();
+            Catalog::where('id_reperto', $find->id)->delete();
+            Xit::where('id_reperto', $find->id)->delete();
+
+            // Elimina il record principale
+            $find->delete();
+
+            Log::info('Find eliminato con successo: ', ['id' => $id]);
+        });
+
+        return redirect()->route('find.showlist')->with('success', 'Find deleted successfully');
+    } catch (Exception $e) {
+        Log::error('Eccezione nell\'eliminazione del find: ' . $e->getMessage());
+        return redirect()->route('find.showlist')->with('error', 'Exception occurred: ' . $e->getMessage());
+    }
 }
-
-public function update(Request $request, $id){}
-
 
 }
