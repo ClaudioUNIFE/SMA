@@ -101,7 +101,6 @@ class FindViewController extends Controller
        $deposits = Deposit::all();
        $museums = DB::table('museums')->get();
        $collections = Collection::all();
-       $catalogs = Catalog::all();
        return view('store-find', compact('catalogs', 'deposits','museums', 'collections'));
    }
 
@@ -266,7 +265,165 @@ public function showfindform(Request $request, $id){
     return view('find-form', compact('find' ,'museum' , 'deposit' , 'collection'));
 }
 
-public function update(Request $request, $id){}
+public function showupdate($id){
+    $catalogs = Catalog::all();
+       $deposits = Deposit::all();
+       $museums = DB::table('museums')->get();
+       $collections = Collection::all();
+    return view('edit-find', compact('id' , 'catalogs' , 'deposits' ,'museums' , 'collections'));
+}
+
+
+public function update(Request $request, $id) {
+    try {
+        // Validazione dei dati in input
+        $validatedData = $request->validate([
+            'id_museo' => 'nullable|integer',
+            'id_vecchio' => 'nullable|string',
+            'descrizione' => 'nullable|string',
+            'note' => 'nullable|string',
+            'esposto' => 'nullable|boolean',
+            'digitalizzato' => 'nullable|boolean',
+            'catalogato' => 'nullable|boolean',
+            'restaurato' => 'nullable|boolean',
+            'id_deposito' => 'nullable|integer',
+            'id_collezione' => 'nullable|integer',
+            'validato' => 'nullable|boolean',
+            'categoria' => 'nullable|string',
+            'gigapixel_flag' => 'nullable|boolean',
+            'render_flag' => 'nullable|boolean',
+            'cartellino_storico' => 'nullable|string',
+            'cartellino_attuale' => 'nullable|string',
+            'foto_principale' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'didascalia' => 'nullable|string',
+            'olotipo' => 'nullable|boolean',
+            'riferimento_tassonomico' => 'nullable|string',
+            'nome_comune' => 'nullable|string',
+            'taxon_group' => 'nullable|string',
+            'riferimento_cronologico' => 'nullable|string',
+            'modalita_acquisizione' => 'nullable|string',
+            'data_inventario' => 'nullable|date',
+            'data_acquisizione' => 'nullable|date',
+            'proprieta' => 'nullable|string',
+            'codice_patrimonio' => 'nullable|string',
+            'provenienza' => 'nullable|string',
+            'fornitore' => 'nullable|string',
+            'multiplo' => 'nullable|boolean',
+            'molteplicita' => 'nullable|integer',
+            'originale' => 'nullable|boolean',
+            'fossile' => 'nullable|boolean',
+            'materiale' => 'nullable|string',
+            'gigapixel_file' => 'nullable|string',
+            'render_file' => 'nullable|string',
+            'catalogo' => 'nullable|string',
+            'iccd' => 'nullable|string',
+            'pater' => 'nullable|string',
+            'vecchio_db' => 'nullable|string',
+        ]);
+
+        // Trova il record esistente
+        $find = Find::findOrFail($id);
+
+        // Gestione del caricamento del file
+        if ($request->hasFile('foto_principale')) {
+            $filePath = $request->file('foto_principale')->store('find_photo', 'public');
+            $validatedData['foto_principale'] = $filePath;
+        }
+
+        // Aggiorna i campi di $find
+        $findData = [
+            'id_museo' => $validatedData['id_museo'] ?? null,
+            'id_vecchio' => $validatedData['id_vecchio'] ?? '',
+            'descrizione' => $validatedData['descrizione'] ?? '',
+            'note' => $validatedData['note'] ?? '',
+            'esposto' => $validatedData['esposto'] ?? 0,
+            'digitalizzato' => $validatedData['digitalizzato'] ?? 0,
+            'catalogato' => $validatedData['catalogato'] ?? 0,
+            'restaurato' => $validatedData['restaurato'] ?? 0,
+            'id_deposito' => $validatedData['id_deposito'] ?? null,
+            'id_collezione' => $validatedData['id_collezione'] ?? null,
+            'validato' => $validatedData['validato'] ?? 0,
+            'categoria' => $validatedData['categoria'] ?? '',
+            'gigapixel_flag' => $validatedData['gigapixel_flag'] ?? 0,
+            'render_flag' => $validatedData['render_flag'] ?? 0,
+            'cartellino_storico' => $validatedData['cartellino_storico'] ?? '',
+            'cartellino_attuale' => $validatedData['cartellino_attuale'] ?? '',
+            'didascalia' => $validatedData['didascalia'] ?? '',
+            'foto_principale' => $validatedData['foto_principale'] ?? $find->foto_principale,
+        ];
+
+        $find->update($findData);
+        $id_reperto = $find->id;
+
+
+        $biologicalEntitiesData = [
+            'id_reperto' => $id_reperto,
+            'olotipo' => $validatedData['olotipo'] ?? 0,
+            'riferimento_tassonomico' => $validatedData['riferimento_tassonomico'] ?? '',
+            'nome_comune' => $validatedData['nome_comune'] ?? '',
+            'taxon_group' => $validatedData['taxon_group'] ?? '',
+            'riferimento_cronologico' => $validatedData['riferimento_cronologico'] ?? '',
+        ];
+        $biologicalEntity = BiologicalEntity::where('id_reperto', '=', $id_reperto)->get()->first();
+        $biologicalEntity->update($biologicalEntitiesData);
+
+        $acquisitionData = [
+            'id_reperto' => $id_reperto,
+            'modalita_acquisizione' => $validatedData['modalita_acquisizione'] ?? '',
+            'data_inventario' => $validatedData['data_inventario'] ?? now(),
+            'data_acquisizione' => $validatedData['data_acquisizione'] ?? now(),
+            'proprieta' => $validatedData['proprieta'] ?? '',
+            'codice_patrimonio' => $validatedData['codice_patrimonio'] ?? '',
+            'provenienza' => $validatedData['provenienza'] ?? '',
+            'fornitore' => $validatedData['fornitore'] ?? '',
+        ];
+        $acquisition = Acquisition::where('id_reperto', '=', $id_reperto)->get()->first();
+        $acquisition->update($acquisitionData);
+
+        $compositionData = [
+            'id_reperto' => $id_reperto,
+            'multiplo' => $validatedData['multiplo'] ?? 0,
+            'molteplicita' => $validatedData['molteplicita'] ?? 0,
+            'originale' => $validatedData['originale'] ?? 0,
+            'fossile' => $validatedData['fossile'] ?? 0,
+            'materiale' => $validatedData['materiale'] ?? '',
+        ];
+        $composition = Composition::where('id_reperto', '=', $id_reperto)->get()->first();
+        $composition->update($compositionData);
+
+        $gigapixelData = [
+            'id_reperto' => $id_reperto,
+            'gigapixel_file' => $validatedData['gigapixel_file'] ?? '',
+        ];
+        $gigapixel = Gigapixel::where('id_reperto', '=', $id_reperto)->get()->first();
+        $gigapixel->update($gigapixelData);
+
+        $renderData = [
+            'id_reperto' => $id_reperto,
+            'render_file' => $validatedData['render_file'] ?? '',
+        ];
+        $render = Render::where('id_reperto', '=', $id_reperto)->get()->first();
+        $render->update($renderData);
+
+        $catalogData=[
+            'id_reperto' => $id_reperto,
+            'catalogo' => $validatedData['catalogo'] ?? '',
+            'iccd' => $validatedData['iccd'] ?? '',
+            'pater' => $validatedData['pater'] ?? '',
+            'vecchio_db' => $validatedData['vecchio_db'] ?? '',
+        ];
+        $catalog = Catalog::where('id_reperto', '=', $id_reperto)->get()->first();
+        $catalog->update($catalogData);
+
+        // Se il record è stato aggiornato, ritorna la view con il messaggio di successo
+        Log::info('Find aggiornato con successo: ', $find->toArray());
+        return redirect()->route('find.showstore')->with('success', 'Find updated successfully');
+    } catch (Exception $e) {
+        Log::error('Eccezione nell\'aggiornamento del find: ' . $e->getMessage());
+        return redirect()->route('find.showstore')->with('error', 'Exception occurred: ' . $e->getMessage());
+    }
+}
+
 
 
 
