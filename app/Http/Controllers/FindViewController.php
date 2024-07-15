@@ -426,15 +426,5 @@ public function update(Request $request, $id) {
 
 
 
-public function showfindform(Request $request, $id){
-    $find= Find::getUtilsforFindForm($id);
-    $museum = DB::table('museums')->where('id', '=', $find->id_museo)->get()->first();
-    $deposit = DB::table('deposits')->where('id', '=', $find->id_deposito)->get()->first();
-    $collection = DB::table('collections')->where('id', '=', $find->id_collezione)->get()->first();
-    return view('find-form', compact('find' ,'museum' , 'deposit' , 'collection'));
-}
-
-public function update(Request $request, $id){}
-
 
 }
