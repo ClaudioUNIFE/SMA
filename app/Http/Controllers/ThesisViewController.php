@@ -103,16 +103,17 @@ class ThesisViewController extends Controller
     public function store(Request $request)
 {
     $request->validate([
-        'id_museo' => 'required|integer', // Aggiungi questo se id_museo è obbligatorio
-        'id_deposito' => 'required|integer', // Aggiungi questo se id_deposito è obbligatorio
+        'id_museo' => 'required|integer',
+        'id_deposito' => 'required|integer',
         'autore' => 'required|string|max:255',
         'titolo' => 'required|string|max:255',
         'anno_accademico' => 'required|string|max:255',
         'disciplina' => 'required|string|max:255',
         'relatore' => 'required|string|max:255',
         'percorso_file' => 'required|file|mimes:pdf,doc,docx',
-        // Aggiungi altre validazioni se necessario
     ]);
+
+    DB::beginTransaction();
 
     try {
         $path = $request->file('percorso_file')->store('theses', 'public');
@@ -131,11 +132,17 @@ class ThesisViewController extends Controller
         $thesis->note = $request->input('note');
         $thesis->save();
 
-        return redirect()->route('theses.show', $thesis->id)->with('success', 'Tesi inserita con successo');
+        DB::commit();
+
+        return redirect()->route('theses.store')->with('success', 'Tesi inserita con successo');
     } catch (\Exception $e) {
+        DB::rollBack();
         return redirect()->back()->withErrors(['error' => $e->getMessage()]);
     }
 }
+
+
+
 
 
 

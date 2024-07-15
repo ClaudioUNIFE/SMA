@@ -218,12 +218,4 @@ class FindViewController extends Controller
     }
 }
 
-
-
 }
-
-
-
-
-
-
