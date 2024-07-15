@@ -19,6 +19,7 @@ use App\Models\Acquisition;
 use App\Models\Composition;
 use App\Models\Render;
 
+
 class FindViewController extends Controller
 {
     public function showlist(){
@@ -104,8 +105,7 @@ class FindViewController extends Controller
        return view('store-find', compact('catalogs', 'deposits','museums', 'collections'));
    }
 
-
-   public function store(Request $request) {
+public function store(Request $request) {
     try {
         // Validazione dei dati in input
         $validatedData = $request->validate([
@@ -146,21 +146,51 @@ class FindViewController extends Controller
             'materiale' => 'nullable|string',
             'gigapixel_file' => 'nullable|string',
             'render_file' => 'nullable|string',
+            'catalogo' => 'nullable|string',
+            'iccd' => 'nullable|string',
+            'pater' => 'nullable|string',
+            'vecchio_db' => 'nullable|string',
         ]);
 
         // Gestione del caricamento del file
         if ($request->hasFile('foto_principale')) {
             $filePath = $request->file('foto_principale')->store('find_photo', 'public');
             $validatedData['foto_principale'] = $filePath;
+        } else {
+            $validatedData['foto_principale'] = '';
         }
 
+        // Assicurati che i campi non accettino valori null nel database
+        $findData = [
+            'id_museo' => $validatedData['id_museo'] ?? null,
+            'id_vecchio' => $validatedData['id_vecchio'] ?? '',
+            'descrizione' => $validatedData['descrizione'] ?? '',
+            'note' => $validatedData['note'] ?? '',
+            'esposto' => $validatedData['esposto'] ?? 0,
+            'digitalizzato' => $validatedData['digitalizzato'] ?? 0,
+            'catalogato' => $validatedData['catalogato'] ?? 0,
+            'restaurato' => $validatedData['restaurato'] ?? 0,
+            'id_deposito' => $validatedData['id_deposito'] ?? null,
+            'id_collezione' => $validatedData['id_collezione'] ?? null,
+            'validato' => $validatedData['validato'] ?? 0,
+            'categoria' => $validatedData['categoria'] ?? '',
+            'gigapixel_flag' => $validatedData['gigapixel_flag'] ?? 0,
+            'render_flag' => $validatedData['render_flag'] ?? 0,
+            'cartellino_storico' => $validatedData['cartellino_storico'] ?? '',
+            'cartellino_attuale' => $validatedData['cartellino_attuale'] ?? '',
+            'didascalia' => $validatedData['didascalia'] ?? '',
+            'foto_principale' => $validatedData['foto_principale'],
+        ];
+
+
+
         // Creazione del nuovo record
-        $find = Find::create($validatedData);
+        $find = Find::create($findData);
         $id_reperto = $find->id;
 
         $biologicalEntitiesData = [
             'id_reperto' => $id_reperto,
-            'olotipo' => $validatedData['olotipo'] ?? false,
+            'olotipo' => $validatedData['olotipo'] ?? 0,
             'riferimento_tassonomico' => $validatedData['riferimento_tassonomico'] ?? '',
             'nome_comune' => $validatedData['nome_comune'] ?? '',
             'taxon_group' => $validatedData['taxon_group'] ?? '',
@@ -172,8 +202,8 @@ class FindViewController extends Controller
         $acquisitionData = [
             'id_reperto' => $id_reperto,
             'modalita_acquisizione' => $validatedData['modalita_acquisizione'] ?? '',
-            'data_inventario' => $validatedData['data_inventario'] ?? null,
-            'data_acquisizione' => $validatedData['data_acquisizione'] ?? null,
+            'data_inventario' => $validatedData['data_inventario'] ?? now(),
+            'data_acquisizione' => $validatedData['data_acquisizione'] ?? now(),
             'proprieta' => $validatedData['proprieta'] ?? '',
             'codice_patrimonio' => $validatedData['codice_patrimonio'] ?? '',
             'provenienza' => $validatedData['provenienza'] ?? '',
@@ -183,10 +213,10 @@ class FindViewController extends Controller
 
         $compositionData = [
             'id_reperto' => $id_reperto,
-            'multiplo' => $validatedData['multiplo'] ?? false,
+            'multiplo' => $validatedData['multiplo'] ?? 0,
             'molteplicita' => $validatedData['molteplicita'] ?? 0,
-            'originale' => $validatedData['originale'] ?? false,
-            'fossile' => $validatedData['fossile'] ?? false,
+            'originale' => $validatedData['originale'] ?? 0,
+            'fossile' => $validatedData['fossile'] ?? 0,
             'materiale' => $validatedData['materiale'] ?? '',
         ];
 
@@ -204,6 +234,16 @@ class FindViewController extends Controller
         ];
         $render = Render::create($renderData);
 
+        $catalogData=[
+            'id_reperto' => $id_reperto,
+            'catalogo' => $validatedData['catalogo'] ?? '',
+            'iccd' => $validatedData['iccd'] ?? '',
+            'pater' => $validatedData['pater'] ?? '',
+            'vecchio_db' => $validatedData['vecchio_db'] ?? '',
+        ];
+
+        $catalog = Catalog::create($catalogData);
+
         // Se il record è stato creato, ritorna la view con il messaggio di successo
         if ($find) {
             Log::info('Find creato con successo: ', $find->toArray());
@@ -217,5 +257,27 @@ class FindViewController extends Controller
         return redirect()->route('find.showstore')->with('error', 'Exception occurred: ' . $e->getMessage());
     }
 }
+
+public function showfindform(Request $request, $id){
+    $find= Find::getUtilsforFindForm($id);
+    $museum = DB::table('museums')->where('id', '=', $find->id_museo)->get()->first();
+    $deposit = DB::table('deposits')->where('id', '=', $find->id_deposito)->get()->first();
+    $collection = DB::table('collections')->where('id', '=', $find->id_collezione)->get()->first();
+    return view('find-form', compact('find' ,'museum' , 'deposit' , 'collection'));
+}
+
+public function update(Request $request, $id){}
+
+
+public function showfindform(Request $request, $id){
+    $find= Find::getUtilsforFindForm($id);
+    $museum = DB::table('museums')->where('id', '=', $find->id_museo)->get()->first();
+    $deposit = DB::table('deposits')->where('id', '=', $find->id_deposito)->get()->first();
+    $collection = DB::table('collections')->where('id', '=', $find->id_collezione)->get()->first();
+    return view('find-form', compact('find' ,'museum' , 'deposit' , 'collection'));
+}
+
+public function update(Request $request, $id){}
+
 
 }

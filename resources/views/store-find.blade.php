@@ -165,10 +165,7 @@
                         <input type="checkbox" id="validato" name="validato" value="1">
                     </td>
                 </tr>
-                <tr>
-                    <th><label for="tipo_entita">Tipo Entità</label></th>
-                    <td><input type="text" name="tipo_entita" id="tipo_entita" class="form-control" placeholder="Tipo Entità" /></td>
-                </tr>
+
                 <tr>
                     <th><label for="categoria">Categoria Reperto</label></th>
                     <td>
@@ -321,6 +318,23 @@
                     <th><label for="foto_principale">Foto reperto</label></th>
                     <td><input type="file" name="foto_principale" id="foto_principale" class="form-control" /></td>
                 </tr>
+                <tr>
+                    <th><label for="catalogo">Catalogo</label></th>
+                    <td><input type="text" name="catalogo" id="catalogo" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <th><label for="iccd">ICCD</label></th>
+                    <td><input type="text" name="iccd" id="iccd" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <th><label for="pater">PATER</label></th>
+                    <td><input type="text" name="pater" id="pater" class="form-control"/></td>
+                </tr>
+                <tr>
+                    <th><label for="vecchio_db">Vecchio DB</label></th>
+                    <td><input type="text" name="vecchio_db" id="vecchio_db" class="form-control"/></td>
+                </tr>
+
             </table>
             <div style="text-align: center; margin-top: 20px;">
                 <button type="submit">INSERISCI</button>
