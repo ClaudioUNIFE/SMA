@@ -92,4 +92,35 @@ class Find extends Model
     }
 
 
+    public static function getUtilsforFindForm($id){
+        $find = DB::table('finds')
+            ->join('biological_entities', 'finds.id', '=', 'biological_entities.id_reperto')
+            ->join('collections', 'finds.id_collezione', '=', 'collections.id')
+            ->join('deposits', 'finds.id_deposito', '=', 'deposits.id')
+            ->join('catalogs', 'finds.id', '=', 'catalogs.id_reperto')
+            ->join('compositions', 'finds.id', '=', 'compositions.id_reperto')
+            ->join('acquisitions', 'finds.id', '=', 'acquisitions.id_reperto')
+            // ->join('restorations', 'finds.id', '=','restorations.id_reperto')
+            ->join('renders', 'finds.id', '=', 'renders.id_reperto')
+            ->join('gigapixels', 'finds.id', '=', 'gigapixels.id_reperto')
+            ->select(
+                'finds.*', // Seleziona tutti i campi dalla tabella finds
+                'biological_entities.*',
+                'collections.*',
+                'deposits.*',
+                'catalogs.*',
+                'compositions.*',
+                'acquisitions.*',
+                'renders.*',
+                'gigapixels.*',
+                'finds.descrizione as find_descrizione' // Rinomina il campo descrizione della tabella finds
+            )
+            ->where('finds.id', '=', $id)
+            ->first(); // Usa first() direttamente per ottenere il primo risultato
+
+        return $find;
+    }
+
+
+
 }
