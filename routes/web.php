@@ -67,6 +67,8 @@ Route::get('/theses/action', [ThesisViewController::class, 'action'])->name('the
 
 Route::get('/store-theses', [ThesisViewController::class, 'showStore'])->name('theses.showStore');
 Route::post('/store-theses', [ThesisViewController::class, 'store'])->name('theses.store');
+Route::get('/theses-form/{id}', [ThesisViewController::class,'showThesisForm'] )->name('theses.showform');
+
 
 Route::get('/employee-info', [EmployeeInfoController::class, 'show'])->name('employeeinfo.show');
 

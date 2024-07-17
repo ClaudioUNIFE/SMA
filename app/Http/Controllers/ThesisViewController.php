@@ -100,6 +100,14 @@ class ThesisViewController extends Controller
         return view('store-theses', compact('deposits', 'museums'));
     }
 
+    public function showThesisForm(Request $request, $id) {
+        $thesis = Thesis::findOrFail($id);
+        $museum = DB::table('museums')->where('id', '=', $thesis->id_museo)->first();
+        $deposit = DB::table('deposits')->where('id', '=', $thesis->id_deposito)->first();
+        return view('theses-form', compact('thesis', 'museum', 'deposit'));
+    }
+
+
     public function store(Request $request)
 {
     $request->validate([
