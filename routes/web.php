@@ -7,6 +7,8 @@ use App\Http\Controllers\DepositController;
 use App\Http\Controllers\CollectionsController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\ThesisViewController;
+use App\Http\Controllers\EmployeeInfoController;
+use App\Http\Controllers\ExportController;
 
 
 
@@ -68,6 +70,9 @@ Route::post('/store-theses', [ThesisViewController::class, 'store'])->name('thes
 Route::get('/theses-form/{id}', [ThesisViewController::class,'showThesisForm'] )->name('theses.showform');
 
 
+Route::get('/employee-info', [EmployeeInfoController::class, 'show'])->name('employeeinfo.show');
 
+
+Route::get('finds/export/{ids}', [ExportController::class, 'export'])->name('finds.export');
 
 require __DIR__.'/auth.php';
