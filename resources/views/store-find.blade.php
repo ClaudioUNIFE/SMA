@@ -341,5 +341,27 @@
             </div>
         </form>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <script>
+        // Mostra il popup di successo
+        @if (session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Successo',
+                text: '{{ session('success') }}',
+                timer: 3000,
+                showConfirmButton: false
+            });
+        @endif
+
+        // Mostra il popup di errore
+        @if ($errors->any())
+            Swal.fire({
+                icon: 'error',
+                title: 'Errore',
+                html: '{!! implode('<br>', $errors->all()) !!}',
+            });
+        @endif
+    </script>
 
 </x-app-layout>
