@@ -52,6 +52,7 @@
         }
     </style>
 
+    <a href="{{ route('finds.export', $find->id) }}" class="view-control">Esporta</a>
 
 
     <div class="view-container">

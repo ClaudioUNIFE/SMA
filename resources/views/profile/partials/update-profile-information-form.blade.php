@@ -16,11 +16,17 @@
     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
+        {{-- @dd($user->first()); --}}
+        <div>
+            <x-input-label for="name" :value="__('Nome')" />
+            <x-text-input id="nome" name="nome" type="text" class="mt-1 block w-full" :value="old('name', $user->nome)" required autofocus autocomplete="name" />
+            <x-input-error class="mt-2" :messages="$errors->get('nome')" />
+        </div>
 
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            <x-input-label for="name" :value="__('Cognome')" />
+            <x-text-input id="cognome" name="cognome" type="text" class="mt-1 block w-full" :value="old('cognome', $user->cognome)" required autofocus autocomplete="cognome" />
+            <x-input-error class="mt-2" :messages="$errors->get('cognome')" />
         </div>
 
         <div>
@@ -46,6 +52,17 @@
                 </div>
             @endif
         </div>
+        <div>
+            <x-input-label for="name" :value="__('Telefono')" />
+            <x-text-input id="telefono" name="telefono" type="text" class="mt-1 block w-full" :value="old('telefono', $user->telefono)"  />
+            <x-input-error class="mt-2" :messages="$errors->get('telefono')" />
+        </div>
+        <div>
+            <x-input-label for="name" :value="__('Numero di ufficio')" />
+            <x-text-input id="numero_ufficio" name="numero_ufficio" type="text" class="mt-1 block w-full" :value="old('numero_ufficio', $user->numero_ufficio)" />
+            <x-input-error class="mt-2" :messages="$errors->get('numero_ufficio')" />
+        </div>
+
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>

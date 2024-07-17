@@ -113,7 +113,8 @@ class Find extends Model
                 'acquisitions.*',
                 'renders.*',
                 'gigapixels.*',
-                'finds.descrizione as find_descrizione' // Rinomina il campo descrizione della tabella finds
+                'finds.descrizione as find_descrizione',// Rinomina il campo descrizione della tabella finds
+                'collections.descrizione as collection_descrizione',
             )
             ->where('finds.id', '=', $id)
             ->first(); // Usa first() direttamente per ottenere il primo risultato
