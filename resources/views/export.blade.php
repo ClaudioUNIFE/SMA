@@ -37,7 +37,7 @@
             <th>Cartellino Storico</th>
             <th>Cartellino Attuale</th>
             <th>Didascalia</th>
-            <th>Foto reperto</th>
+
             <th>Catalogo</th>
             <th>ICCD</th>
             <th>PATER</th>
@@ -45,6 +45,9 @@
         </tr>
     </thead>
     <tbody>
+
+
+
         @foreach ($finds as $find)
         <tr>
 
@@ -83,18 +86,13 @@
             <td>{{ $find->cartellino_storico }}</td>
             <td>{{ $find->cartellino_attuale }}</td>
             <td>{{ $find->didascalia }}</td>
-            <td>
-                @if($find->foto_principale)
-                    <img src="{{ asset('storage/' . $find->foto_principale) }}" alt="Foto reperto" style="max-width: 100%; height: auto;">
-                @else
-                    Nessuna foto disponibile
-                @endif
-            </td>
             <td>{{ $find->catalogo }}</td>
             <td>{{ $find->iccd }}</td>
             <td>{{ $find->pater }}</td>
             <td>{{ $find->vecchio_db }}</td>
         </tr>
         @endforeach
+
     </tbody>
+
 </table>
