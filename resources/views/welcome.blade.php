@@ -13,220 +13,240 @@
         <!-- Styles -->
         <style>
             html {
-                line-height: 1.5;
-                -webkit-text-size-adjust: 100%;
-                font-family: Figtree, sans-serif;
-            }
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    font-family: Figtree, sans-serif;
+    height: 100%; /* Assicurati che l'html occupi l'intera altezza */
+}
 
-            html, body {
-                margin: 0;
-                padding: 0;
-                height: 100%;
-                overflow-x: hidden;
-            }
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
 
-            .container {
-                min-height: 100vh;
-                box-sizing: border-box;
-            }
+body {
+    margin: 0;
+    line-height: inherit;
+    height: 100%; /* Assicurati che il body occupi l'intera altezza */
+}
 
+.container {
+    min-height: 100vh;
+    height: 100%; /* Assicurati che il container prenda l'intera altezza della viewport */
+    box-sizing: border-box;
+}
 
-            body {
-                margin: 0;
-                line-height: inherit;
-            }
+.relative {
+    position: relative;
+    height: 100%; /* Assicurati che l'elemento prenda l'intera altezza del genitore */
+}
 
-            h1 {
-                font-size: 1.25rem;
-                line-height: 1.75rem;
-                font-weight: bold;
-            }
+.sm\:flex {
+    display: flex;
+    height: 100%; /* Assicurati che l'elemento prenda l'intera altezza del genitore */
+}
 
-            a {
-                color: inherit;
-                text-decoration: inherit;
-            }
+.sm\:justify-center {
+    justify-content: center;
+}
 
-            img {
-                display: block;
-                max-width: 100%;
-                height: auto;
-            }
+.sm\:items-center {
+    align-items: center;
+}
 
-            button, input {
-                margin: 0;
-                padding: 0;
-                font-family: inherit;
-                font-size: 100%;
-            }
+h1 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: bold;
+}
 
-            .relative {
-                position: relative;
-            }
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
 
-            .mx-auto {
-                margin-left: auto;
-                margin-right: auto;
-            }
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
 
-            .p-6 {
-                padding: 1.5rem;
-            }
+button, input {
+    margin: 0;
+    padding: 0;
+    font-family: inherit;
+    font-size: 100%;
+}
 
-            .lg\:p-8 {
-                padding: 2rem;
-            }
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
 
-            .flex {
-                display: flex;
-            }
+.p-6 {
+    padding: 1.5rem;
+}
 
-            .justify-center {
-                justify-content: center;
-            }
+.lg\:p-8 {
+    padding: 2rem;
+}
 
-            .mb-8 {
-                margin-bottom: 2rem;
-            }
+.flex {
+    display: flex;
+}
 
-            .mt-6 {
-                margin-top: 1.5rem;
-            }
+.justify-center {
+    justify-content: center;
+}
 
-            .ml-4 {
-                margin-left: 1rem;
-            }
+.mb-8 {
+    margin-bottom: 2rem;
+}
 
-            .font-semibold {
-                font-weight: 600;
-            }
+.mt-6 {
+    margin-top: 1.5rem;
+}
 
-            .text-xl {
-                font-size: 1.25rem;
-                line-height: 1.75rem;
-            }
+.ml-4 {
+    margin-left: 1rem;
+}
 
-            .text-4xl {
-                font-size: 4rem;
-                line-height: 6.5rem;
-            }
+.font-semibold {
+    font-weight: 600;
+}
 
+.text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
 
-            .text-center {
-                text-align: center;
-            }
+.text-4xl {
+    font-size: 4rem;
+    line-height: 6.5rem;
+}
 
-            .text-gray-600 {
-                --tw-text-opacity: 1;
-                color: rgb(75 85 99 / var(--tw-text-opacity));
-            }
+.text-2xl {
+    font-size: 2.5rem;
+    line-height: 3.5rem;
+}
 
-            .text-gray-900 {
-                --tw-text-opacity: 1;
-                color: rgb(17 24 39 / var(--tw-text-opacity));
-            }
+.text-center {
+    text-align: center;
+}
 
-            .text-white {
-                --tw-text-opacity: 1;
-                color: rgb(255 255 255 / var(--tw-text-opacity));
-            }
+.text-gray-600 {
+    --tw-text-opacity: 1;
+    color: rgb(75 85 99 / var(--tw-text-opacity));
+}
 
-            .hover\:text-gray-900:hover {
-                --tw-text-opacity: 1;
-                color: rgb(17 24 39 / var(--tw-text-opacity));
-            }
+.text-gray-900 {
+    --tw-text-opacity: 1;
+    color: rgb(17 24 39 / var(--tw-text-opacity));
+}
 
-            .dark\:text-gray-400 {
-                --tw-text-opacity: 1;
-                color: rgb(156 163 175 / var(--tw-text-opacity));
-            }
+.text-white {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+}
 
-            .dark\:text-white {
-                --tw-text-opacity: 1;
-                color: rgb(255 255 255 / var(--tw-text-opacity));
-            }
+.hover\:text-gray-900:hover {
+    --tw-text-opacity: 1;
+    color: rgb(17 24 39 / var(--tw-text-opacity));
+}
 
-            .dark\:hover\:text-white:hover {
-                --tw-text-opacity: 1;
-                color: rgb(255 255 255 / var(--tw-text-opacity));
-            }
+.dark\:text-gray-400 {
+    --tw-text-opacity: 1;
+    color: rgb(156 163 175 / var(--tw-text-opacity));
+}
 
-            .rounded-md {
-                border-radius: 0.375rem;
-            }
+.dark\:text-white {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+}
 
-            .bg-gray-100 {
-                --tw-bg-opacity: 1;
-                background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-            }
+.dark\:hover\:text-white:hover {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+}
 
-            .dark\:bg-gray-900 {
-                --tw-bg-opacity: 1;
-                background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-            }
+.rounded-md {
+    border-radius: 0.375rem;
+}
 
-            .selection\:bg-red-500 *::selection {
-                --tw-bg-opacity: 1;
-                background-color: rgb(239 68 68 / var(--tw-bg-opacity));
-            }
+.bg-gray-100 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
 
-            .selection\:text-white *::selection {
-                --tw-text-opacity: 1;
-                color: rgb(255 255 255 / var(--tw-text-opacity));
-            }
+.dark\:bg-gray-900 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+}
 
-            .dark\:bg-dots-lighter {
-                background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(255,255,255,0.07)'/%3E%3C/svg%3E");
-            }
+.selection\:bg-red-500 *::selection {
+    --tw-bg-opacity: 1;
+    background-color: rgb(239 68 68 / var(--tw-bg-opacity));
+}
 
-            .focus\:outline:focus {
-                outline-style: solid;
-            }
+.selection\:text-white *::selection {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+}
 
-            .focus\:outline-2:focus {
-                outline-width: 2px;
-            }
+.dark\:bg-dots-lighter {
+    background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(255,255,255,0.07)'/%3E%3C/svg%3E");
+}
 
-            .focus\:rounded-sm:focus {
-                border-radius: 0.125rem;
-            }
+.focus\:outline:focus {
+    outline-style: solid;
+}
 
-            .focus\:outline-red-500:focus {
-                outline-color: #ef4444;
-            }
+.focus\:outline-2:focus {
+    outline-width: 2px;
+}
 
-            @media (min-width: 640px) {
-                .sm\:flex {
-                    display: flex;
-                }
+.focus\:rounded-sm:focus {
+    border-radius: 0.125rem;
+}
 
-                .sm\:justify-center {
-                    justify-content: center;
-                }
+.focus\:outline-red-500:focus {
+    outline-color: #ef4444;
+}
 
-                .sm\:justify-between {
-                    justify-content: space-between;
-                }
-            }
+@media (min-width: 640px) {
+    .sm\:flex {
+        display: flex;
+    }
 
-            @media (prefers-color-scheme: dark) {
-                .dark\:bg-gray-900 {
-                    --tw-bg-opacity: 1;
-                    background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-                }
+    .sm\:justify-center {
+        justify-content: center;
+    }
 
-                .dark\:text-white {
-                    --tw-text-opacity: 1;
-                    color: rgb(255 255 255 / var(--tw-text-opacity));
-                }
+    .sm\:justify-between {
+        justify-content: space-between;
+    }
+}
 
-                .dark\:hover\:text-white:hover {
-                    --tw-text-opacity: 1;
-                    color: rgb(255 255 255 / var(--tw-text-opacity));
-                }
+@media (prefers-color-scheme: dark) {
+    .dark\:bg-gray-900 {
+        --tw-bg-opacity: 1;
+        background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+    }
 
+    .dark\:text-white {
+        --tw-text-opacity: 1;
+        color: rgb(255 255 255 / var(--tw-text-opacity));
+    }
 
-            }
+    .dark\:hover\:text-white:hover {
+        --tw-text-opacity: 1;
+        color: rgb(255 255 255 / var(--tw-text-opacity));
+    }
+}
+
         </style>
 
     </head>
@@ -250,29 +270,18 @@
                     @if (Route::has('login'))
                         <div class="text-center">
                             @auth
-                                <a href="{{ url('/dashboard') }}" class="font-semibold text-xl text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                                <a href="{{ url('/dashboard') }}" class="font-semibold text-2xl text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
                             @else
-                                <a href="{{ route('login') }}" class="font-semibold text-xl text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+                                <a href="{{ route('login') }}" class="font-semibold text-2xl text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
 
                                 @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="ml-4 font-semibold text-xl text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                                    <a href="{{ route('register') }}" class="ml-4 font-semibold text-2xl text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
                                 @endif
                             @endauth
                         </div>
                     @endif
                 </div>
 
-                <br><br>
-                <div class="flex flex-col items-center mb-8">
-                    <div class="flex justify-center gap-4 mb-4 w-full">
-                        <img src="https://via.placeholder.com/300x200" alt="Image 1" class="w-1/3 h-auto rounded-md">
-                        <img src="https://via.placeholder.com/300x200" alt="Image 2" class="w-1/3 h-auto rounded-md">
-                    </div>
-                    <div class="flex justify-center gap-4 w-full">
-                        <img src="https://via.placeholder.com/300x200" alt="Image 3" class="w-1/3 h-auto rounded-md">
-                        <img src="https://via.placeholder.com/300x200" alt="Image 4" class="w-1/3 h-auto rounded-md">
-                    </div>
-                </div>
             </div>
         </div>
     </body>
