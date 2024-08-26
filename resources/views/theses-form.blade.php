@@ -92,7 +92,7 @@
             </tr>
             <tr>
                 <th>Percorso File</th>
-                <td>{{ $thesis->percorso_file }}</td>
+                <td><a href="$thesis->percorso_file">{{ $thesis->percorso_file }}</a></td>
             </tr>
             <tr>
                 <th>Note</th>

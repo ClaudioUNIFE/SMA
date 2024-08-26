@@ -1,5 +1,3 @@
-<?php
-
 namespace App\View\Components;
 
 use Closure;
@@ -8,12 +6,14 @@ use Illuminate\View\Component;
 
 class ThesisCard extends Component
 {
+    public $thesis;
+
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($thesis)
     {
-        //
+        $this->thesis = $thesis;
     }
 
     /**
@@ -21,6 +21,6 @@ class ThesisCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.thesis-card');
+        return view('components.thesis-card', ['thesis' => $this->thesis]);
     }
 }
