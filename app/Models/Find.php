@@ -84,6 +84,11 @@ class Find extends Model
         return $this->hasMany(Xit::class);
     }
 
+    public function attached()
+    {
+        return $this->hasMany(attached::class, 'id_reperto');
+    }
+
     public static function getUtilsforCard(){
         return DB::table('finds')
         ->join('biological_entities', 'finds.id', '=', 'biological_entities.id_reperto')

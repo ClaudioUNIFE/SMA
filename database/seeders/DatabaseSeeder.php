@@ -214,6 +214,122 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        public function seedAttachments(){
+            Attachment::factory()->create([
+                'id_reperto' => 1,
+                'tipo_file' => 'gigapixel',
+                'link' => 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
+            ]);
+        }
+
+        public function seedMetadatas(){
+            Metadata::factory()->create([
+            'id_allegato' => 1,
+            'codice_reperto' => 1,
+            'titolo' => 'Repertorio di Ercole',
+            'autore' => '<NAME>',
+            'sogetto' => 'Ercole',
+            'descrizione' => 'Repertorio di Ercole',
+            'editore' => 'Museo SMA',
+            'autore_di_contributo' =>   '<NAME>',
+            'data' => '2020-01-01',
+            'tipo' => 'Repertorio',
+            'formato' => 'PDF',
+            'identificatore' => '123456789',
+            'fonte' => 'Museo SMA',
+            'lingua' => 'Italiano',
+            'relazione' => 'Repertorio di Ercole',
+            'copertura' => 'Italiana',
+            'gestione_dei_diritti' => 'CC BY-NC-SA',
+            ]);
+        }
+
+        public function seedParadatas(){
+            Paradata::factory()->create([
+            'id_allegato' => 1,
+            'stato_corrente' => 'Attivo',
+            'responsabile_scelta_reperto' => 'Museo SMA',
+            'scheda_validata' => true,
+            'validatore_scheda' => '<NAME>',
+            'note' => 'Tutto ok',
+            'responsabile_acquisizione' => 'Museo SMA',
+            'operatore' => '<NAME>',
+            'tipo_superfice' => 'Museo',
+            'descrizione_complessita' => 'Repertorio di Ercole',
+            'fotocamera' => 'Canon EOS 5D Mark III',
+            'impostazioni' => '1200',
+            'obiettivo' => '1200',
+            'illuminazione' => '1200',
+            'light_box' => false,
+            'tipo_supporto' => 'VHS',
+            'numero_scatti' => 1200,
+            'software' => 'Photoshop',
+            'output' => '1200',
+            'strumentazione' => '1200',
+            'risoluzione' => '1200',
+            'modalita_scansione' => '1200',
+            'ingrandimento' => '1200',
+            'luminosita' => '1200',
+            'fibra_ottica' => false,
+            'tiling' => false,
+            'scala' => '1200',
+            'formato' => '1200',
+            'data_inizio' => $this->faker->date(),
+            'data_fine' => $this->faker->date(),
+            'tempo_totale' => '1200 giorni',
+            'luogo_acquisizione' => $this->faker->city(),
+            'temperatura' => $this->faker->randomFloat(2, 10, 40),
+            'condizioni_iniziali_conservazione' =>'sicuro',
+            'condizioni_finali_conservazione' => 'sicuro',
+            ]);
+        }
+
+
+        public function seedMetadatazioni(){
+            Metadatazione::factory()->create([
+            'id_paradati' => 1,
+            'responsabile' =>'<NAME>' ,
+            'operatore' => '<NAME>',
+            'data_inizio' => $this->faker->date(),
+            'data_fine' => $this->faker->date(),]);
+        }
+
+        public function seedProcessamenti(){
+            Processamento::factory()->create([
+            'id_allegato' => 1,
+            'responsabile' => '<NAME>',
+            'operatore' => '<NAME>',
+            'strumentazione' => '1200',
+            'data_inizio' => $this->faker->date(),
+            'data_fine' => $this->faker->date(),
+            ]);
+        }
+
+        public function seedModellizzazioni(){
+            Modellizzazione::factory()->create([
+            'id_paradati' => 1,
+           'responsabile' => '<NAME>',
+            'operatore' => '<NAME>',
+           'strumentazione' => '1200',
+            'data_inizio' => $this->faker->date(),
+            'data_fine' => $this->faker->date(),
+            ]);
+        }
+
+
+        public function seedArchiviazioni(){
+            Archiviazione::factory()->create([
+            'id_paradati' => 1,
+           'responsabile' => '<NAME>',
+            'operatore' => '<NAME>',
+            'data_ultimo_becup' => $this->faker->date(),
+            'data_inizio' => $this->faker->date(),
+            'data_fine' => $this->faker->date(),
+            ]);
+        }
+
+
+
 
 
 
@@ -241,6 +357,15 @@ class DatabaseSeeder extends Seeder
         $this->seedTheses();
         $this->seedXits();
         $this->seedBiologicalEntities();
+        $this->seedAttachments();
+        $this->seedMetadatas();
+        $this->seedParadatas();
+        $this->seedMetadatazioni();
+        $this->seedProcessamenti();
+        $this->seedModellizzazioni();
+        $this->seedArchiviazioni();
+
+
 
 
     }
