@@ -26,28 +26,6 @@
         .form-control::placeholder {
             color: #7f8c8d;
         }
-        .center-table {
-            margin: 0 auto;
-            width: 100%;
-            border: none;
-            border-collapse: separate;
-        }
-        .center-table th,
-        .center-table td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #7f8c8d;
-        }
-        .center-table th {
-            background-color: #34495e;
-            color: #fff;
-        }
-        .center-table tr:nth-child(even) {
-            background-color: #34495e;
-        }
-        .center-table tr:hover {
-            background-color: #3a5168;
-        }
         button[type="submit"] {
             background-color: #3498db;
             color: white;
@@ -66,10 +44,6 @@
             font-weight: bold;
             margin-bottom: 5px;
         }
-        input[type="file"] {
-            background-color: #ecf0f1;
-            padding: 5px;
-        }
         textarea.form-control {
             height: 100px;
             resize: vertical;
@@ -84,9 +58,8 @@
     </style>
 
     <div class="form-container">
-        <form action="{{ route('theses.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('theses.update', $thesis->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
-
             <table class="center-table">
                 <tr>
                     <th><label for="id_museo">Museo:</label></th>
@@ -145,33 +118,11 @@
                     <td><textarea name="note" id="note" class="form-control"></textarea></td>
                 </tr>
             </table>
+
             <div style="text-align: center; margin-top: 20px;">
-                <button type="submit" class="btn btn-primary">Salva</button>
+                <button type="submit">AGGIORNA</button>
             </div>
         </form>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-    <script>
-        // Mostra il popup di successo
-        @if (session('success'))
-            Swal.fire({
-                icon: 'success',
-                title: 'Successo',
-                text: '{{ session('success') }}',
-                timer: 3000,
-                showConfirmButton: false
-            });
-        @endif
-
-        // Mostra il popup di errore
-        @if ($errors->any())
-            Swal.fire({
-                icon: 'error',
-                title: 'Errore',
-                html: '{!! implode('<br>', $errors->all()) !!}',
-            });
-        @endif
-    </script>
 </x-app-layout>
-

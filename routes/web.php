@@ -68,6 +68,13 @@ Route::get('/theses/action', [ThesisViewController::class, 'action'])->name('the
 Route::get('/store-theses', [ThesisViewController::class, 'showStore'])->name('theses.showStore');
 Route::post('/store-theses', [ThesisViewController::class, 'store'])->name('theses.store');
 Route::get('/theses-form/{id}', [ThesisViewController::class,'showThesisForm'] )->name('theses.showform');
+Route::post('/theses/{id}', [ThesisViewController::class, 'update'])->name('theses.update');
+Route::get('/theses/{id}', [ThesisViewController::class,'destroy'])->name('theses.destroy');
+Route::get('/edit-thesis/{id}', [ThesisViewController::class, 'showupdate'])->name('theses.showupdate');
+Route::get('/thesis-consultation', [ThesisViewController::class, 'showList'] )->name('theses.showList');
+Route::get('/theses-form/{id}', [ThesisViewController::class,'showForm'] )->name('theses.showForm');
+
+
 
 
 Route::get('/employee-info', [EmployeeInfoController::class, 'show'])->name('employeeinfo.show');

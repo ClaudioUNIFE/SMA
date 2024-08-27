@@ -1,55 +1,77 @@
 <x-app-layout>
     <style>
-        body {
-            background-color: #f7f7f7;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .view-container {
-            margin: 5% auto;
-            max-width: 800px;
-            background-color: #2c3e50;
-            padding: 2%;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            color: #ecf0f1;
-        }
-        .view-control {
-            margin: 10px 0;
-            padding: 10px;
-            background-color: #34495e;
-            border-radius: 6px;
-            box-sizing: border-box;
-            color: #ecf0f1;
-        }
-        .center-table {
-            margin: 0 auto;
-            width: 100%;
-            border: none;
-            border-collapse: separate;
-        }
-        .center-table th,
-        .center-table td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #7f8c8d;
-        }
-        .center-table th {
-            background-color: #34495e;
-            color: #fff;
-        }
-        .center-table tr:nth-child(even) {
-            background-color: #34495e;
-        }
-        .center-table tr:hover {
-            background-color: #3a5168;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #2c3e50;
-            color: #ecf0f1;
-        }
+    body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Assicura che il body occupi l'intera altezza della viewport */
+    background-color: #f7f7f7;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.view-container {
+    margin: 0; /* Rimuove il margine */
+    max-width: 800px;
+    width: 100%;
+    background-color: #2c3e50;
+    padding: 2%;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: #ecf0f1;
+    box-sizing: border-box;
+    flex-grow: 1; /* Fa crescere il contenitore per occupare lo spazio disponibile */
+    display: flex;
+    flex-direction: column; /* Assicura che il contenuto interno si disponga verticalmente */
+    justify-content: space-between; /* Distribuisce lo spazio tra il contenuto interno */
+}
+
+.view-control {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #34495e;
+    border-radius: 6px;
+    box-sizing: border-box;
+    color: #ecf0f1;
+}
+
+.center-table {
+    margin: 0 auto;
+    width: 100%;
+    border: none;
+    border-collapse: separate;
+}
+
+.center-table th,
+.center-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #7f8c8d;
+}
+
+.center-table th {
+    background-color: #34495e;
+    color: #fff;
+}
+
+.center-table tr:nth-child(even) {
+    background-color: #34495e;
+}
+
+.center-table tr:hover {
+    background-color: #3a5168;
+}
+
+.footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
     </style>
 
     <a href="{{ route('finds.export', $find->id) }}" class="view-control">Esporta</a>
