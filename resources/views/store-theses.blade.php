@@ -138,7 +138,7 @@
                 </tr>
                 <tr>
                     <th><label for="percorso_file">File Tesi:</label></th>
-                    <td><input type="file" name="percorso_file" id="percorso_file" class="form-control" required></td>
+                    <td><input type="text" name="percorso_file" id="percorso_file" class="form-control" required></td>
                 </tr>
                 <tr>
                     <th><label for="note">Note:</label></th>

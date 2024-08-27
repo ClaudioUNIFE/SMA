@@ -75,12 +75,19 @@ class ThesisViewController extends Controller
         return view('store-theses', compact('deposits', 'museums'));
     }
 
-    public function showThesisForm(Request $request, $id) {
-        $thesis = Thesis::findOrFail($id);
-        $museum = DB::table('museums')->where('id', '=', $thesis->id_museo)->first();
-        $deposit = DB::table('deposits')->where('id', '=', $thesis->id_deposito)->first();
-        return view('theses-form', compact('thesis', 'museum', 'deposit'));
-    }
+    public function showForm(Request $request, $id)
+{
+    // Recupera la tesi specifica in base all'ID
+    $thesis = Thesis::findOrFail($id);
+
+    // Recupera i dati correlati (es. museo, deposito) in base ai collegamenti
+    $museum = DB::table('museums')->where('id', '=', $thesis->id_museo)->first();
+    $deposit = DB::table('deposits')->where('id', '=', $thesis->id_deposito)->first();
+
+    // Passa i dati alla vista
+    return view('theses-form', compact('thesis', 'museum', 'deposit'));
+}
+
 
     public function showupdate($id) {
         // Recupera i musei, i depositi, ecc. necessari per il form di aggiornamento
@@ -200,11 +207,6 @@ public function destroy($id) {
         return redirect()->back()->withErrors(['error' => $e->getMessage()]);
     }
 }
-
-
-
-
-
 
 
 }

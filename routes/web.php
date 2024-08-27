@@ -72,6 +72,8 @@ Route::post('/theses/{id}', [ThesisViewController::class, 'update'])->name('thes
 Route::get('/theses/{id}', [ThesisViewController::class,'destroy'])->name('theses.destroy');
 Route::get('/edit-thesis/{id}', [ThesisViewController::class, 'showupdate'])->name('theses.showupdate');
 Route::get('/thesis-consultation', [ThesisViewController::class, 'showList'] )->name('theses.showList');
+Route::get('/theses-form/{id}', [ThesisViewController::class,'showForm'] )->name('theses.showForm');
+
 
 
 
