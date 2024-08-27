@@ -18,7 +18,7 @@ use App\Models\Catalog;
 use App\Models\Xit;
 use Illuminate\Support\Facades\DB;
 
-class paradata extends Model
+class Paradata extends Model
 {
     use HasFactory;
 

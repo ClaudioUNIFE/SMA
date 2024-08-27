@@ -17,7 +17,7 @@ use App\Models\Catalog;
 use App\Models\Xit;
 use Illuminate\Support\Facades\DB;
 
-class attached extends Model
+class Attached extends Model
 {
     use HasFactory;
 

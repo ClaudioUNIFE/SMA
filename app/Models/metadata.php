@@ -18,7 +18,7 @@ use App\Models\Catalog;
 use App\Models\Xit;
 use Illuminate\Support\Facades\DB;
 
-class metadata extends Model
+class Metadata extends Model
 {
     use HasFactory;
 
