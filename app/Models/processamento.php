@@ -9,6 +9,8 @@ class Processamento extends Model
 {
     use HasFactory;
 
+    protected $table= 'processamenti';
+
     protected $fillable = [
         'id_paradati',
         'responsabile',

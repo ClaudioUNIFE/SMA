@@ -17,7 +17,7 @@ class ParadataFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_allegato' => numberBetween(1, 10),
+            'id_allegato' => $this->faker->numberBetween(1, 100),
             'stato_corrente' => $this->faker->randomElement(['in_progress', 'completed']),
             'responsabile_scelta_reperto' => $this->faker->name(),
             'scheda_validata' => $this->faker->boolean(),

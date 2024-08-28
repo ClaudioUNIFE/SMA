@@ -17,8 +17,8 @@ class MetadataFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_allegato' => numberBetween(1, 100),
-            'codice_reperto' => numberBetween(1, 100),
+            'id_allegato' => $this->faker->numberBetween(1, 100),
+            'codice_reperto' => $this->faker->numberBetween(1, 100),
             'titolo' => $this->faker->sentence(),
             'autore' => $this->faker->name(),
             'sogetto' => $this->faker->word(),

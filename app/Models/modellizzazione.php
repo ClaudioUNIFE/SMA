@@ -9,6 +9,8 @@ class Modellizzazione extends Model
 {
     use HasFactory;
 
+    protected $table ='modellizzazioni';
+
     protected $fillable = [
         'id_paradati',
         'responsabile',

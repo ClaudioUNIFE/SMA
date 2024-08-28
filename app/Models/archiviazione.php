@@ -9,6 +9,8 @@ class Archiviazione extends Model
 {
     use HasFactory;
 
+    protected $table = 'archiviazioni';
+
     protected $fillable = [
         'id_paradati',
         'responsabile',

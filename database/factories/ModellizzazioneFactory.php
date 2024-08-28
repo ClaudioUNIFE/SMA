@@ -17,7 +17,7 @@ class ModellizzazioneFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_paradati' => numberBetween(1,10), // Assume Paradata has a factory
+            'id_paradati' => $this->faker->numberBetween(1,10), // Assume Paradata has a factory
             'responsabile' => $this->faker->name(),
             'operatore' => $this->faker->name(),
             'strumentazione' => $this->faker->word(),

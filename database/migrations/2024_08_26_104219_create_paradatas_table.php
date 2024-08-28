@@ -51,7 +51,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Foreign key constraint
-            $table->foreign('id_allegato')->references('id')->on('attached')->onDelete('cascade');
+            $table->foreign('id_allegato')->references('id')->on('attachments')->onDelete('cascade');
 
         });
     }

@@ -22,8 +22,8 @@ return new class extends Migration
             $table->timestamps();  // Creates 'created_at' and 'updated_at' columns
 
             // Foreign key constraint
-            $table->foreign('id_paradati')->references('id')->on('paradata')->onDelete('cascade');
-       
+            $table->foreign('id_paradati')->references('id')->on('paradatas')->onDelete('cascade');
+
         });
     }
 

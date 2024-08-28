@@ -17,7 +17,7 @@ class MetadatazioneFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_paradati' => numberBetween(1, 10),
+            'id_paradati' => $this->faker->numberBetween(1, 100),
             'responsabile' => $this->faker->name(),
             'operatore' => $this->faker->name(),
             'data_inizio' => $this->faker->date(),

@@ -25,12 +25,27 @@ use App\Models\Acquisition;
 use App\Models\Composition;
 use App\Models\Thesis;
 use Illuminate\Support\Facades\DB;
+use App\Models\Metadatazione;
+use App\Models\Metadata;
+use App\Models\Paradata;
+use App\Models\Processamento;
+use App\Models\Modellizzazione;
+use App\Models\Archiviazione;
+use App\Models\Attached;
+use Faker\Factory as Faker;
+
 
 
 
 
 class DatabaseSeeder extends Seeder
 {
+    protected $faker;
+
+    public function __construct()
+    {
+        $this->faker = Faker::create();
+    }
 
     public function seedPermissions () {
         Permission::create(['name' => 'view-subscription-type-cards']);
@@ -215,10 +230,10 @@ class DatabaseSeeder extends Seeder
         }
 
         public function seedAttachments(){
-            Attachment::factory()->create([
+            Attached::factory()->create([
                 'id_reperto' => 1,
-                'tipo_file' => 'gigapixel',
                 'link' => 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
+                'tipo_acquisizione' => 'gigapixel',
             ]);
         }
 
@@ -296,7 +311,7 @@ class DatabaseSeeder extends Seeder
 
         public function seedProcessamenti(){
             Processamento::factory()->create([
-            'id_allegato' => 1,
+            'id_paradati' => 1,
             'responsabile' => '<NAME>',
             'operatore' => '<NAME>',
             'strumentazione' => '1200',
