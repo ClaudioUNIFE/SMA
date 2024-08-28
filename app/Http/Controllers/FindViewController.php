@@ -41,7 +41,9 @@ class FindViewController extends Controller
                 $output = '';
                 $query = $request->get('query');
 
-                if ($query != '') {
+                // Verifica se c'è una query di ricerca
+                if (!empty($query)) {
+                    // Se la query esiste, esegui la ricerca con i vari filtri
                     $finds = DB::table('finds')
                         ->join('biological_entities', 'finds.id', '=', 'biological_entities.id_reperto')
                         ->join('collections', 'finds.id_collezione', '=', 'collections.id')
@@ -49,37 +51,43 @@ class FindViewController extends Controller
                         ->join('finds_catalogs', 'finds.id', '=', 'finds_catalogs.id_reperto')
                         ->join('catalogs', 'catalogs.id', '=', 'finds_catalogs.id_catalogo')
                         ->join('compositions', 'finds.id', '=', 'compositions.id_reperto')
-                        ->where('finds.id_vecchio', 'like', '%'.$query.'%')
-                        ->orWhere('finds.descrizione', 'like', '%'.$query.'%')
-                        ->orWhere('tipo_entita', 'like', '%'.$query.'%')
-                        ->orWhere('riferimento_tassonomico', 'like', '%'.$query.'%')
-                        ->orWhere('nome_comune', 'like', '%'.$query.'%')
-                        ->orWhere('riferimento_cronologico', 'like', '%'.$query.'%')
-                        ->orWhere('categoria', 'like', '%'.$query.'%')
-                        ->orWhere('nome_collezione', 'like', '%'.$query.'%')
-                        ->orWhere('collocazione', 'like', '%'.$query.'%')
-                        ->orWhere('codice_stanza', 'like', '%'.$query.'%')
-                        ->orWhere('catalogo', 'like', '%'.$query.'%')
-                        ->orWhere('materiale', 'like', '%'.$query.'%')
-                        ->orderBy('finds.id', 'desc')
+                        ->where(function($q) use ($query) {
+                            $q->where('finds.id_vecchio', 'like', '%' . $query . '%')
+                              ->orWhere('finds.descrizione', 'like', '%' . $query . '%')
+                              ->orWhere('tipo_entita', 'like', '%' . $query . '%')
+                              ->orWhere('riferimento_tassonomico', 'like', '%' . $query . '%')
+                              ->orWhere('nome_comune', 'like', '%' . $query . '%')
+                              ->orWhere('riferimento_cronologico', 'like', '%' . $query . '%')
+                              ->orWhere('categoria', 'like', '%' . $query . '%')
+                              ->orWhere('collections.nome_collezione', 'like', '%' . $query . '%')
+                              ->orWhere('deposits.collocazione', 'like', '%' . $query . '%')
+                              ->orWhere('deposits.codice_stanza', 'like', '%' . $query . '%')
+                              ->orWhere('catalogs.catalogo', 'like', '%' . $query . '%')
+                              ->orWhere('compositions.materiale', 'like', '%' . $query . '%');
+                        })
+                        ->limit(50)  // Limita il numero di risultati
                         ->get();
-
                 } else {
+                    // Se non c'è una query, ottieni tutti i dati
                     $finds = Find::getUtilsforCard();
                 }
-                Log::debug($finds);
+
+                // Log per verificare i risultati
+                Log::debug('Risultati della query: ', $finds->toArray());
+
+                // Conta i risultati trovati
                 $totalRows = $finds->count();
 
                 if ($totalRows > 0) {
                     foreach ($finds as $find) {
-                        Log::debug(gettype($find));
-                        Log::debug($find->first());
+                        // Renderizza ogni card e accumula l'output
                         $output .= view('components.findcard', ['find' => $find])->render();
                     }
                 } else {
-                    $output .= '<p align="center">No Data Found</p>';
+                    $output .= '<p align="center">Nessun dato trovato</p>';
                 }
 
+                // Prepara i dati da restituire
                 $data = [
                     'table_data' => $output,
                     'total_data' => $totalRows
@@ -88,14 +96,11 @@ class FindViewController extends Controller
                 return response()->json($data);
             }
         } catch (\Exception $e) {
+            // Gestione degli errori
             Log::error($e->getMessage());
-            return response()->json(['error' => 'Error fetching user data: ' . $e->getMessage()], 500);
+            return response()->json(['error' => 'Errore nel recupero dei dati: ' . $e->getMessage()], 500);
         }
     }
-
-
-
-
 
    public function showStore(){
        $catalogs = Catalog::all();
