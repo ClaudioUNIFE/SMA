@@ -9,6 +9,7 @@ use App\Http\Controllers\ImportController;
 use App\Http\Controllers\ThesisViewController;
 use App\Http\Controllers\EmployeeInfoController;
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\RoleController;
 
 
 
@@ -73,6 +74,15 @@ Route::get('/theses/{id}', [ThesisViewController::class,'destroy'])->name('these
 Route::get('/edit-thesis/{id}', [ThesisViewController::class, 'showupdate'])->name('theses.showupdate');
 Route::get('/thesis-consultation', [ThesisViewController::class, 'showList'] )->name('theses.showList');
 Route::get('/theses-form/{id}', [ThesisViewController::class,'showForm'] )->name('theses.showForm');
+
+Route::get('/manage-roles', [RoleController::class,'showRole'] )->name('role.showRole');
+Route::post('/manage-roles', [RoleController::class,'updateUserRole'] )->name('role.updateUserRole');
+
+
+Route::get('/action', [RoleController::class,'action'] )->name('role.action');
+
+
+
 
 
 
