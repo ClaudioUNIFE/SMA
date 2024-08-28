@@ -24,8 +24,6 @@ class FindFactory extends Factory
             'id_collezione' => $this->faker->numberBetween(1, 100),
             'validato' => $this->faker->boolean(false),
             'categoria' => $this->faker->text(),
-            'gigapixel_flag' => $this->faker->boolean(false),
-            'render_flag' => $this->faker->boolean(false),
             'cartellino_storico' => $this->faker->text(),
             'cartellino_attuale' => $this->faker->text(),
             'foto_principale' => $this->faker->text(),

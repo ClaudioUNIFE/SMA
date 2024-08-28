@@ -121,8 +121,6 @@ public function store(Request $request) {
             'id_collezione' => 'nullable|integer',
             'validato' => 'nullable|boolean',
             'categoria' => 'nullable|string',
-            'gigapixel_flag' => 'nullable|boolean',
-            'render_flag' => 'nullable|boolean',
             'cartellino_storico' => 'nullable|string',
             'cartellino_attuale' => 'nullable|string',
             'foto_principale' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -144,8 +142,6 @@ public function store(Request $request) {
             'originale' => 'nullable|boolean',
             'fossile' => 'nullable|boolean',
             'materiale' => 'nullable|string',
-            'gigapixel_file' => 'nullable|string',
-            'render_file' => 'nullable|string',
             'catalogo' => 'nullable|string',
             'iccd' => 'nullable|string',
             'pater' => 'nullable|string',
@@ -174,8 +170,6 @@ public function store(Request $request) {
             'id_collezione' => $validatedData['id_collezione'] ?? null,
             'validato' => $validatedData['validato'] ?? 0,
             'categoria' => $validatedData['categoria'] ?? '',
-            'gigapixel_flag' => $validatedData['gigapixel_flag'] ?? 0,
-            'render_flag' => $validatedData['render_flag'] ?? 0,
             'cartellino_storico' => $validatedData['cartellino_storico'] ?? '',
             'cartellino_attuale' => $validatedData['cartellino_attuale'] ?? '',
             'didascalia' => $validatedData['didascalia'] ?? '',
@@ -221,18 +215,6 @@ public function store(Request $request) {
         ];
 
         $composition = Composition::create($compositionData);
-
-        $gigapixelData = [
-            'id_reperto' => $id_reperto,
-            'gigapixel_file' => $validatedData['gigapixel_file'] ?? '',
-        ];
-        $gigapixel = Gigapixel::create($gigapixelData);
-
-        $renderData = [
-            'id_reperto' => $id_reperto,
-            'render_file' => $validatedData['render_file'] ?? '',
-        ];
-        $render = Render::create($renderData);
 
         $catalogData=[
             'id_reperto' => $id_reperto,
@@ -291,8 +273,6 @@ public function update(Request $request, $id) {
             'id_collezione' => 'nullable|integer',
             'validato' => 'nullable|boolean',
             'categoria' => 'nullable|string',
-            'gigapixel_flag' => 'nullable|boolean',
-            'render_flag' => 'nullable|boolean',
             'cartellino_storico' => 'nullable|string',
             'cartellino_attuale' => 'nullable|string',
             'foto_principale' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -314,8 +294,6 @@ public function update(Request $request, $id) {
             'originale' => 'nullable|boolean',
             'fossile' => 'nullable|boolean',
             'materiale' => 'nullable|string',
-            'gigapixel_file' => 'nullable|string',
-            'render_file' => 'nullable|string',
             'catalogo' => 'nullable|string',
             'iccd' => 'nullable|string',
             'pater' => 'nullable|string',
@@ -345,8 +323,6 @@ public function update(Request $request, $id) {
             'id_collezione' => $validatedData['id_collezione'] ?? null,
             'validato' => $validatedData['validato'] ?? 0,
             'categoria' => $validatedData['categoria'] ?? '',
-            'gigapixel_flag' => $validatedData['gigapixel_flag'] ?? 0,
-            'render_flag' => $validatedData['render_flag'] ?? 0,
             'cartellino_storico' => $validatedData['cartellino_storico'] ?? '',
             'cartellino_attuale' => $validatedData['cartellino_attuale'] ?? '',
             'didascalia' => $validatedData['didascalia'] ?? '',
@@ -392,19 +368,6 @@ public function update(Request $request, $id) {
         $composition = Composition::where('id_reperto', '=', $id_reperto)->get()->first();
         $composition->update($compositionData);
 
-        $gigapixelData = [
-            'id_reperto' => $id_reperto,
-            'gigapixel_file' => $validatedData['gigapixel_file'] ?? '',
-        ];
-        $gigapixel = Gigapixel::where('id_reperto', '=', $id_reperto)->get()->first();
-        $gigapixel->update($gigapixelData);
-
-        $renderData = [
-            'id_reperto' => $id_reperto,
-            'render_file' => $validatedData['render_file'] ?? '',
-        ];
-        $render = Render::where('id_reperto', '=', $id_reperto)->get()->first();
-        $render->update($renderData);
 
         $catalogData=[
             'id_reperto' => $id_reperto,
@@ -441,8 +404,6 @@ public function destroy($id) {
             BiologicalEntity::where('id_reperto', $find->id)->delete();
             Acquisition::where('id_reperto', $find->id)->delete();
             Composition::where('id_reperto', $find->id)->delete();
-            Gigapixel::where('id_reperto', $find->id)->delete();
-            Render::where('id_reperto', $find->id)->delete();
             Catalog::where('id_reperto', $find->id)->delete();
             Xit::where('id_reperto', $find->id)->delete();
 

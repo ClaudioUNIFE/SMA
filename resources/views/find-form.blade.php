@@ -129,14 +129,6 @@
                 <td>{{ $find->categoria }}</td>
             </tr>
             <tr>
-                <th>Gigapixel</th>
-                <td>{{ $find->gigapixel_flag ? 'Sì' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Render</th>
-                <td>{{ $find->render_flag ? 'Sì' : 'No' }}</td>
-            </tr>
-            <tr>
                 <th>Olotipo</th>
                 <td>{{ $find->olotipo ? 'Sì' : 'No' }}</td>
             </tr>
@@ -205,14 +197,7 @@
                 <th>Fornitore</th>
                 <td>{{ $find->fornitore }}</td>
             </tr>
-            <tr>
-                <th>Gigapixel File</th>
-                <td>{{ $find->gigapixel_file }}</td>
-            </tr>
-            <tr>
-                <th>Render File</th>
-                <td>{{ $find->render_file }}</td>
-            </tr>
+    
             <tr>
                 <th>Cartellino Storico</th>
                 <td>{{ $find->cartellino_storico }}</td>

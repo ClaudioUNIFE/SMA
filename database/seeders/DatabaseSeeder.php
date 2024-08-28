@@ -98,8 +98,6 @@ class DatabaseSeeder extends Seeder
             'id_collezione'=>1,
             'validato'=>true,
             'categoria'=>'uomo',
-            'gigapixel_flag'=>true,
-            'render_flag'=>false,
             'cartellino_storico'=>"S/N",
             'cartellino_attuale'=>"S/N",
             'foto_principale'=>"S/N",
@@ -189,19 +187,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        public function seedGigapixels() {
-            Gigapixel::factory()->create([
-                'id_reperto' => 1,
-                'gigapixel_file'=>'Ercole.jpg',
-            ]);
-        }
 
-        public function seedRenders() {
-            Render::factory()->create([
-                'id_reperto' => 1,
-                'render_file'=>'Ercole.obj',
-            ]);
-        }
 
         public function seedTheses(){
             Thesis::factory()->create([
@@ -367,8 +353,6 @@ class DatabaseSeeder extends Seeder
         $this->seedAcquisitions();
         $this->seedCompositions();
         $this->seedRestorations();
-        $this->seedGigapixels();
-        $this->seedRenders();
         $this->seedTheses();
         $this->seedXits();
         $this->seedBiologicalEntities();

@@ -34,8 +34,6 @@ class Find extends Model
         'id_collezione',
         'validato',
         'categoria',
-        'gigapixel_flag',
-        'render_flag',
         'cartellino_storico',
         'cartellino_attuale',
         'foto_principale',
@@ -106,8 +104,7 @@ class Find extends Model
             ->join('compositions', 'finds.id', '=', 'compositions.id_reperto')
             ->join('acquisitions', 'finds.id', '=', 'acquisitions.id_reperto')
             // ->join('restorations', 'finds.id', '=','restorations.id_reperto')
-            ->join('renders', 'finds.id', '=', 'renders.id_reperto')
-            ->join('gigapixels', 'finds.id', '=', 'gigapixels.id_reperto')
+
             ->select(
                 'finds.*', // Seleziona tutti i campi dalla tabella finds
                 'biological_entities.*',
@@ -116,8 +113,6 @@ class Find extends Model
                 'catalogs.*',
                 'compositions.*',
                 'acquisitions.*',
-                'renders.*',
-                'gigapixels.*',
                 'finds.descrizione as find_descrizione',// Rinomina il campo descrizione della tabella finds
                 'collections.descrizione as collection_descrizione',
             )

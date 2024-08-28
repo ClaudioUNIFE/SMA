@@ -179,20 +179,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <th><label for="gigapixel_flag">Gigapixel</label></th>
-                    <td>
-                        <input type="hidden" name="gigapixel_flag" value="0">
-                        <input type="checkbox" id="gigapixel_flag" name="gigapixel_flag" value="1">
-                    </td>
-                </tr>
-                <tr>
-                    <th><label for="render_flag">Render</label></th>
-                    <td>
-                        <input type="hidden" name="render_flag" value="0">
-                        <input type="checkbox" id="render_flag" name="render_flag" value="1">
-                    </td>
-                </tr>
-                <tr>
                     <th><label for="olotipo">Olotipo</label></th>
                     <td>
                         <input type="hidden" name="olotipo" value="0">
@@ -292,14 +278,6 @@
                 <tr>
                     <th><label for="fornitore">Fornitore</label></th>
                     <td><input type="text" name="fornitore" id="fornitore" class="form-control" placeholder="Fornitore" /></td>
-                </tr>
-                <tr>
-                    <th><label for="gigapixel_file">Gigapixel File</label></th>
-                    <td><input type="text" name="gigapixel_file" id="gigapixel_file" class="form-control" /></td>
-                </tr>
-                <tr>
-                    <th><label for="render_file">Render File</label></th>
-                    <td><input type="text" name="render_file" id="render_file" class="form-control" /></td>
                 </tr>
                 <tr>
                     <th><label for="cartellino_storico">Cartellino Storico</label></th>
