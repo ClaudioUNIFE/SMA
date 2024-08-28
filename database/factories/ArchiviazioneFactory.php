@@ -17,7 +17,7 @@ class ArchiviazioneFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_paradati' => numberBetween(1,10),  // Assuming Paradata model has its own factory
+            'id_paradati' => $this->faker->numberBetween(1, 100),  // Assuming Paradata model has its own factory
             'responsabile' => $this->faker->name(),
             'operatore' => $this->faker->name(),
             'data_ultimo_becup' => $this->faker->date(),

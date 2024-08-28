@@ -33,7 +33,7 @@ return new class extends Migration
             $table->timestamps();  // Creates 'created_at' and 'updated_at'
 
             // Foreign key relationship with the 'attached' table
-            $table->foreign('id_allegato')->references('id')->on('attached')->onDelete('cascade');
+            $table->foreign('id_allegato')->references('id')->on('attachments')->onDelete('cascade');
         });
     }
 

@@ -17,10 +17,15 @@ use App\Models\BiologicalEntity;
 use App\Models\Catalog;
 use App\Models\Xit;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
+
 
 class Metadata extends Model
 {
     use HasFactory;
+
+    protected $table ='metadatas';
 
     protected $fillable = [
         'id_allegato',

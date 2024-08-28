@@ -9,6 +9,8 @@ class Metadatazione extends Model
 {
     use HasFactory;
 
+    protected $table ='metadatazioni';
+
     protected $fillable = [
         'id_paradati',
        'responsabile',

@@ -21,6 +21,8 @@ class Attached extends Model
 {
     use HasFactory;
 
+    protected $table = 'attachments';
+
     protected $fillable = [
         'id_reperto',
         'link',
