@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('paradatas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_allegato');
-            $table->string('stato_corrente');
+            $table->string('stato_corrente')->nullable();
             $table->string('responsabile_scelta_reperto')->nullable();
             $table->boolean('scheda_validata')->default(false);
             $table->string('validatore_scheda')->nullable();

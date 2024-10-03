@@ -2,7 +2,7 @@
 
 <x-app-layout>
 
-    <div style="margin: 5%">
+    <div>
 
         <div class="flex justify-center mb-6 text-gray-700 dark:text-gray-400">
             <p class="font-semibold" style="font-size: 1.5rem;">Total Searched Finds : <span id="total_records"></span></p>

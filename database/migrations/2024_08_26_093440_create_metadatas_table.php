@@ -22,9 +22,9 @@ return new class extends Migration
             $table->string('editore')->nullable();
             $table->string('autore_di_contributo')->nullable();
             $table->date('data')->nullable();
-            $table->string('tipo');
-            $table->string('formato');
-            $table->string('identificatore');
+            $table->string('tipo')->nullable();
+            $table->string('formato')->nullable();
+            $table->string('identificatore')->nullable();
             $table->string('fonte')->nullable();
             $table->string('lingua')->nullable();
             $table->text('relazione')->nullable();

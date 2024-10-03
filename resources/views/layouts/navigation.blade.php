@@ -30,6 +30,13 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('finds.showadvancedSearch')" :active="request()->routeIs('finds.showadvancedSearch')">
+                         {{ __('Ricerca avanzata') }}
+                    </x-nav-link>
+                </div>
+
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('deposits.index')" :active="request()->routeIs('deposits.index')">
                         {{ __('Gestione depositi') }}
                     </x-nav-link>

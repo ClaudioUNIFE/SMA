@@ -13,8 +13,6 @@
             <th>Collezione</th>
             <th>Validato</th>
             <th>Categoria Reperto</th>
-            <th>Gigapixel</th>
-            <th>Render</th>
             <th>Olotipo</th>
             <th>Riferimento Tassonomico</th>
             <th>Nome Comune</th>
@@ -32,8 +30,7 @@
             <th>Provenienza</th>
             <th>Codice di Patrimonio</th>
             <th>Fornitore</th>
-            <th>Gigapixel File</th>
-            <th>Render File</th>
+
             <th>Cartellino Storico</th>
             <th>Cartellino Attuale</th>
             <th>Didascalia</th>
@@ -42,6 +39,10 @@
             <th>ICCD</th>
             <th>PATER</th>
             <th>Vecchio DB</th>
+
+
+            <th>Tipo_acquisizione</th>
+            <th>Link</th>
         </tr>
     </thead>
     <tbody>
@@ -62,8 +63,6 @@
             <td>{{ $find->nome_collezione }}</td>
             <td>{{ $find->validato ? 'Sì' : 'No' }}</td>
             <td>{{ $find->categoria }}</td>
-            <td>{{ $find->gigapixel_flag ? 'Sì' : 'No' }}</td>
-            <td>{{ $find->render_flag ? 'Sì' : 'No' }}</td>
             <td>{{ $find->olotipo ? 'Sì' : 'No' }}</td>
             <td>{{ $find->riferimento_tassonomico }}</td>
             <td>{{ $find->nome_comune }}</td>
@@ -81,8 +80,6 @@
             <td>{{ $find->provenienza }}</td>
             <td>{{ $find->codice_patrimonio }}</td>
             <td>{{ $find->fornitore }}</td>
-            <td>{{ $find->gigapixel_file }}</td>
-            <td>{{ $find->render_file }}</td>
             <td>{{ $find->cartellino_storico }}</td>
             <td>{{ $find->cartellino_attuale }}</td>
             <td>{{ $find->didascalia }}</td>
@@ -90,6 +87,8 @@
             <td>{{ $find->iccd }}</td>
             <td>{{ $find->pater }}</td>
             <td>{{ $find->vecchio_db }}</td>
+            <td>{{ $find->tipo_acquisizione }}</td>
+            <td>{{ $find->link }}</td>
         </tr>
         @endforeach
 

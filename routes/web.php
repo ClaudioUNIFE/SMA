@@ -10,6 +10,8 @@ use App\Http\Controllers\ThesisViewController;
 use App\Http\Controllers\EmployeeInfoController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\AttachmentsController;
+use App\Http\Controllers\ChartController;
 
 
 
@@ -81,6 +83,20 @@ Route::post('/manage-roles', [RoleController::class,'updateUserRole'] )->name('r
 
 Route::get('/action', [RoleController::class,'action'] )->name('role.action');
 
+Route::get('/finds/advanced-search', [FindViewController::class, 'showAdvancedSearch'])->name('finds.showadvancedSearch');
+Route::get('/finds/advanced-search-results', [FindViewController::class, 'advancedSearch'])->name('finds.advancedSearch');
+
+
+Route::get('/add-attached/{id}', [AttachmentsController::class,'create'] )->name('attached.create');
+Route::post('/add-attached/{id}', [AttachmentsController::class,'store'] )->name('attached.store');
+Route::get('/attachments/{id}/edit/{attachmentId}', [AttachmentsController::class, 'edit'])->name('attached.edit');
+Route::post('/attachments/{id}/{attachmentId}', [AttachmentsController::class, 'update'])->name('attached.update');
+Route::delete('/attachments/{attachmentId}', [AttachmentsController::class, 'destroy'])->name('attached.destroy');
+Route::get('/attachments-manage/{id}', [AttachmentsController::class, 'manage'])->name('attached.manage');
+
+
+
+Route::get('/dashboard/data', [ChartController::class, 'getChartData'])->name('dashboard.data');
 
 
 
@@ -90,6 +106,7 @@ Route::get('/action', [RoleController::class,'action'] )->name('role.action');
 Route::get('/employee-info', [EmployeeInfoController::class, 'show'])->name('employeeinfo.show');
 
 
-Route::get('finds/export/{ids}', [ExportController::class, 'export'])->name('finds.export');
+Route::post('finds/export', [ExportController::class, 'export'])->name('finds.export');
+
 
 require __DIR__.'/auth.php';

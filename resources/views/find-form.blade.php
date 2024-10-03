@@ -1,83 +1,102 @@
 <x-app-layout>
     <style>
-    body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh; /* Assicura che il body occupi l'intera altezza della viewport */
-    background-color: #f7f7f7;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    flex-direction: column;
-}
-
-.view-container {
-    margin: 0; /* Rimuove il margine */
-    max-width: 800px;
-    width: 100%;
-    background-color: #2c3e50;
-    padding: 2%;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    color: #ecf0f1;
-    box-sizing: border-box;
-    flex-grow: 1; /* Fa crescere il contenitore per occupare lo spazio disponibile */
-    display: flex;
-    flex-direction: column; /* Assicura che il contenuto interno si disponga verticalmente */
-    justify-content: space-between; /* Distribuisce lo spazio tra il contenuto interno */
-}
-
-.view-control {
-    margin: 10px 0;
-    padding: 10px;
-    background-color: #34495e;
-    border-radius: 6px;
-    box-sizing: border-box;
-    color: #ecf0f1;
-}
-
-.center-table {
-    margin: 0 auto;
-    width: 100%;
-    border: none;
-    border-collapse: separate;
-}
-
-.center-table th,
-.center-table td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #7f8c8d;
-}
-
-.center-table th {
-    background-color: #34495e;
-    color: #fff;
-}
-
-.center-table tr:nth-child(even) {
-    background-color: #34495e;
-}
-
-.center-table tr:hover {
-    background-color: #3a5168;
-}
-
-.footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #2c3e50;
-    color: #ecf0f1;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-
+        body {
+            background-color: #f7f7f7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .form-container {
+            margin: 5% auto;
+            max-width: 80%;
+            background-color: #2c3e50;
+            padding: 2%;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            color: #ecf0f1;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #bdc3c7;
+            border-radius: 6px;
+            box-sizing: border-box;
+            background-color: #ecf0f1;
+            color: #2c3e50;
+        }
+        .form-control::placeholder {
+            color: #7f8c8d;
+        }
+        .center-table {
+            margin: 0 auto;
+            width: 100%;
+            border: none;
+            border-collapse: separate;
+        }
+        .center-table th,
+        .center-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #7f8c8d;
+        }
+        .center-table th {
+            background-color: #34495e;
+            color: #fff;
+        }
+        .center-table tr:nth-child(even) {
+            background-color: #34495e;
+        }
+        .center-table tr:hover {
+            background-color: #3a5168;
+        }
+        button[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="file"] {
+            background-color: #ecf0f1;
+            padding: 5px;
+        }
+        textarea.form-control {
+            height: 100px;
+            resize: vertical;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
     </style>
 
-    <a href="{{ route('finds.export', $find->id) }}" class="view-control">Esporta</a>
+    {{-- <a href="{{ route('finds.export', $find->id) }}" class="button">Esporta</a>
+    <a href="{{ route('attached.manage', $find->id) }}" class="view-control">gestisci allegati</a> --}}
 
-
-    <div class="view-container">
+    <div class="form-container">
         <table class="center-table">
             <tr>
                 <th>Museo di Riferimento</th>
@@ -197,7 +216,7 @@
                 <th>Fornitore</th>
                 <td>{{ $find->fornitore }}</td>
             </tr>
-    
+
             <tr>
                 <th>Cartellino Storico</th>
                 <td>{{ $find->cartellino_storico }}</td>
