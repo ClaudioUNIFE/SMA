@@ -258,7 +258,7 @@ button, input {
             <div class="max-w-7xl mx-auto p-6 lg:p-8">
                 <!-- Testo grande sopra il logo -->
                 <div class="flex justify-center mb-8">
-                    <h1 class="text-4xl font-bold text-white text-center">Gestionale Museo Pietro Leonardi</h1>
+                    <h1 class="text-4xl font-bold text-white text-center">Gestionale Museo Piero Leonardi</h1>
                 </div>
 
                 <div class="flex justify-center">

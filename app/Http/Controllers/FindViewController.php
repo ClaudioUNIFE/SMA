@@ -248,13 +248,7 @@ public function store(Request $request) {
 
 
 
-   public function showStore(){
-       $catalogs = Catalog::all();
-       $deposits = Deposit::all();
-       $museums = DB::table('museums')->get();
-       $collections = Collection::all();
-       return view('store-find', compact('catalogs', 'deposits','museums', 'collections'));
-   }
+
 
 
 public function showfindform(Request $request, $id){

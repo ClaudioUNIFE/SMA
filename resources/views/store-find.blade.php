@@ -6,7 +6,7 @@
         }
         .form-container {
             margin: 5% auto;
-            max-width: 80%;
+            max-width: 60%;
             background-color: #2c3e50;
             padding: 2%;
             border-radius: 10px;
