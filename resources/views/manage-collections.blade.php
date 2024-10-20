@@ -10,7 +10,9 @@
         @endif
     </div>
 
-
+    <head>
+        <link rel="stylesheet" href="{{ asset('css/standard.css') }}">
+    </head>
     <div style="margin-left:5%; margin-right:5%">
         <div class="table-responsive">
             <table style="width: 100%; border-collapse: collapse;">
@@ -59,45 +61,4 @@
         }
     </script>
 
-    <style>
-        body {
-            background-color: #343a40; /* Colore di sfondo scuro */
-            color: #ffffff; /* Testo bianco per contrasto */
-        }
-
-        .table-responsive {
-            margin-top: 20px;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-
-        .btn-danger {
-            background-color: #dc3545;
-            border-color: #dc3545;
-        }
-
-        .btn-primary:hover, .btn-danger:hover {
-            opacity: 0.8;
-        }
-
-        h2 {
-            margin-bottom: 20px;
-        }
-
-        table {
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        th, td {
-            vertical-align: middle;
-        }
-
-        .table thead th {
-            border-bottom: 2px solid #dee2e6;
-        }
-    </style>
 </x-app-layout>

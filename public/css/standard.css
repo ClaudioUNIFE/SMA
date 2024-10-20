@@ -1,0 +1,191 @@
+body {
+    background-color: rgb(18, 24, 38);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; /* Elimina margini di default per evitare spostamenti */
+    max-width: 100%; /* Rimuove fit-content per evitare ridimensionamento troppo stretto */
+    overflow-x: hidden; /* Puoi mantenerlo se il contenuto è ben gestito */
+}
+
+.nav {
+    /* overflow-x: auto;  Rimuovi se non necessario */
+}
+
+.navbar-link {
+    text-decoration: none;
+    padding: 10px 15px;
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+
+.navbar-link:hover {
+    color: #a3a3a3; /* Cambia il colore al passaggio del mouse */
+}
+
+.navbar-button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #2c3e50;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-button:hover {
+    background-color: #1a1f29;
+}
+
+
+.scrollbar-hide {
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
+  
+.scrollbar-hide::-webkit-scrollbar {
+    display: none; 
+}
+
+.form-container {
+    margin: 100px auto 5% auto;
+    max-width: 60%;
+    background-color: #2c3e50;
+    padding: 2%;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: #ecf0f1;
+    
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #bdc3c7;
+    border-radius: 6px;
+    box-sizing: border-box;
+    background-color: #ecf0f1;
+    color: #2c3e50;
+}
+
+.form-control::placeholder {
+    color: #7f8c8d;
+}
+
+.center-table {
+    margin: 0 auto; /* Centra la tabella */
+    width: 100%; 
+    border: none;
+    border-collapse: separate;
+}
+
+.center-table th,
+.center-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #7f8c8d;
+}
+
+.center-table th {
+    background-color: #34495e;
+    color: #fff;
+}
+
+.center-table tr:nth-child(even) {
+    background-color: #34495e;
+}
+
+.center-table tr:hover {
+    background-color: #3a5168;
+}
+
+button[type="submit"] {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="file"] {
+    background-color: #ecf0f1;
+    padding: 5px;
+}
+
+textarea.form-control {
+    height: 100px;
+    resize: vertical;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+}
+
+.landing-page-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(18, 24, 38); /* Consistente con altre pagine */
+    color: #ecf0f1;
+    padding: 20px;
+}
+
+.landing-page-header {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: #ffffff; /* Colore coerente con la navbar */
+}
+
+.logo-container img {
+    width: 150px;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.auth-buttons a {
+    margin: 0 15px;
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: #3498db;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.auth-buttons a:hover {
+    background-color: #2980b9; /* Effetto hover */
+    transform: scale(1.05); /* Leggero effetto zoom */
+}

@@ -1,14 +1,14 @@
 
 <div>
     <label for="collocazione">Collocazione:</label>
-    <input type="text" id="collocazione" name="collocazione" value="{{ old('collocazione', $deposit->collocazione ?? '') }}">
+    <input type="text" id="collocazione" name="collocazione" value="{{ old('collocazione', $deposit->collocazione ?? '') }}" style= "color:black">
 </div>
 <div>
     <label for="deposito">Deposito:</label>
-    <input type="text" id="deposito" name="deposito" value="{{ old('deposito', $deposit->deposito ?? '') }}">
+    <input type="text" id="deposito" name="deposito" value="{{ old('deposito', $deposit->deposito ?? '') }}" style= "color:black">
 </div>
 <div>
     <label for="codice_stanza">Codice Stanza:</label>
-    <input type="text" id="codice_stanza" name="codice_stanza" value="{{ old('codice_stanza', $deposit->codice_stanza ?? '') }}">
+    <input type="text" id="codice_stanza" name="codice_stanza" value="{{ old('codice_stanza', $deposit->codice_stanza ?? '') }}" style= "color:black">
 </div>
 

@@ -12,8 +12,10 @@
             @endforeach
         </div>
     </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <head>
+        <link rel="stylesheet" href="{{ asset('css/standard.css') }}">
+    </head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  <!-- togliere!!! -->
     <script>
         $(document).ready(function() {
             function fetch_thesis_data(query = '') {
@@ -26,7 +28,7 @@
                         $('#results').html(data.table_data);
                         $('#total_records').text(data.total_data);
                     }
-                });
+                });thesi
             }
 
             $('#search').on('keyup', function() {

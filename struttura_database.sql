@@ -153,7 +153,7 @@ CREATE TABLE `finds` (
   `note` text COLLATE utf8mb4_unicode_ci,
   `esposto` tinyint(1) NOT NULL DEFAULT '0',
   `digitalizzato` tinyint(1) NOT NULL DEFAULT '0',
-  `catalogato` tinyint(1) NOT NULL DEFAULT '0',
+  `catalogato` tinyint(1) NOT NULL DEFAULT '0',catalogs
   `restaurato` tinyint(1) NOT NULL DEFAULT '0',
   `id_deposito` bigint unsigned NOT NULL,
   `id_collezione` bigint unsigned NOT NULL,

@@ -5,6 +5,7 @@
         </h2>
     </x-slot>
 
+    <!-- Messaggio di login -->
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -14,8 +15,32 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <!-- Sezione con i tre pulsanti sotto il messaggio "You're logged in!" -->
+    <div class="py-6">
+        <div class="max-w-7xl mx-auto sm:px-10 lg:px-12">
+            <div class="flex justify-center">
+                <div style="margin: 0 10px;"> <!-- Margine per distanziare i pulsanti -->
+                    <a href="{{ route('find.showlist') }}" class="bg-gray-800 hover:bg-white text-white font-bold py-4 px-8 rounded-lg shadow-md transition duration-200 ease-in-out text-center inline-block">
+                        Consulta i reperti
+                    </a>
+                </div>
+                <div style="margin: 0 10px;"> <!-- Margine per distanziare i pulsanti -->
+                    <a href="{{ route('finds.showadvancedSearch') }}" class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-lg shadow-md transition duration-200 ease-in-out text-center inline-block">
+                        Ricerca avanzata
+                    </a>
+                </div>
+                <div style="margin: 0 10px;"> <!-- Margine per distanziare i pulsanti -->
+                    <a href="{{ route('find.showstore') }}" class="bg-gray-800 hover:bg-white text-white font-bold py-4 px-8 rounded-lg shadow-md transition duration-200 ease-in-out text-center inline-block">
+                        Inserisci i reperti
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script per i grafici -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -37,57 +62,51 @@
                             <canvas id="multiplicityChart"></canvas>
                         </div>
                     </div>
+                </div>
 
-    <script>
-        // Funzione per aggiornare i grafici
-        async function updateCharts() {
-            // Chiamata Fetch per ottenere i dati dalla rotta
-            const response = await fetch('dashboard/data');
-            const data = await response.json();
+                <!-- Script per aggiornare i grafici -->
+                <script>
+                    async function updateCharts() {
+                        const response = await fetch('dashboard/data');
+                        const data = await response.json();
 
-            // Aggiorna il grafico dei reperti validati
-            validatedChart.data.datasets[0].data = [data.validatedFinds, data.totalFinds - data.validatedFinds];
-            validatedChart.update();
+                        validatedChart.data.datasets[0].data = [data.validatedFinds, data.totalFinds - data.validatedFinds];
+                        validatedChart.update();
 
-            // Aggiorna il grafico dei reperti e molteplicità
-            multiplicityChart.data.datasets[0].data = [data.totalReperti, data.totalMolteplicita];
-            multiplicityChart.update();
-        }
+                        multiplicityChart.data.datasets[0].data = [data.totalReperti, data.totalMolteplicita];
+                        multiplicityChart.update();
+                    }
 
-        // Configura il grafico Validati
-        var validatedCtx = document.getElementById('validatedChart').getContext('2d');
-        var validatedChart = new Chart(validatedCtx, {
-            type: 'pie',
-            data: {
-                labels: ['Validati', 'Non Validati'],
-                datasets: [{
-                    label: 'Reperti Validati',
-                    data: [0, 0], // Dati iniziali vuoti
-                    backgroundColor: ['#36A2EB', '#FF6384'],
-                }]
-            }
-        });
+                    var validatedCtx = document.getElementById('validatedChart').getContext('2d');
+                    var validatedChart = new Chart(validatedCtx, {
+                        type: 'pie',
+                        data: {
+                            labels: ['Validati', 'Non Validati'],
+                            datasets: [{
+                                label: 'Reperti Validati',
+                                data: [0, 0],
+                                backgroundColor: ['#36A2EB', '#FF6384'],
+                            }]
+                        }
+                    });
 
-        // Configura il grafico Molteplicità
-        var multiplicityCtx = document.getElementById('multiplicityChart').getContext('2d');
-        var multiplicityChart = new Chart(multiplicityCtx, {
-            type: 'bar',
-            data: {
-                labels: ['Numero Reperti', 'Molteplicità'],
-                datasets: [{
-                    label: 'Conteggio Reperti',
-                    data: [0, 0], // Dati iniziali vuoti
-                    backgroundColor: ['#FFCE56', '#4BC0C0'],
-                }]
-            }
-        });
-        // Esegui l'aggiornamento dei grafici ogni 30 minuti (3000000 millisecondi)
-        setInterval(updateCharts, 3000000);
+                    var multiplicityCtx = document.getElementById('multiplicityChart').getContext('2d');
+                    var multiplicityChart = new Chart(multiplicityCtx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Numero Reperti', 'Molteplicità'],
+                            datasets: [{
+                                label: 'Conteggio Reperti',
+                                data: [0, 0],
+                                backgroundColor: ['#FFCE56', '#4BC0C0'],
+                            }]
+                        }
+                    });
 
-        // Esegui l'aggiornamento dei grafici al caricamento della pagina
-        updateCharts();
-    </script>
-    </div>
-    </div>
+                    setInterval(updateCharts, 3000000);
+                    updateCharts();
+                </script>
+            </div>
+        </div>
     </div>
 </x-app-layout>
