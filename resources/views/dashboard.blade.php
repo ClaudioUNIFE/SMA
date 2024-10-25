@@ -6,7 +6,7 @@
     </x-slot>
 
     <!-- Messaggio di login -->
-    <div class="py-12">
+    <!-- <div class="py-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -14,35 +14,45 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Sezione con i tre pulsanti sotto il messaggio "You're logged in!" -->
-    <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-10 lg:px-12">
-            <div class="flex justify-center">
-                <div style="margin: 0 10px;"> <!-- Margine per distanziare i pulsanti -->
-                    <a href="{{ route('find.showlist') }}" class="bg-gray-800 hover:bg-white text-white font-bold py-4 px-8 rounded-lg shadow-md transition duration-200 ease-in-out text-center inline-block">
-                        Consulta i reperti
+    <div class="py-4">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="flex flex-row gap-6">
+                <!-- Primo pulsante -->
+                <div class="flex-1 flex">
+                    <a href="{{ route('find.showlist') }}"  class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-12 px-8 rounded shadow-lg transition duration-300 ease-in-out text-center flex flex-col justify-center items-center transform hover:scale-105 w-full min-h-[200px]">
+                        <span class="text-xl block">Sono presenti <span id="totalFindsCount">0</span> reperti</span>
+                        <span class="text-lg mt-2 block">Consultali qui</span>
                     </a>
                 </div>
-                <div style="margin: 0 10px;"> <!-- Margine per distanziare i pulsanti -->
-                    <a href="{{ route('finds.showadvancedSearch') }}" class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-lg shadow-md transition duration-200 ease-in-out text-center inline-block">
-                        Ricerca avanzata
+                
+                <!-- Pulsante centrale (stile Excel) -->
+                <div class="flex-1 flex">
+                    <a href="{{ route('finds.showadvancedSearch') }}" style="background-color: #217346;" class="hover:bg-[#185a37] text-white font-bold py-12 px-8 rounded shadow-lg transition duration-300 ease-in-out text-center flex flex-col justify-center items-center transform hover:scale-105 w-full min-h-[200px]">
+                        <span class="text-xl block">Esporta la tua ricerca in Excel</span>
+                        <span class="text-lg mt-2 block">Ricerca avanzata</span>
                     </a>
                 </div>
-                <div style="margin: 0 10px;"> <!-- Margine per distanziare i pulsanti -->
-                    <a href="{{ route('find.showstore') }}" class="bg-gray-800 hover:bg-white text-white font-bold py-4 px-8 rounded-lg shadow-md transition duration-200 ease-in-out text-center inline-block">
-                        Inserisci i reperti
+                
+                <!-- Terzo pulsante -->
+                <div class="flex-1 flex">
+                    <a href="{{ route('find.showstore') }}" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-12 px-8 rounded shadow-lg transition duration-300 ease-in-out text-center flex flex-col justify-center items-center transform hover:scale-105 w-full min-h-[200px]">
+                        <span class="text-xl block">Crea un nuovo record</span>
+                        <span class="text-lg mt-2 block">Inserisci i reperti</span>
                     </a>
                 </div>
             </div>
         </div>
     </div>
 
+
+
     <!-- Script per i grafici -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <div class="py-12">
+    <div class="py-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
                 <div class="flex justify-between">
@@ -75,6 +85,8 @@
 
                         multiplicityChart.data.datasets[0].data = [data.totalReperti, data.totalMolteplicita];
                         multiplicityChart.update();
+
+                        document.getElementById('totalFindsCount').innerText = data.totalFinds;
                     }
 
                     var validatedCtx = document.getElementById('validatedChart').getContext('2d');

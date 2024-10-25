@@ -1,7 +1,7 @@
 <x-app-layout>
     
     <head>
-        <link rel="stylesheet" href="{{ asset('css/standard.css') }}">
+        <!-- <link rel="stylesheet" href="{{ asset('css/standard.css') }}"> -->
     </head>
     <div class="form-container">
         <form action="{{ route('theses.update', $thesis->id) }}" method="POST" enctype="multipart/form-data">

@@ -1,61 +1,111 @@
+/* Body */
 body {
-    background-color: rgb(18, 24, 38);
+    background: linear-gradient(to top, rgb(196, 34, 34), rgb(72, 80, 100));
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0; /* Elimina margini di default per evitare spostamenti */
-    max-width: 100%; /* Rimuove fit-content per evitare ridimensionamento troppo stretto */
-    overflow-x: hidden; /* Puoi mantenerlo se il contenuto è ben gestito */
+    margin: 0; 
+    max-width: 100%; 
+    overflow-x: auto;
+    color: #ffffff; /* Testo bianco per contrasto */
 }
 
-.nav {
-    /* overflow-x: auto;  Rimuovi se non necessario */
+/* Navbar */
+.navbar {
+    background-color: var(--navbar-bg, rgb(48, 54, 78));
+    border-bottom: 1px solid var(--navbar-border, #d1d5db);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
+    /*overflow-x: auto;*/
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+}
+.navbar::-webkit-scrollbar {
+    display: none;  
+}
+/*rimuovere*/
+.nav-links {
+    display: flex;
+    white-space: nowrap;
+    /*overflow-x: auto;*/
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.nav-links::-webkit-scrollbar {
+    display: none;
+}
+.nav-link:hover {
+    color: #a3a3a3; 
 }
 
-.navbar-link {
-    text-decoration: none;
-    padding: 10px 15px;
-    color: #ffffff;
-    transition: color 0.3s ease;
-}
-
-.navbar-link:hover {
-    color: #a3a3a3; /* Cambia il colore al passaggio del mouse */
-}
-
-.navbar-button {
-    padding: 10px 15px;
-    border-radius: 5px;
-    background-color: #2c3e50;
-    color: #ffffff;
+/* Button styles */
+button[type="submit"], button, .btn-primary, .btn-danger {
+    padding: 11px 24px;
     border: none;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.btn-primary {
+    background-color: #619ee4;
+    border-color: #1d5897;
+    color: white;
+}
+.btn-danger {
+    background-color: #c4404d;
+    border-color: #dc3545;
+    color: white;
+}
+.btn-primary:hover, .btn-danger:hover, button[type="submit"]:hover {
+    opacity: 0.8;
+    background-color: #2980b9; /* Cambia il colore al passaggio del mouse */
 }
 
-.navbar-button:hover {
-    background-color: #1a1f29;
+/* Table styles */
+.table-responsive {
+    margin-top: 20px;
+}
+table {
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0; 
+    margin: 0 auto;
+}
+.center-table th, .center-table td, th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #7f8c8d;
+    vertical-align: middle;
+}
+.center-table th {
+    background-color: #34495e;
+    color: #fff;
+}
+.center-table tr:nth-child(even) {
+    background-color: #34495e;
+}
+.center-table tr:hover {
+    background-color: #3a5168;
+}
+.table thead th {
+    border-bottom: 2px solid #dee2e6;
 }
 
-
-.scrollbar-hide {
-    -ms-overflow-style: none; 
-    scrollbar-width: none; 
-}
-  
-.scrollbar-hide::-webkit-scrollbar {
-    display: none; 
-}
-
+/* Forms */
 .form-container {
-    margin: 100px auto 5% auto;
-    max-width: 60%;
+    margin: 5% auto;
+    max-width: 800px;
+    margin-top: 7%;
     background-color: #2c3e50;
     padding: 2%;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     color: #ecf0f1;
-    
 }
-
 .form-control {
     width: 100%;
     padding: 10px;
@@ -66,95 +116,45 @@ body {
     background-color: #ecf0f1;
     color: #2c3e50;
 }
-
 .form-control::placeholder {
     color: #7f8c8d;
 }
-
-.center-table {
-    margin: 0 auto; /* Centra la tabella */
-    width: 100%; 
-    border: none;
-    border-collapse: separate;
+textarea.form-control {
+    height: 100px;
+    resize: vertical;
+}
+input[type="file"] {
+    background-color: #ecf0f1;
+    padding: 5px;
 }
 
-.center-table th,
-.center-table td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #7f8c8d;
-}
-
-.center-table th {
-    background-color: #34495e;
-    color: #fff;
-}
-
-.center-table tr:nth-child(even) {
-    background-color: #34495e;
-}
-
-.center-table tr:hover {
-    background-color: #3a5168;
-}
-
-button[type="submit"] {
-    background-color: #3498db;
-    color: white;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-button {
-    background-color: #3498db;
-    color: white;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-button[type="submit"]:hover {
-    background-color: #2980b9;
-}
-
+/* Labels */
 label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-input[type="file"] {
-    background-color: #ecf0f1;
-    padding: 5px;
+/* Headings */
+h2 {
+    margin-bottom: 20px;
 }
 
-textarea.form-control {
-    height: 100px;
-    resize: vertical;
-}
-
+/* Footer */
 .footer {
     text-align: center;
     margin-top: 20px;
     padding: 10px;
-    background-color: #2c3e50;
+    background: #2c3e50;
     color: #ecf0f1;
 }
-
 .landing-page-container {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgb(18, 24, 38); /* Consistente con altre pagine */
+    /*background-color: rgb(18, 24, 38); Consistente con altre pagine */
     color: #ecf0f1;
     padding: 20px;
 }
@@ -168,7 +168,7 @@ textarea.form-control {
 }
 
 .logo-container img {
-    width: 150px;
+    width: 200px;
     height: auto;
     margin-bottom: 2rem;
 }
@@ -188,4 +188,83 @@ textarea.form-control {
 .auth-buttons a:hover {
     background-color: #2980b9; /* Effetto hover */
     transform: scale(1.05); /* Leggero effetto zoom */
+}
+.max-h-64 {
+    max-height: 16rem;
+}
+        /* Sovrascrivi gli input di Tailwind per il tema scuro */
+.form-input,
+.form-textarea,
+.form-select,
+.form-multiselect {
+    background-color: #cac6c6 !important;
+    color: #2d3748;
+}
+.form-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #000000; /* Cambia il colore della checkbox */
+    border: 2px solid #000000; /* Aggiungi un bordo */
+    background-color: #999999 !important; /* Colore di sfondo bianco */
+    margin-right: 8px;
+}
+
+/* Mega Menu */
+.mega-menu {
+    display: none;
+    left: 0;
+    position: absolute;
+    text-align: left;
+    width: 100%;
+    background-color: #48667a;
+    padding: 1rem; /* Aggiunto padding per dare più spazio all'interno del menù */
+    border-radius: 0.5rem; /* Aggiunto per arrotondare i bordi del menù */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Leggera ombra per un effetto più elegante */
+}
+
+/* Voci del Menù */
+.mega-menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.mega-menu ul li {
+    margin-bottom: 0.25rem; /* Margine inferiore per aumentare lo spazio tra le voci */
+}
+
+.mega-menu ul li a {
+    display: block;
+    padding: 0.75rem 1.25rem; /* Maggior padding per migliorare la leggibilità e fare in modo che il menù sia più facile da cliccare */
+    color: #ffffff; /* Testo bianco per contrasto */
+    background-color: transparent; /* Sfondo trasparente per mantenere coerenza */
+    text-decoration: none; /* Rimuovere la sottolineatura */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transizione morbida per l'hover */
+    line-height: 1.6; /* Aumentata l'interlinea per migliorare la leggibilità */
+    font-size: 1rem; /* Dimensione del font per mantenere consistenza con il resto della pagina */
+}
+
+/* Hover Effect */
+.mega-menu ul li a:hover {
+    background-color: #2980b9; /* Colore di sfondo al passaggio del mouse */
+    color: #ffffff; /* Colore del testo al passaggio del mouse */
+    border-radius: 0.375rem; /* Aggiunto bordo arrotondato al link per un aspetto più moderno */
+}
+
+/* Hoverable per gestire la visibilità del mega menu */
+.hoverable {
+    position: static;
+}
+
+.hoverable > a:after {
+    content: "\25BC"; /* Icona freccia giù */
+    font-size: 10px;
+    padding-left: 6px;
+    position: relative;
+    top: -1px;
+}
+
+.hoverable:hover .mega-menu {
+    display: block;
 }

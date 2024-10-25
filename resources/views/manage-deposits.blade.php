@@ -12,33 +12,35 @@
     </div>
 
     <head>
-        <link rel="stylesheet" href="{{ asset('css/standard.css') }}">
+        <!-- <link rel="stylesheet" href="{{ asset('css/standard.css') }}"> -->
     </head>
     <div style="margin-left:5%; margin-right:5%">
         <div class="table-responsive">
         <table style= "width: 100%; border-collapse: collapse;">
-            <thead style="background-color: grey;">
+            <thead style="background-color: rgb(72, 80, 100);">
                 <tr>
                     <th style="color: white; padding: 10px; text-align: left;">Collocazione</th>
                     <th style="color: white; padding: 10px; text-align: left;">Deposito</th>
                     <th style="color: white; padding: 10px; text-align: left;">Codice Stanza</th>
-                    <th style="color: white; padding: 10px; text-align: left;">Actions</th>
+                    <th style="color: white; padding: 10px; text-align: left;"> </th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($deposits as $deposit)
-                    <tr style="background-color: #444;">
+                    <tr style="background-color: rgb(48, 54, 78);">
                         <td style="color: white; padding: 10px;">{{ $deposit->collocazione }}</td>
                         <td style="color: white; padding: 10px;">{{ $deposit->deposito }}</td>
                         <td style="color: white; padding: 10px;">{{ $deposit->codice_stanza }}</td>
                         <td style="padding: 10px;">
-                            <a href="{{ route('deposits.show', $deposit->id) }}" style="color: white; margin-right: 10px; text-decoration: none; background-color: #007bff; padding: 5px 10px; border-radius: 3px;">Mostra</a>
-                            <a href="{{ route('deposits.edit', $deposit->id) }}" style="color: white; margin-right: 10px; text-decoration: none; background-color:rgb(73,159,164); padding: 5px 10px; border-radius: 3px;">Modifica</a>
-                            <form id="delete-form-{{ $deposit->id }}" action="{{ route('deposits.destroy', $deposit->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" onclick="confirmDelete({{ $deposit->id }})" style="background-color: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Elimina</button>
-                            </form>
+                            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                                <a href="{{ route('deposits.show', $deposit->id) }}" class="btn-primary">Mostra</a>
+                                <a href="{{ route('deposits.edit', $deposit->id) }}" class="btn-primary">Modifica</a>
+                                <form id="delete-form-{{ $deposit->id }}" action="{{ route('deposits.destroy', $deposit->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button" onclick="confirmDelete({{ $deposit->id }})" class="btn-danger">Elimina</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
@@ -46,7 +48,7 @@
         </table>
 
         <div style="text-align: center; margin-top: 20px;">
-            <a href="{{ route('deposits.create') }}" style="color: white; background-color: #007bff; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Adggiungi un Deposito</a>
+            <a href="{{ route('deposits.create') }}" style="color: white; background-color: #619ee4; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Aggiungi un Deposito</a>
         </div>
     </div>
     </div>

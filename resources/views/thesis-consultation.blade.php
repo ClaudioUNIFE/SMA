@@ -13,7 +13,7 @@
         </div>
     </div>
     <head>
-        <link rel="stylesheet" href="{{ asset('css/standard.css') }}">
+        <!-- <link rel="stylesheet" href="{{ asset('css/standard.css') }}"> -->
     </head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  <!-- togliere!!! -->
     <script>

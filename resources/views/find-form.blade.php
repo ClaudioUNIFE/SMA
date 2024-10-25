@@ -1,7 +1,7 @@
 <x-app-layout>
     
     <head>
-        <link rel="stylesheet" href="{{ asset('css/standard.css') }}">
+        <!-- <link rel="stylesheet" href="{{ asset('css/standard.css') }}"> -->
     </head>
     {{-- <a href="{{ route('finds.export', $find->id) }}" class="button">Esporta</a>
     <a href="{{ route('attached.manage', $find->id) }}" class="view-control">gestisci allegati</a> --}}

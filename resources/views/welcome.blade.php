@@ -17,13 +17,13 @@
 
 <div class="landing-page-container">
 
-    <!-- Testo grande sopra il logo -->
-    <h1 class="landing-page-header">Gestionale Museo Piero Leonardi</h1>
-
     <!-- Logo -->
     <div class="logo-container">
-        <img src="{{ asset('images/logoBG.png') }}" alt="Logo">
+        <img src="{{ asset('images/sma.png') }}" alt="Logo">
     </div>
+
+    <!-- Testo grande sopra il logo -->
+    <h1 class="landing-page-header">Gestionale Museo Piero Leonardi</h1>
 
     <!-- Pulsanti di autenticazione -->
     <div class="auth-buttons text-center">

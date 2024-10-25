@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <head>
-        <link rel="stylesheet" href="{{ asset('css/standard.css') }}">
+        <!-- <link rel="stylesheet" href="{{ asset('css/standard.css') }}"> -->
     </head>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

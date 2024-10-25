@@ -1,6 +1,6 @@
-<nav x-data="{ open: false }" class="bg-custom-navbar dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 fixed top-0 left-0 w-full z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
+<nav x-data="{ open: false }" class="navbar z-150 relative border-b-2 border-gray-300 text-gray-900">
+    <div class="max-w-none px-4 sm:px-6 lg:px-8">        
+        <div class="flex justify-between items-center h-16 w-full">
             <!-- Logo -->
             <div class="shrink-0 flex items-center">
                 <a href="{{ route('dashboard') }}">
@@ -8,116 +8,164 @@
                 </a>
             </div>
 
-            <!-- Navigation Links -->
-            <div class="flex space-x-8 sm:flex sm:ms-10">
-                <!-- Dashboard Link -->
-                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white text-lg hover:text-gray-300 transition duration-150 ease-in-out">
-                    {{ __('Dashboard') }}
-                </x-nav-link>
+            <!-- Burger Button -->
+            <div class="flex items-center sm:hidden">
+                <button @click="open = !open" class="burger-button focus:outline-none lg:hidden">
+                    <svg x-show="!open" class="w-8 h-8 text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <svg x-show="open" class="w-8 h-8 text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
 
-                <!-- Dropdown per Reperto -->
-                <div class="relative">
-                    <x-dropdown align="left" width="48">
-                        <x-slot name="trigger">
-                            <button class="inline-flex items-center px-3 py-2 text-lg text-white bg-gray-800 hover:text-gray-300 focus:outline-none transition ease-in-out duration-150 rounded-md">
-                                <span>{{ __('Reperto') }}</span>
-                                <svg class="ml-1 fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </button>
-                        </x-slot>
-                        <x-slot name="content">
-                            <x-dropdown-link :href="route('find.showlist')" :active="request()->routeIs('find.showlist')">
-                                {{ __('Consultazione Reperto') }}
-                            </x-dropdown-link>
-                            <x-dropdown-link :href="route('find.showstore')" :active="request()->routeIs('find.showstore')">
-                                {{ __('Inserimento Reperto') }}
-                            </x-dropdown-link>
-                            <x-dropdown-link :href="route('finds.showadvancedSearch')" :active="request()->routeIs('finds.showadvancedSearch')">
-                                {{ __('Ricerca Avanzata') }}
-                            </x-dropdown-link>
-                        </x-slot>
-                    </x-dropdown>
-                </div>
+            <!-- Desktop Navigation -->
+            <ul class="hidden sm:flex space-x-8 overflow-x-auto whitespace-nowrap items-center">
+                <!-- Dashboard -->
+                <li class="hover:bg-blue-800 hover:text-white">
+                    <a href="{{ route('dashboard') }}" class="relative block py-6 px-2 lg:p-6 text-sm lg:text-base font-bold">
+                        {{ __('Dashboard') }}
+                    </a>
+                </li>
+
+                <!-- Reperto Dropdown -->
+                <li class="hoverable hover:bg-blue-800 hover:text-white">
+                    <a href="#" class="relative block py-6 px-4 lg:p-6 text-sm lg:text-base font-bold">
+                        {{ __('Reperto') }}
+                    </a>
+                    <div class="mega-menu mb-16 sm:mb-0 shadow-xl bg-blue-800 w-full">
+                        <div class="container mx-auto w-full flex flex-wrap justify-between p-8">
+                            <!-- Sezione Links per Gestione Reperti -->
+                            <ul class="px-4 w-full sm:w-1/2 lg:w-1/4 border-gray-600 border-b sm:border-r lg:border-b-0 pb-6 pt-6 lg:pt-3">
+                                <h3 class="font-bold text-2xl text-white mb-4">{{ __('Gestione Reperti') }}</h3>
+                                
+                                <li class="mb-4">
+                                    <a href="{{ route('find.showlist') }}" class="block p-4 hover:bg-blue-600 text-gray-300 hover:text-white transition-all duration-300 rounded">
+                                        {{ __('Consultazione Reperto') }}
+                                    </a>
+                                </li>
+                                <li class="mb-4">
+                                    <a href="{{ route('find.showstore') }}" class="block p-4 hover:bg-blue-600 text-gray-300 hover:text-white transition-all duration-300 rounded">
+                                        {{ __('Inserimento Reperto') }}
+                                    </a>
+                                </li>
+                                <li class="mb-4">
+                                    <a href="{{ route('finds.showadvancedSearch') }}" class="block p-4 hover:bg-blue-600 text-gray-300 hover:text-white transition-all duration-300 rounded">
+                                        {{ __('Ricerca Avanzata') }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
 
                 <!-- Gestione Depositi -->
-                <x-nav-link :href="route('deposits.index')" :active="request()->routeIs('deposits.index')" class="text-white text-lg hover:text-gray-300 transition duration-150 ease-in-out">
-                    {{ __('Gestione depositi') }}
-                </x-nav-link>
+                <li class="hover:bg-blue-800 hover:text-white">
+                    <a href="{{ route('deposits.index') }}" class="relative block py-6 px-4 lg:p-6 text-sm lg:text-base font-bold">
+                        {{ __('Gestione depositi') }}
+                    </a>
+                </li>
 
                 <!-- Gestione Collezioni -->
-                <x-nav-link :href="route('collection.index')" :active="request()->routeIs('collection.index')" class="text-white text-lg hover:text-gray-300 transition duration-150 ease-in-out">
-                    {{ __('Gestione collezioni') }}
-                </x-nav-link>
+                <li class="hover:bg-blue-800 hover:text-white">
+                    <a href="{{ route('collection.index') }}" class="relative block py-6 px-4 lg:p-6 text-sm lg:text-base font-bold">
+                        {{ __('Gestione collezioni') }}
+                    </a>
+                </li>
 
-                <!-- Dropdown per Tesi -->
-                <div class="relative">
-                    <x-dropdown align="left" width="48">
-                        <x-slot name="trigger">
-                            <button class="inline-flex items-center px-3 py-2 text-lg text-white bg-gray-800 hover:text-gray-300 focus:outline-none transition ease-in-out duration-150 rounded-md">
-                                <span>{{ __('Tesi') }}</span>
-                                <svg class="ml-1 fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </button>
-                        </x-slot>
-                        <x-slot name="content">
-                            <x-dropdown-link :href="route('theses.showList')" :active="request()->routeIs('theses.showList')">
-                                {{ __('Consultazione Tesi') }}
-                            </x-dropdown-link>
-                            <x-dropdown-link :href="route('theses.showStore')" :active="request()->routeIs('theses.showStore')">
-                                {{ __('Caricamento Tesi') }}
-                            </x-dropdown-link>
-                        </x-slot>
-                    </x-dropdown>
-                </div>
+                <!-- Tesi Dropdown -->
+                <li class="hoverable hover:bg-blue-800 hover:text-white">
+                    <a href="#" class="relative block py-6 px-4 lg:p-6 text-sm lg:text-base font-bold">
+                        {{ __('Tesi') }}
+                    </a>
+                    <div class="mega-menu mb-16 sm:mb-0 shadow-xl bg-blue-800 w-full">
+                        <div class="container mx-auto w-full flex flex-wrap justify-between p-8">
+                            <!-- Sezione Links per Gestione Tesi -->
+                            <ul class="px-4 w-full sm:w-1/2 lg:w-1/4 border-gray-600 border-b sm:border-r lg:border-b-0 pb-6 pt-6 lg:pt-3">
+                                <h3 class="font-bold text-2xl text-white mb-4">{{ __('Gestione Tesi') }}</h3>
+                                
+                                <li class="mb-4">
+                                    <a href="{{ route('theses.showList') }}" class="block p-4 hover:bg-blue-600 text-gray-300 hover:text-white transition-all duration-300 rounded">
+                                        {{ __('Consultazione Tesi') }}
+                                    </a>
+                                </li>
+                                <li class="mb-4">
+                                    <a href="{{ route('theses.showStore') }}" class="block p-4 hover:bg-blue-600 text-gray-300 hover:text-white transition-all duration-300 rounded">
+                                        {{ __('Caricamento Tesi') }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
 
-                <!-- Dropdown per Ruoli -->
-                <div class="relative">
-                    <x-dropdown align="left" width="48">
-                        <x-slot name="trigger">
-                            <button class="inline-flex items-center px-3 py-2 text-lg text-white bg-gray-800 hover:text-gray-300 focus:outline-none transition ease-in-out duration-150 rounded-md">
-                                <span>{{ __('Ruoli') }}</span>
-                                <svg class="ml-1 fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </button>
-                        </x-slot>
-                        <x-slot name="content">
-                            <x-dropdown-link :href="route('employeeinfo.show')" :active="request()->routeIs('employeeinfo.show')">
-                                {{ __('Rubrica') }}
-                            </x-dropdown-link>
-                            <x-dropdown-link :href="route('role.showRole')" :active="request()->routeIs('role.showRole')">
-                                {{ __('Gestione Ruoli') }}
-                            </x-dropdown-link>
-                        </x-slot>
-                    </x-dropdown>
-                </div>
-            </div>
 
-            <div class="hidden sm:flex sm:items-center ms-auto">
-                <x-dropdown align="right" width="48">
-                    <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-lg leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-gray-800 hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                            <span>{{ Auth::user()->name }}</span>
-                            <svg class="ml-1 fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                    </x-slot>
-                    <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <x-dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-dropdown>
-            </div>
+                                <!-- Ruoli Dropdown -->
+                <li class="hoverable hover:bg-blue-800 hover:text-white">
+                    <a href="#" class="relative block py-6 px-4 lg:p-6 text-sm lg:text-base font-bold">
+                        {{ __('Ruoli') }}
+                    </a>
+                    <div class="mega-menu mb-16 sm:mb-0 shadow-xl bg-blue-800 w-full">
+                        <div class="container mx-auto w-full flex flex-wrap justify-between p-8">
+                            <!-- Sezione Links per Gestione Ruoli -->
+                            <ul class="px-4 w-full sm:w-1/2 lg:w-1/4 border-gray-600 border-b sm:border-r lg:border-b-0 pb-6 pt-6 lg:pt-3">
+                                <h3 class="font-bold text-2xl text-white mb-4">{{ __('Gestione Ruoli') }}</h3>
+                                
+                                <li class="mb-4">
+                                    <a href="{{ route('employeeinfo.show') }}" class="block p-4 hover:bg-blue-600 text-gray-300 hover:text-white transition-all duration-300 rounded">
+                                        {{ __('Rubrica') }}
+                                    </a>
+                                </li>
+                                <li class="mb-4">
+                                    <a href="{{ route('role.showRole') }}" class="block p-4 hover:bg-blue-600 text-gray-300 hover:text-white transition-all duration-300 rounded">
+                                        {{ __('Gestione Ruoli') }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
         </div>
+
+        <!-- Mobile Menu -->
+<div x-show="open" class="sm:hidden mt-4 bg-gray-800 text-white rounded-md shadow-md">
+    <div class="pt-2 pb-3 space-y-1">
+        <!-- Dashboard -->
+        <a href="{{ route('dashboard') }}" class="block px-4 py-3 hover:bg-gray-700 rounded">{{ __('Dashboard') }}</a>
+
+        <!-- Reperto Dropdown Mobile -->
+        <div class="border-t border-gray-700">
+            <h3 class="font-bold text-lg px-4 py-3 bg-gray-700">{{ __('Reperto') }}</h3>
+            <a href="{{ route('find.showlist') }}" class="block px-6 py-2 hover:bg-gray-700">{{ __('Consultazione Reperto') }}</a>
+            <a href="{{ route('find.showstore') }}" class="block px-6 py-2 hover:bg-gray-700">{{ __('Inserimento Reperto') }}</a>
+            <a href="{{ route('finds.showadvancedSearch') }}" class="block px-6 py-2 hover:bg-gray-700">{{ __('Ricerca Avanzata') }}</a>
+        </div>
+
+        <!-- Gestione Depositi -->
+        <a href="{{ route('deposits.index') }}" class="block px-4 py-3 hover:bg-gray-700 rounded">{{ __('Gestione depositi') }}</a>
+
+        <!-- Gestione Collezioni -->
+        <a href="{{ route('collection.index') }}" class="block px-4 py-3 hover:bg-gray-700 rounded">{{ __('Gestione collezioni') }}</a>
+
+        <!-- Tesi Dropdown Mobile -->
+        <div class="border-t border-gray-700">
+            <h3 class="font-bold text-lg px-4 py-3 bg-gray-700">{{ __('Tesi') }}</h3>
+            <a href="{{ route('theses.showList') }}" class="block px-6 py-2 hover:bg-gray-700">{{ __('Consultazione Tesi') }}</a>
+            <a href="{{ route('theses.showStore') }}" class="block px-6 py-2 hover:bg-gray-700">{{ __('Caricamento Tesi') }}</a>
+        </div>
+
+        <!-- Ruoli Dropdown Mobile -->
+        <div class="border-t border-gray-700">
+            <h3 class="font-bold text-lg px-4 py-3 bg-gray-700">{{ __('Ruoli') }}</h3>
+            <a href="{{ route('employeeinfo.show') }}" class="block px-6 py-2 hover:bg-gray-700">{{ __('Rubrica') }}</a>
+            <a href="{{ route('role.showRole') }}" class="block px-6 py-2 hover:bg-gray-700">{{ __('Gestione Ruoli') }}</a>
+        </div>
+    </div>
+</div>
+
     </div>
 </nav>

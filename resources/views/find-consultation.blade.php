@@ -9,12 +9,15 @@
         </div>
 
         <input style="width: 100%" type="text" name="search" id="search" class="form-control" placeholder="Search Finds..." />
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 " style="margin: 5px">
 
         <div id="results">
              @foreach ($finds as $find)
                 <x-findcard :find="$find" />
             @endforeach
         </div>
+        </div>
+
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

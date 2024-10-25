@@ -6,7 +6,7 @@
     </x-slot>
 
     <head>
-        <link rel="stylesheet" href="{{ asset('css/standard.css') }}">
+        <!-- <link rel="stylesheet" href="{{ asset('css/standard.css') }}"> -->
     </head>
 
     <div class="form-container">

@@ -1,6 +1,6 @@
 <x-app-layout>
     <head>
-        <link rel="stylesheet" href="{{ asset('css/standard.css') }}">
+        <!-- <link rel="stylesheet" href="{{ asset('css/standard.css') }}"> -->
     </head>
 
     <x-slot name="header">
