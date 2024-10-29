@@ -3,7 +3,7 @@
         <div class="flex justify-between items-center h-16 w-full">
             <!-- Logo -->
             <div class="shrink-0 flex items-center">
-                <a href="{{ route('dashboard') }}">
+                <a href="{{ route('dashboard') }}" style="background-color: transparent; color: inherit;">
                     <img src="{{ asset('images/sma.png') }}" alt="SMA" class="w-16 h-auto">
                 </a>
             </div>
@@ -62,18 +62,23 @@
 
 
                 <!-- Gestione Depositi -->
+                @if (Auth::user()->hasPermissionTo('manages-deposits'))
+                
                 <li class="hover:bg-blue-800 hover:text-white">
                     <a href="{{ route('deposits.index') }}" class="relative block py-6 px-4 lg:p-6 text-sm lg:text-base font-bold">
                         {{ __('Gestione depositi') }}
                     </a>
                 </li>
+                @endif
 
                 <!-- Gestione Collezioni -->
+                @if (Auth::user()->hasPermissionTo('manages-collections'))
                 <li class="hover:bg-blue-800 hover:text-white">
                     <a href="{{ route('collection.index') }}" class="relative block py-6 px-4 lg:p-6 text-sm lg:text-base font-bold">
                         {{ __('Gestione collezioni') }}
                     </a>
                 </li>
+                @endif
 
                 <!-- Tesi Dropdown -->
                 <li class="hoverable hover:bg-blue-800 hover:text-white">
@@ -143,14 +148,16 @@
             <a href="{{ route('find.showlist') }}" class="block px-6 py-2 hover:bg-gray-700">{{ __('Consultazione Reperto') }}</a>
             <a href="{{ route('find.showstore') }}" class="block px-6 py-2 hover:bg-gray-700">{{ __('Inserimento Reperto') }}</a>
             <a href="{{ route('finds.showadvancedSearch') }}" class="block px-6 py-2 hover:bg-gray-700">{{ __('Ricerca Avanzata') }}</a>
-        </div>
-
+        </div> 
+        
         <!-- Gestione Depositi -->
-        <a href="{{ route('deposits.index') }}" class="block px-4 py-3 hover:bg-gray-700 rounded">{{ __('Gestione depositi') }}</a>
-
+        @if (Auth::user()->hasPermissionTo('manages-deposits'))
+            <a href="{{ route('deposits.index') }}" class="block px-4 py-3 hover:bg-gray-700 rounded">{{ __('Gestione depositi') }}</a>
+        @endif
         <!-- Gestione Collezioni -->
-        <a href="{{ route('collection.index') }}" class="block px-4 py-3 hover:bg-gray-700 rounded">{{ __('Gestione collezioni') }}</a>
-
+        @if (Auth::user()->hasPermissionTo('manages-collections'))   
+            <a href="{{ route('collection.index') }}" class="block px-4 py-3 hover:bg-gray-700 rounded">{{ __('Gestione collezioni') }}</a>
+        @endif
         <!-- Tesi Dropdown Mobile -->
         <div class="border-t border-gray-700">
             <h3 class="font-bold text-lg px-4 py-3 bg-gray-700">{{ __('Tesi') }}</h3>

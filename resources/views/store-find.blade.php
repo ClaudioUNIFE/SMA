@@ -13,13 +13,13 @@
             <div class="w-full lg:w-1/5 px-6 text-xl text-gray-800 leading-normal">
                 <!--<p class="text-base font-bold py-2 lg:pb-6 text-gray-700">Menu</p>-->
                 <div class="block lg:hidden sticky inset-0 lg:hidden">
-                    <button id="menu-toggle" class="flex w-full justify-end px-3 py-3 bg-white lg:bg-transparent border rounded border-gray-600 hover:border-yellow-600 appearance-none focus:outline-none">
-                        <svg class="fill-current h-3 float-right" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                        </svg>
-                    </button>
+                <button id="menu-toggle" class="flex w-auto justify-center px-3 py-3 bg-gray-700 border rounded border-gray-600 hover:border-yellow-600 appearance-none focus:outline-none">
+                    <svg class="fill-current h-6 w-6 text-yellow-400" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                    </svg>
+                </button>
                 </div>
-                <div class="w-full sticky inset-0 hidden max-h-64 lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 my-2 lg:my-0 border border-gray-400 lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20" style="top:6em;" id="menu-content">
+                <div class="w-full sticky inset-0 hidden max-h-128 lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 my-2 lg:my-0 border border-gray-400 lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20" style="top:6em;" id="menu-content">
                     <ul class="list-reset py-2 md:py-0">
                         <li class="py-1 md:my-2 hover:bg-yellow-100 lg:hover:bg-transparent border-l-4 border-transparent font-bold border-yellow-600">
                             <a href='#section1' class="block pl-4 align-middle text-white no-underline hover:text-yellow-600">
@@ -58,7 +58,7 @@
             <!-- Area principale -->
             <section class="w-full lg:w-4/5">
                 <!-- Titolo -->
-                <h1 class="flex items-center font-sans font-bold break-normal text-white px-2 text-xl mt-12 lg:mt-0 md:text-2xl">
+                <h1 class="flex items-center font-sans font-bold break-normal text-white px-2 text-2xl mt-12 lg:mt-0 md:text-2xl">
                     Aggiungi Nuovo Reperto
                 </h1>
 
@@ -701,6 +701,25 @@
             var helpMenuDiv = document.getElementById("menu-content");
             var helpMenu = document.getElementById("menu-toggle");
 
+            helpMenu.addEventListener('click', function(e) {
+                e.stopPropagation(); // Previene la propagazione del click all'elemento `document`
+                if (helpMenuDiv.classList.contains("hidden")) {
+                    helpMenuDiv.classList.remove("hidden");
+                    helpMenuDiv.classList.add("block");
+                } else {
+                    helpMenuDiv.classList.add("hidden");
+                    helpMenuDiv.classList.remove("block");
+                }
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!checkParent(e.target, helpMenuDiv) && !checkParent(e.target, helpMenu)) {
+                    helpMenuDiv.classList.add("hidden");
+                    helpMenuDiv.classList.remove("block");
+                }
+            });
+
+
             document.onclick = check;
 
             function check(e) {
@@ -752,7 +771,7 @@
             // Scroll Spy
             var lastId,
                 topMenu = $("#menu-content"),
-                topMenuHeight = topMenu.outerHeight() + 1,
+                topMenuHeight = topMenu.outerHeight() + 169,
                 // All list items
                 menuItems = topMenu.find("a"),
                 // Anchors corresponding to menu items

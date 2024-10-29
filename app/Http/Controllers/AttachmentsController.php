@@ -19,7 +19,6 @@ class AttachmentsController extends Controller
 
     public function manage($id){
         $attachments = Attached::where('id_reperto', $id)->first();
-        dd($attachments);
         $metadata = Metadata::where('id_allegato', $attachments->id)->first();
 
         $paradata = Paradata::where('id_allegato', $attachments->id)->first();

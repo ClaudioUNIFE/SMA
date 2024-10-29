@@ -132,48 +132,35 @@
     <!-- Sezione per visualizzare i risultati della ricerca -->
     @if(isset($finds) && count($finds) > 0)
     <div class="form-container">
-        <h3 class="text-center mt-5">Risultati della Ricerca</h3>
-        <form action="{{ route('finds.export') }}" method="POST" class="form-inline">
-            @csrf
-            <!-- Assicurati che gli ID siano correttamente inclusi nel form -->
-            @foreach($ids as $id)
-                <input type="hidden" name="ids[]" value="{{ $id }}">
-            @endforeach
-            <div>
-                <button type="submit" class="btn btn-primary">Esporta Excel</button>
-            </div>
-        </form>
-        <table class="center-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Descrizione</th>
-                    <th>Categoria</th>
-                    <th>Nome Comune</th>
-                    <th>Riferimento Tassonomico</th>
-                    <th>Materiale</th>
-                    <th>Modalità Acquisizione</th>
-                    <th>Fornitore</th>
-                    <th>Provenienza</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($finds as $find)
-                <tr>
-                    <td>{{ $find->id }}</td>
-                    <td>{{ $find->descrizione }}</td>
-                    <td>{{ $find->categoria }}</td>
-                    <td>{{ $find->nome_comune }}</td>
-                    <td>{{ $find->riferimento_tassonomico }}</td>
-                    <td>{{ $find->materiale }}</td>
-                    <td>{{ $find->modalita_acquisizione }}</td>
-                    <td>{{ $find->fornitore }}</td>
-                    <td>{{ $find->provenienza }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <h3 class="text-center mt-5">Risultati della Ricerca</h3>
+    <form action="{{ route('finds.export') }}" method="POST" class="form-inline">
+        @csrf
+        <!-- Assicurati che gli ID siano correttamente inclusi nel form -->
+        @foreach($ids as $id)
+            <input type="hidden" name="ids[]" value="{{ $id }}">
+        @endforeach
+        <div>
+            <button type="submit" class="btn btn-primary">Esporta Excel</button>
+        </div>
+    </form>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+        @foreach($finds as $find)
+        <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg">
+            <h4 class="text-lg font-bold mb-3">ID: {{ $find->id }}</h4>
+            <p><strong>Descrizione:</strong> {{ $find->descrizione }}</p>
+            <p><strong>Categoria:</strong> {{ $find->categoria }}</p>
+            <p><strong>Nome Comune:</strong> {{ $find->nome_comune }}</p>
+            <p><strong>Riferimento Tassonomico:</strong> {{ $find->riferimento_tassonomico }}</p>
+            <p><strong>Materiale:</strong> {{ $find->materiale }}</p>
+            <p><strong>Modalità Acquisizione:</strong> {{ $find->modalita_acquisizione }}</p>
+            <p><strong>Fornitore:</strong> {{ $find->fornitore }}</p>
+            <p><strong>Provenienza:</strong> {{ $find->provenienza }}</p>
+        </div>
+        @endforeach
     </div>
+</div>
+
     @elseif(isset($finds))
     <p class="text-center mt-5">Nessun risultato trovato.</p>
     @endif

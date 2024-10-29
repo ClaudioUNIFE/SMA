@@ -11,15 +11,24 @@ body {
 /* Navbar */
 .navbar {
     background-color: var(--navbar-bg, rgb(48, 54, 78));
-    border-bottom: 1px solid var(--navbar-border, #d1d5db);
+    border-bottom: none; /* Rimuove il bordo inferiore */
+    margin-bottom: 0; /* Assicura che non ci sia un margine sotto la navbar */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 50;
-    /*overflow-x: auto;*/
     -ms-overflow-style: none;  
     scrollbar-width: none;  
+}
+.navbar a {
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 22px;
+}
+
+.navbar a:hover {
+    background-color: #1d5897; /* Colore di sfondo al passaggio del mouse */
+    color: #ffffff; /* Colore del testo al passaggio del mouse */
 }
 .navbar::-webkit-scrollbar {
     display: none;  
@@ -123,6 +132,18 @@ textarea.form-control {
     height: 100px;
     resize: vertical;
 }
+
+.form-login {
+    width: 100%;
+    max-width: 28rem;
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background-color: #2c3e50;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border-radius: 0.5rem;
+}
+
 input[type="file"] {
     background-color: #ecf0f1;
     padding: 5px;
@@ -172,6 +193,33 @@ h2 {
     height: auto;
     margin-bottom: 2rem;
 }
+/*Error*/
+.error-page {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f3f4f6;
+    font-family: Arial, sans-serif;
+}
+.error-container {
+    text-align: center;
+    padding: 2rem;
+    max-width: 600px;    
+}
+
+.error-image {
+    max-width: 400px;
+    margin-bottom: 2rem;
+}
+
+.error-title {
+    color: #1f2937;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
 
 .auth-buttons a {
     margin: 0 15px;
@@ -218,9 +266,10 @@ h2 {
     text-align: left;
     width: 100%;
     background-color: #48667a;
-    padding: 1rem; /* Aggiunto padding per dare più spazio all'interno del menù */
-    border-radius: 0.5rem; /* Aggiunto per arrotondare i bordi del menù */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Leggera ombra per un effetto più elegante */
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
 }
 
 /* Voci del Menù */
@@ -234,22 +283,22 @@ h2 {
     margin-bottom: 0.25rem; /* Margine inferiore per aumentare lo spazio tra le voci */
 }
 
+/* Mega Menu */
 .mega-menu ul li a {
-    display: block;
-    padding: 0.75rem 1.25rem; /* Maggior padding per migliorare la leggibilità e fare in modo che il menù sia più facile da cliccare */
-    color: #ffffff; /* Testo bianco per contrasto */
-    background-color: transparent; /* Sfondo trasparente per mantenere coerenza */
-    text-decoration: none; /* Rimuovere la sottolineatura */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Transizione morbida per l'hover */
-    line-height: 1.6; /* Aumentata l'interlinea per migliorare la leggibilità */
-    font-size: 1rem; /* Dimensione del font per mantenere consistenza con il resto della pagina */
+    padding: 0.5rem 1rem; /* Ridotto il padding per evitare strabordamenti */
+    color: #ffffff;
+    background-color: transparent;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    line-height: 1.6;
+    font-size: 1rem;
 }
 
-/* Hover Effect */
 .mega-menu ul li a:hover {
-    background-color: #2980b9; /* Colore di sfondo al passaggio del mouse */
-    color: #ffffff; /* Colore del testo al passaggio del mouse */
-    border-radius: 0.375rem; /* Aggiunto bordo arrotondato al link per un aspetto più moderno */
+    background-color: #2980b9;
+    color: #ffffff;
+    border-radius: 0.375rem;
+    transform: translateX(3px); /* Ridotto il movimento laterale */
 }
 
 /* Hoverable per gestire la visibilità del mega menu */
