@@ -1,3 +1,4 @@
+<!-- cambiare ordine, codice = stanza -- deposito = arredo -- colocazione non obbligatoria = ripiano -->
 <x-app-layout>
     <!-- Create Deposit Form -->
     <div style="background-color: grey; padding: 30px; border-radius: 15px; margin:5%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); max-width: 600px; margin-left: auto; margin-right: auto;">

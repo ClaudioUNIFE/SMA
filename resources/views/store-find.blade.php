@@ -94,7 +94,7 @@
                         <div class="md:flex mb-6">
                             <div class="md:w-1/3">
                                 <label for="id_vecchio" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
-                                    ID reperto (ICCD o altro)
+                                    Codice SMA Leonardi
                                 </label>
                             </div>
                             <div class="md:w-2/3">
@@ -114,7 +114,7 @@
                             </div>
                         </div>
 
-                        <!-- Note -->
+                        <!-- Note aggiungere collocazione esatta-->
                         <div class="md:flex mb-6">
                             <div class="md:w-1/3">
                                 <label for="note" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
@@ -162,12 +162,12 @@
                     <!-- Divider -->
                     <hr class="bg-gray-300 my-12">
 
-                    <!-- Sezione 2: Stato e Attributi -->
+                    <!-- Sezione 2: Stato e Attributi dov'è, manca la parte delle uscite-->
                     <h2 id='section2' class="font-sans font-bold break-normal text-white px-2 pb-8 text-xl">
                         Stato e Attributi
                     </h2>
                     <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
-                        <!-- Esposto -->
+                        <!-- Esposto sezione 2 -->
                         <div class="md:flex mb-6">
                             <div class="md:w-1/3">
                                 <label for="esposto" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
@@ -178,7 +178,7 @@
                                 <input type="hidden" name="esposto" value="0">
                                 <label class="inline-flex items-center">
                                     <input type="checkbox" id="esposto" name="esposto" value="1" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
-                                    <span class="ml-2">Esposto</span>
+                                    <span class="ml-2"></span>
                                 </label>
                             </div>
                         </div>
@@ -194,7 +194,7 @@
                                 <input type="hidden" name="digitalizzato" value="0">
                                 <label class="inline-flex items-center">
                                     <input type="checkbox" id="digitalizzato" name="digitalizzato" value="1" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
-                                    <span class="ml-2">Digitalizzato</span>
+                                    <span class="ml-2"></span>
                                 </label>
                             </div>
                         </div>
@@ -210,7 +210,7 @@
                                 <input type="hidden" name="catalogato" value="0">
                                 <label class="inline-flex items-center">
                                     <input type="checkbox" id="catalogato" name="catalogato" value="1" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
-                                    <span class="ml-2">Catalogato</span>
+                                    <span class="ml-2"></span>
                                 </label>
                             </div>
                         </div>
@@ -226,12 +226,12 @@
                                 <input type="hidden" name="restaurato" value="0">
                                 <label class="inline-flex items-center">
                                     <input type="checkbox" id="restaurato" name="restaurato" value="1" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
-                                    <span class="ml-2">Restaurato</span>
+                                    <span class="ml-2"></span>
                                 </label>
                             </div>
                         </div>
 
-                        <!-- Validato -->
+                        <!-- Validato sezione 1-->
                         <div class="md:flex mb-6">
                             <div class="md:w-1/3">
                                 <label for="validato" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
@@ -242,12 +242,12 @@
                                 <input type="hidden" name="validato" value="0">
                                 <label class="inline-flex items-center">
                                     <input type="checkbox" id="validato" name="validato" value="1" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
-                                    <span class="ml-2">Validato</span>
+                                    <span class="ml-2"></span>
                                 </label>
                             </div>
                         </div>
 
-                        <!-- Categoria Reperto -->
+                        <!-- Categoria Reperto sezione 1 -->
                         <div class="md:flex mb-6">
                             <div class="md:w-1/3">
                                 <label for="categoria" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
@@ -276,7 +276,7 @@
                                 <input type="hidden" name="multiplo" value="0">
                                 <label class="inline-flex items-center">
                                     <input type="checkbox" id="multiplo" name="multiplo" value="1" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" onchange="toggleMolteplicita()">
-                                    <span class="ml-2">Multiplo</span>
+                                    <span class="ml-2"></span>
                                 </label>
                             </div>
                         </div>
@@ -339,7 +339,7 @@
                                 <input type="hidden" name="olotipo" value="0">
                                 <label class="inline-flex items-center">
                                     <input type="checkbox" id="olotipo" name="olotipo" value="1" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
-                                    <span class="ml-2">Olotipo</span>
+                                    <span class="ml-2"></span>
                                 </label>
                             </div>
                         </div>
@@ -413,7 +413,7 @@
                                 <input type="hidden" name="originale" value="0">
                                 <label class="inline-flex items-center">
                                     <input type="checkbox" id="originale" name="originale" value="1" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
-                                    <span class="ml-2">Originale</span>
+                                    <span class="ml-2"></span>
                                 </label>
                             </div>
                         </div>
@@ -429,7 +429,7 @@
                                 <input type="hidden" name="fossile" value="0">
                                 <label class="inline-flex items-center">
                                     <input type="checkbox" id="fossile" name="fossile" value="1" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
-                                    <span class="ml-2">Fossile</span>
+                                    <span class="ml-2"></span>
                                 </label>
                             </div>
                         </div>
@@ -602,7 +602,7 @@
                             </div>
                         </div>
 
-                        <!-- Vecchio DB -->
+                        <!-- Vecchio DB sezione 1-->
                         <div class="md:flex mb-6">
                             <div class="md:w-1/3">
                                 <label for="vecchio_db" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
@@ -652,7 +652,7 @@
                         <div class="md:flex mb-6">
                             <div class="md:w-1/3">
                                 <label for="didascalia" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
-                                    Didascalia
+                                    Codice siglatura
                                 </label>
                             </div>
                             <div class="md:w-2/3">
@@ -673,7 +673,7 @@
                         </div>
                     </div>
 
-                    <!-- Divider -->
+                    <!-- Divider manca validazione metadati e paradati-->
                     <hr class="bg-gray-300 my-12">
 
                     <!-- Bottoni di azione -->

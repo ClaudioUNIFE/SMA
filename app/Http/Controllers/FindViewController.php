@@ -48,13 +48,13 @@ class FindViewController extends Controller
                         ->join('biological_entities', 'finds.id', '=', 'biological_entities.id_reperto')
                         ->join('collections', 'finds.id_collezione', '=', 'collections.id')
                         ->join('deposits', 'finds.id_deposito', '=', 'deposits.id')
-                        ->join('finds_catalogs', 'finds.id', '=', 'finds_catalogs.id_reperto')
-                        ->join('catalogs', 'catalogs.id', '=', 'finds_catalogs.id_catalogo')
+                        //->join('finds_catalogs', 'finds.id', '=', 'finds_catalogs.id_reperto')
+                        ->join('catalogs', 'finds.id', '=', 'catalogs.id_reperto')
                         ->join('compositions', 'finds.id', '=', 'compositions.id_reperto')
                         ->where(function($q) use ($query) {
                             $q->where('finds.id_vecchio', 'like', '%' . $query . '%')
                               ->orWhere('finds.descrizione', 'like', '%' . $query . '%')
-                              ->orWhere('tipo_entita', 'like', '%' . $query . '%')
+                              //->orWhere('tipo_entita', 'like', '%' . $query . '%')
                               ->orWhere('riferimento_tassonomico', 'like', '%' . $query . '%')
                               ->orWhere('nome_comune', 'like', '%' . $query . '%')
                               ->orWhere('riferimento_cronologico', 'like', '%' . $query . '%')
@@ -63,7 +63,8 @@ class FindViewController extends Controller
                               ->orWhere('deposits.collocazione', 'like', '%' . $query . '%')
                               ->orWhere('deposits.codice_stanza', 'like', '%' . $query . '%')
                               ->orWhere('catalogs.catalogo', 'like', '%' . $query . '%')
-                              ->orWhere('compositions.materiale', 'like', '%' . $query . '%');
+                              ->orWhere('compositions.materiale', 'like', '%' . $query . '%')
+                              ->orWhere('catalogs.pater', 'like', '%' . $query . '%');
                         })
                         ->limit(50)  // Limita il numero di risultati
                         ->get();

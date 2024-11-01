@@ -62,23 +62,23 @@
 
 
                 <!-- Gestione Depositi -->
-                @if (Auth::user()->hasPermissionTo('manages-deposits'))
+                <!-- @if (Auth::user()->hasPermissionTo('manages-deposits')) -->
                 
                 <li class="hover:bg-blue-800 hover:text-white">
                     <a href="{{ route('deposits.index') }}" class="relative block py-6 px-4 lg:p-6 text-sm lg:text-base font-bold">
                         {{ __('Gestione depositi') }}
                     </a>
                 </li>
-                @endif
+                <!-- @endif -->
 
                 <!-- Gestione Collezioni -->
-                @if (Auth::user()->hasPermissionTo('manages-collections'))
+                <!-- @if (Auth::user()->hasPermissionTo('manages-collections')) -->
                 <li class="hover:bg-blue-800 hover:text-white">
                     <a href="{{ route('collection.index') }}" class="relative block py-6 px-4 lg:p-6 text-sm lg:text-base font-bold">
                         {{ __('Gestione collezioni') }}
                     </a>
                 </li>
-                @endif
+                <!-- @endif -->
 
                 <!-- Tesi Dropdown -->
                 <li class="hoverable hover:bg-blue-800 hover:text-white">
@@ -151,13 +151,13 @@
         </div> 
         
         <!-- Gestione Depositi -->
-        @if (Auth::user()->hasPermissionTo('manages-deposits'))
+        <!-- @if (Auth::user()->hasPermissionTo('manages-deposits')) -->
             <a href="{{ route('deposits.index') }}" class="block px-4 py-3 hover:bg-gray-700 rounded">{{ __('Gestione depositi') }}</a>
-        @endif
+        <!-- @endif -->
         <!-- Gestione Collezioni -->
-        @if (Auth::user()->hasPermissionTo('manages-collections'))   
+        <!-- @if (Auth::user()->hasPermissionTo('manages-collections'))    -->
             <a href="{{ route('collection.index') }}" class="block px-4 py-3 hover:bg-gray-700 rounded">{{ __('Gestione collezioni') }}</a>
-        @endif
+        <!-- @endif -->
         <!-- Tesi Dropdown Mobile -->
         <div class="border-t border-gray-700">
             <h3 class="font-bold text-lg px-4 py-3 bg-gray-700">{{ __('Tesi') }}</h3>

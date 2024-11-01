@@ -7,7 +7,8 @@
         <input type="text" 
                name="search" 
                id="search" 
-               class="w-full p-4 mb-6 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200" 
+               class="w-full p-4 mb-6 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 text-black"
+               style="color: black;"
                placeholder="Search Finds..." />
 
         <!-- Container per i risultati -->

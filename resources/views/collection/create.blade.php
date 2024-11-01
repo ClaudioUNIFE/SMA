@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
     <body>
-        <div style="background-color: grey; padding: 30px; border-radius: 15px; margin: 5%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); max-width: 600px; margin-left: auto; margin-right: auto;">
+        <div class="form-container">
             <h2 style="color: white; margin-bottom: 20px; text-align: center;">Crea una Nuova Collezione</h2>
 
             @if($errors->any())

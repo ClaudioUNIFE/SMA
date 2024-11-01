@@ -19,18 +19,18 @@
         <table style= "width: 100%; border-collapse: collapse;">
             <thead style="background-color: rgb(72, 80, 100);">
                 <tr>
-                    <th style="color: white; padding: 10px; text-align: left;">Collocazione</th>
+                    <th style="color: white; padding: 10px; text-align: left;">Codice Stanza</th>                    
                     <th style="color: white; padding: 10px; text-align: left;">Deposito</th>
-                    <th style="color: white; padding: 10px; text-align: left;">Codice Stanza</th>
+                    <th style="color: white; padding: 10px; text-align: left;">Collocazione</th>
                     <th style="color: white; padding: 10px; text-align: left;"> </th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($deposits as $deposit)
                     <tr style="background-color: rgb(48, 54, 78);">
-                        <td style="color: white; padding: 10px;">{{ $deposit->collocazione }}</td>
-                        <td style="color: white; padding: 10px;">{{ $deposit->deposito }}</td>
                         <td style="color: white; padding: 10px;">{{ $deposit->codice_stanza }}</td>
+                        <td style="color: white; padding: 10px;">{{ $deposit->deposito }}</td>
+                        <td style="color: white; padding: 10px;">{{ $deposit->collocazione }}</td>
                         <td style="padding: 10px;">
                             <div style="display: flex; flex-wrap: wrap; gap: 10px;">
                                 <a href="{{ route('deposits.show', $deposit->id) }}" class="btn-primary">Mostra</a>

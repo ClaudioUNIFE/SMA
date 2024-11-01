@@ -6,7 +6,7 @@
     <div class="form-container">
         <form action="{{ route('attached.store', ['id' => $id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
-
+    
             <table class="center-table">
                 <tr>
                     <th colspan="2">Dettagli Allegato</th>
