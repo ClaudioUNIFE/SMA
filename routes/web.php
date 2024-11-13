@@ -54,7 +54,7 @@ Route::get('/store-find', [FindViewController::class,'showStore'])->name('find.s
 Route::post('/store-find', [FindViewController::class,'store'])->name('find.store');
 Route::get('/find-form/{id}', [FindViewController::class,'showfindform'] )->name('find.showform');
 Route::get('/edit-find/{id}', [FindViewController::class, 'showupdate'])->name('find.showupdate');
-Route::post('/find/{id}', [FindViewController::class, 'update'])->name('find.update');
+Route::put('/find/{id}', [FindViewController::class, 'update'])->name('find.update');
 Route::delete('/find/{id}', [FindViewController::class,'destroy'])->name('find.destroy');
 
 Route::get('/manage-deposits', [DepositController::class, 'index'] )->name('deposits.index');
@@ -74,6 +74,7 @@ Route::get('/theses-form/{id}', [ThesisViewController::class,'showThesisForm'] )
 Route::post('/theses/{id}', [ThesisViewController::class, 'update'])->name('theses.update');
 Route::get('/theses/{id}', [ThesisViewController::class,'destroy'])->name('theses.destroy');
 Route::get('/edit-thesis/{id}', [ThesisViewController::class, 'showupdate'])->name('theses.showupdate');
+Route::put('/theses/{id}', [ThesisViewController::class, 'update'])->name('theses.update');
 Route::get('/thesis-consultation', [ThesisViewController::class, 'showList'] )->name('theses.showList');
 Route::get('/theses-form/{id}', [ThesisViewController::class,'showForm'] )->name('theses.showForm');
 

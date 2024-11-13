@@ -110,8 +110,8 @@ class DatabaseSeeder extends Seeder
     public function seedUsers() {
         User::factory()->create([
             'id_museo' =>1,
-            'nome' => 'Giorgio',
-            'cognome'=>'Ciano',
+            'nome' => 'Ursula',
+            'cognome'=>'Thun Hohenstein',
             'email' => 'admin@museum.com',
             'password' => Hash::make('password'),
             'telefono' => '3333333333',
@@ -143,7 +143,7 @@ class DatabaseSeeder extends Seeder
         Collection::factory()->create([
             'data_acquisizione_collezione' => '2000-01-01',
             'descrizione' => 'Raccolta di reperti archeologici provenienti dagli sc',
-            'nome_collezione' => 'Reperi archeologici del foro',]);
+            'nome_collezione' => 'Reperti archeologici del foro',]);
         }
 
 

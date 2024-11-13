@@ -7,17 +7,15 @@
         <input type="text" 
                name="search" 
                id="search" 
-               class="w-full p-4 mb-6 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 text-black"
-               style="color: black;"
+               class="w-full p-4 mb-6 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200"
+               style="color: black"
                placeholder="Search Finds..." />
 
         <!-- Container per i risultati -->
-        <div id="results">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach ($finds as $find)
-                    <x-findcard :find="$find" />
-                @endforeach
-            </div>
+        <div id="results" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
+            @foreach ($finds as $find)
+                <x-findcard :find="$find" />
+            @endforeach
         </div>
     </div>
 
@@ -33,15 +31,15 @@
                     data: { query: query },
                     dataType: 'json',
                     beforeSend: function() {
-                        // Mostra un indicatore di caricamento (opzionale)
-                        $('#results').html('<div class="text-center"><p>Caricamento...</p></div>');
+                        
+                        $('#results').html('<div class="text-center col-span-3"><p>Caricamento...</p></div>');
                     },
                     success: function(response) {
                         // Log per debugging
                         console.log("Risposta ricevuta:", response);
                         
                         if(response.error) {
-                            $('#results').html('<div class="text-center text-red-500">' + response.error + '</div>');
+                            $('#results').html('<div class="text-center col-span-3 text-red-500">' + response.error + '</div>');
                             $('#total_records').text('0');
                         } else {
                             $('#results').html(response.table_data);
@@ -52,7 +50,7 @@
                         console.error("Errore AJAX:", error);
                         console.error("Status:", status);
                         console.error("Response:", xhr.responseText);
-                        $('#results').html('<div class="text-center text-red-500">Errore durante la ricerca</div>');
+                        $('#results').html('<div class="text-center col-span-3 text-red-500">Errore durante la ricerca</div>');
                     }
                 });
             }

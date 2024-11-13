@@ -58,7 +58,7 @@ button[type="submit"], button, .btn-primary, .btn-danger {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 .btn-primary {
-    background-color: #619ee4;
+    background-color: #3d86da;
     border-color: #1d5897;
     color: white;
 }
@@ -71,6 +71,28 @@ button[type="submit"], button, .btn-primary, .btn-danger {
     opacity: 0.8;
     background-color: #2980b9; /* Cambia il colore al passaggio del mouse */
 }
+.home-button {
+    background-color: #2d3748; /* bg-gray-800 */
+    color: #ffffff; /* text-white */
+    font-weight: bold;
+    padding: 3rem 2rem; /* py-12 px-8 */
+    border-radius: 0.5rem; /* rounded */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* shadow-lg */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 200px;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.home-button:hover {
+    background-color: #1a202c; /* hover:bg-gray-900 */
+    transform: scale(1.05);
+}
+
 
 /* Table styles */
 .table-responsive {
@@ -307,7 +329,7 @@ h2 {
 }
 
 .hoverable > a:after {
-    content: "\25BC"; /* Icona freccia giù */
+    content: "\25BC";
     font-size: 10px;
     padding-left: 6px;
     position: relative;

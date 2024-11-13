@@ -36,8 +36,8 @@ class ThesisViewController extends Controller
                         ->orWhere('theses.titolo', 'like', '%'.$query.'%')
                         ->orWhere('theses.anno_accademico', 'like', '%'.$query.'%')
                         ->orWhere('theses.disciplina', 'like', '%'.$query.'%')
-                        ->orWhere('deposits.nome', 'like', '%'.$query.'%')
-                        ->orWhere('museums.nome', 'like', '%'.$query.'%')
+                        ->orWhere('deposits.id', 'like', '%'.$query.'%')
+                        ->orWhere('museums.nome_museo', 'like', '%'.$query.'%')
                         ->orderBy('theses.id', 'desc')
                         ->get();
                 } else {

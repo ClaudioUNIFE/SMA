@@ -25,16 +25,17 @@ class RoleController extends Controller
             'user_id' => ['required', 'integer', 'exists:users,id'],
             'role' => ['required', 'string', 'exists:roles,name'],
         ]);
-
+    
         // Trova l'utente
         $user = User::find($request->user_id);
-
+    
         // Sincronizza il ruolo selezionato con l'utente
         $user->syncRoles([$request->role]);
-
-        // Ritorna indietro alla vista precedente
-        return back()->with('success', 'Ruolo aggiornato con successo!');
+    
+        // Reindirizza alla dashboard con un messaggio di successo
+        return redirect()->route('dashboard')->with('success', 'Ruolo aggiornato con successo!');
     }
+    
 
     public function action(Request $request)
     {
@@ -75,6 +76,7 @@ class RoleController extends Controller
                                         $output .= '<option value="' . $role->name . '" ' . $selected . '>' . $role->name . '</option>';
                                     }
                     $output .= '</select>
+                                
                                 <input type="hidden" name="user_id" value="' . $user->id . '">
                                 <button type="submit" class="btn btn-primary">Cambia Ruolo!</button>
                             </form>

@@ -22,7 +22,7 @@
             <div class="flex flex-row gap-6">
                 <!-- Primo pulsante -->
                 <div class="flex-1 flex">
-                    <a href="{{ route('find.showlist') }}"  class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-12 px-8 rounded shadow-lg transition duration-300 ease-in-out text-center flex flex-col justify-center items-center transform hover:scale-105 w-full min-h-[200px]">
+                    <a href="{{ route('find.showlist') }}"  class="home-button">
                         <span class="text-xl block">Sono presenti <span id="totalFindsCount">0</span> reperti</span>
                         <span class="text-lg mt-2 block">Consultali qui</span>
                     </a>
@@ -30,7 +30,7 @@
                 
                 <!-- Pulsante centrale (stile Excel) -->
                 <div class="flex-1 flex">
-                    <a href="{{ route('finds.showadvancedSearch') }}" style="background-color: #217346;" class="hover:bg-[#185a37] text-white font-bold py-12 px-8 rounded shadow-lg transition duration-300 ease-in-out text-center flex flex-col justify-center items-center transform hover:scale-105 w-full min-h-[200px]">
+                    <a href="{{ route('finds.showadvancedSearch') }}" style="background-color: #217346;" class="home-button">
                         <span class="text-xl block">Esporta la tua ricerca in Excel</span>
                         <span class="text-lg mt-2 block">Ricerca avanzata</span>
                     </a>
@@ -38,7 +38,7 @@
                 
                 <!-- Terzo pulsante -->
                 <div class="flex-1 flex">
-                    <a href="{{ route('find.showstore') }}" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-12 px-8 rounded shadow-lg transition duration-300 ease-in-out text-center flex flex-col justify-center items-center transform hover:scale-105 w-full min-h-[200px]">
+                    <a href="{{ route('find.showstore') }}" class="home-button">
                         <span class="text-xl block">Crea un nuovo record</span>
                         <span class="text-lg mt-2 block">Inserisci i reperti</span>
                     </a>

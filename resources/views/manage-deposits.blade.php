@@ -1,6 +1,4 @@
 <x-app-layout>
-
-    <!-- Deposits Index Page -->
     <div style="text-align: center; margin-bottom: 20px;">
         <p class="font-semibold" style="font-size: 2.5rem; color:white">Elenco Depositi</p>
 
@@ -11,9 +9,6 @@
         @endif
     </div>
 
-    <head>
-        <!-- <link rel="stylesheet" href="{{ asset('css/standard.css') }}"> -->
-    </head>
     <div style="margin-left:5%; margin-right:5%">
         <div class="table-responsive">
         <table style= "width: 100%; border-collapse: collapse;">

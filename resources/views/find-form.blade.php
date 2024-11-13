@@ -19,7 +19,7 @@
                         </svg>
                     </button>
                 </div>
-                <div class="w-full sticky inset-0 hidden max-h-128 lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 my-2 lg:my-0 border border-gray-400 lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20" style="top:6em;" id="menu-content">
+                <div class="w-full sticky inset-0 hidden max-h-128 lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 my-2 lg:my-0 border border-gray-400 lg:border-transparent shadow lg:shadow-none lg:bg-transparent z-20" style="top:6em;" id="menu-content">
                     <ul class="list-reset py-2 md:py-0">
                         <li class="py-1 md:my-2 hover:bg-yellow-100 lg:hover:bg-transparent border-l-4 border-transparent font-bold border-yellow-600">
                             <a href='#section1' class="block pl-4 align-middle text-white no-underline hover:text-yellow-600">
@@ -339,7 +339,7 @@
                             </label>
                         </div>
                         <div class="md:w-2/3">
-                            </div>
+                         </div>
                     </div>
                     <!-- Modalità di Acquisizione -->
                     <div class="md:flex mb-6">
