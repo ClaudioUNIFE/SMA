@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Attached;
 use App\Models\Metadata;
 use App\Models\Paradata;
+use Illuminate\Support\Facades\DB;
+
 
 class AttachmentsController extends Controller
 {
@@ -18,11 +20,17 @@ class AttachmentsController extends Controller
     }
 
     public function manage($id){
-        $attachments = Attached::where('id_reperto', $id)->first();
-        dd($attachments);
-        $metadata = Metadata::where('id_allegato', $attachments->id)->first();
+        $attachments = Attached::where('id_reperto', $id)->get();
 
-        $paradata = Paradata::where('id_allegato', $attachments->id)->first();
+        // Raggruppa i metadati e paradati per id_allegato
+        $metadata = Metadata::whereIn('id_allegato', $attachments->pluck('id'))
+            ->get()
+            ->groupBy('id_allegato');
+
+        $paradata = Paradata::whereIn('id_allegato', $attachments->pluck('id'))
+            ->get()
+            ->groupBy('id_allegato');
+
         return view('manage-attachments', compact('attachments', 'metadata', 'paradata', 'id'));
     }
 
@@ -154,7 +162,7 @@ class AttachmentsController extends Controller
             'condizioni_finali_conservazione' => $validatedData['condizioni_finali_conservazione'],
         ]);
 
-        return redirect()->route('attached.create', ['id' => $id])->with('success', 'Allegato creato con successo');
+        return redirect()->route('attached.manage', ['id' => $id])->with('success', 'Allegato creato con successo');
     }
 
     /**
@@ -162,8 +170,16 @@ class AttachmentsController extends Controller
      */
     public function edit($id)
     {
-        $attached = Attached::with(['metadata', 'paradata'])->findOrFail($id);
-        return view('edit-attachments', compact('attached'));
+        // Recupera l'allegato
+        $attached = Attached::findOrFail($id);
+
+        // Recupera metadati e paradati associati
+        $metadata = Metadata::where('id_allegato', $id)->get()->first();
+        $paradata = Paradata::where('id_allegato', $id)->get()->first();
+
+        // Passa i tre array alla vista
+        return view('edit-attachments', compact('attached', 'metadata', 'paradata'));
+
     }
 
     /**
@@ -292,7 +308,7 @@ class AttachmentsController extends Controller
             'condizioni_finali_conservazione' => $validatedData['condizioni_finali_conservazione'],
         ]);
 
-        return redirect()->route('attached.edit', ['id' => $attached->id])->with('success', 'Allegato aggiornato con successo');
+        return redirect()->route('attached.manage', ['id' => $attached->id_reperto])->with('success', 'Allegato modificato con successo');
     }
 
     /**
@@ -300,15 +316,38 @@ class AttachmentsController extends Controller
      */
     public function destroy($id)
     {
-        $attached = Attached::with(['metadata', 'paradata'])->findOrFail($id);
+        // Utilizza una transazione per garantire consistenza
+        DB::beginTransaction();
 
-        // Eliminazione dei record correlati
-        $attached->metadata->delete();
-        $attached->paradata->delete();
+        try {
+            // Trova l'allegato con i dati correlati
+            $attached = Attached::with(['metadata', 'paradata'])->findOrFail($id);
 
-        // Eliminazione dell'allegato
-        $attached->delete();
+            // Verifica ed elimina i metadati correlati
+            if ($attached->metadata) {
+                $attached->metadata->delete();
+            }
 
-        return redirect()->back()->with('success', 'Allegato eliminato con successo');
+            // Verifica ed elimina i paradati correlati
+            if ($attached->paradata) {
+                $attached->paradata->delete();
+            }
+
+            // Elimina l'allegato
+            $attached->delete();
+
+            // Conferma la transazione
+            DB::commit();
+
+            return redirect()->back()->with('success', 'Allegato eliminato con successo');
+        } catch (\Exception $e) {
+            // Annulla la transazione in caso di errore
+            DB::rollBack();
+
+            // Registra l'errore o gestiscilo
+            Log::error('Errore durante l\'eliminazione dell\'allegato: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Si è verificato un errore durante l\'eliminazione dell\'allegato.');
+        }
     }
 }

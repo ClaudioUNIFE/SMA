@@ -89,8 +89,8 @@ Route::get('/finds/advanced-search-results', [FindViewController::class, 'advanc
 
 Route::get('/add-attached/{id}', [AttachmentsController::class,'create'] )->name('attached.create');
 Route::post('/add-attached/{id}', [AttachmentsController::class,'store'] )->name('attached.store');
-Route::get('/attachments/{id}/edit/{attachmentId}', [AttachmentsController::class, 'edit'])->name('attached.edit');
-Route::post('/attachments/{id}/{attachmentId}', [AttachmentsController::class, 'update'])->name('attached.update');
+Route::get('/attachments/{id}', [AttachmentsController::class, 'edit'])->name('attached.edit');
+Route::post('/attachments/{id}', [AttachmentsController::class, 'update'])->name('attached.update');
 Route::delete('/attachments/{attachmentId}', [AttachmentsController::class, 'destroy'])->name('attached.destroy');
 Route::get('/attachments-manage/{id}', [AttachmentsController::class, 'manage'])->name('attached.manage');
 

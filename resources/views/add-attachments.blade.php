@@ -1,5 +1,5 @@
 <x-app-layout>
-    
+
     <!-- <link rel="stylesheet" href="{{ asset('css/standard.css') }}"> -->
 
     <div class="form-container">
@@ -41,7 +41,7 @@
                 </tr>
                 <tr>
                     <td><label for="sogetto">Soggetto</label></td>
-                    <td><input type="text" name="sogetto" id="sogetto" class="form-control" placeholder="Soggetto"></td>
+                    <td><input type="text" name="soggetto" id="soggetto" class="form-control" placeholder="Soggetto"></td>
                 </tr>
                 <tr>
                     <td><label for="descrizione">Descrizione</label></td>
