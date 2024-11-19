@@ -21,18 +21,21 @@
         <input style="width: 100%" type="text" name="search" id="search" class="form-control" placeholder="Cerca utenti..." />
     <div class="form-container">
 
-            <table style="max-width: auto" class="center-table">
+    <table style="max-width: auto" class="center-table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Cognome</th>
+            <th>Email</th>
+            <th>Ruolo Attuale</th>
+            <th>Azione</th>
+        </tr>
+        </thead>
+        <tbody>
+            <!-- Il contenuto verrà popolato tramite AJAX -->
+        </tbody>
+    </table>
 
-            <thead> 
-            </thead>
-
-            <tbody>
-          
-
-
-            </tbody>
-
-        </table>
 
 
 </div>
@@ -69,6 +72,12 @@
                 fetch_customer_data(query);  // Invia la query attuale
             });
         });
+        // @if(session('success'))
+        //     <div class="alert alert-success">
+        //         {{ session('success') }}
+        //     </div>
+        // @endif
+
     </script>
 
 </x-app-layout>

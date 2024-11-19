@@ -48,28 +48,30 @@ class DatabaseSeeder extends Seeder
     }
 
     public function seedPermissions () {
-        Permission::create(['name' => 'view-subscription-type-cards']);
-        Permission::create(['name' => 'add-new-expert']);
-        Permission::create(['name' => 'see-appointments']);
-        Permission::create(['name' => 'see-diary']);
-        Permission::create(['name' => 'add-new-post']);
-        Permission::create(['name' => 'add-new-appointment']);
-        Permission::create(['name' => 'see-emergency-contacts']);
-        Permission::create(['name' => 'subscription-to-therapist']);
+        Permission::create(['name' => 'manages-roles']);
+        Permission::create(['name' => 'manages-deposits']);
+        Permission::create(['name' => 'manages-collections']);
+        Permission::create(['name' => 'add-finds']);
+        Permission::create(['name' => 'add-theses']);
+        Permission::create(['name' => 'delete-finds']);
+        Permission::create(['name' => 'delete-theses']);
+        Permission::create(['name' => 'update-finds']);
+        Permission::create(['name' => 'update-theses']);
+        Permission::create(['name' => 'manages-attachments']);
     }
 
     public function seedRoles () {
         $role = Role::create(['name' => 'admin']);
-        $role->givePermissionTo('add-new-expert');
+        $role->givePermissionTo('manages-roles', 'manages-deposits', 'manages-collections', 'add-finds', 'add-theses', 'delete-finds', 'delete-theses', 'update-finds', 'update-theses', 'manages-attachments');
 
         $role = Role::create(['name' => 'intern']);
-        $role->givePermissionTo('see-appointments', 'add-new-post', 'add-new-appointment');
+        $role->givePermissionTo('manages-deposits', 'manages-collections', 'add-finds', 'add-theses', 'delete-finds', 'delete-theses', 'update-finds', 'update-theses', 'manages-attachments');
 
         $role = Role::create(['name' => 'researcher']);
-        $role->givePermissionTo('view-subscription-type-cards', 'see-diary', 'see-appointments', 'see-emergency-contacts');
+        $role->givePermissionTo( 'add-finds', 'add-theses', 'update-finds', 'update-theses');
 
-        $role = Role::create(['name' => 'visitor']);
-        $role->givePermissionTo('view-subscription-type-cards', 'see-diary', 'see-appointments', 'see-emergency-contacts');
+        // $role = Role::create(['name' => 'visitor']);
+        // $role->givePermissionTo();
     }
 
 
@@ -108,8 +110,8 @@ class DatabaseSeeder extends Seeder
     public function seedUsers() {
         User::factory()->create([
             'id_museo' =>1,
-            'nome' => 'Giorgio',
-            'cognome'=>'Ciano',
+            'nome' => 'Ursula',
+            'cognome'=>'Thun Hohenstein',
             'email' => 'admin@museum.com',
             'password' => Hash::make('password'),
             'telefono' => '3333333333',
@@ -141,7 +143,7 @@ class DatabaseSeeder extends Seeder
         Collection::factory()->create([
             'data_acquisizione_collezione' => '2000-01-01',
             'descrizione' => 'Raccolta di reperti archeologici provenienti dagli sc',
-            'nome_collezione' => 'Reperi archeologici del foro',]);
+            'nome_collezione' => 'Reperti archeologici del foro',]);
         }
 
 

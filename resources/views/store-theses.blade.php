@@ -1,24 +1,20 @@
-{{-- resources/views/thesis-create.blade.php --}}
 <x-app-layout>
-    {{-- Includi i tuoi file CSS --}}
     <link rel="stylesheet" href="{{ asset('css/form.css') }}">
-    <!-- <link rel="stylesheet" href="{{ asset('css/standard.css') }}"> -->
 
-    {{-- Contenuto principale --}}
     <div class="text-gray-900 tracking-wider leading-normal">
-        <!-- Container principale -->
         <div class="container w-full flex flex-wrap mx-auto px-2 pt-4 lg:pt-8 mt-8">
+            
             <!-- Menu laterale -->
             <div class="w-full lg:w-1/5 px-6 text-xl text-gray-800 leading-normal">
                 <!--<p class="text-base font-bold py-2 lg:pb-6 text-gray-700">Menu</p>-->
                 <div class="block lg:hidden sticky inset-0 lg:hidden">
-                    <button id="menu-toggle" class="flex w-full justify-end px-3 py-3 bg-white lg:bg-transparent border rounded border-gray-600 hover:border-yellow-600 appearance-none focus:outline-none">
-                        <svg class="fill-current h-3 float-right" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <button id="menu-toggle" class="flex w-auto justify-center px-3 py-3 bg-gray-700 border rounded border-gray-600 hover:border-yellow-600 appearance-none focus:outline-none">
+                        <svg class="fill-current h-6 w-6 text-yellow-400" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                         </svg>
                     </button>
                 </div>
-                <div class="w-full sticky inset-0 hidden max-h-64 lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 my-2 lg:my-0 border border-gray-400 lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20" style="top:6em;" id="menu-content">
+                <div class="w-full sticky inset-0 hidden max-h-128 lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 my-2 lg:my-0 border border-gray-400 lg:border-transparent shadow lg:shadow-none lg:bg-transparent z-20" style="top:6em;" id="menu-content">
                     <ul class="list-reset py-2 md:py-0">
                         <li class="py-1 md:my-2 hover:bg-yellow-100 lg:hover:bg-transparent border-l-4 border-transparent font-bold border-yellow-600">
                             <a href='#section1' class="block pl-4 align-middle text-white no-underline hover:text-yellow-600">
@@ -43,6 +39,7 @@
                     </ul>
                 </div>
             </div>
+
 
             <!-- Area principale -->
             <section class="w-full lg:w-4/5">
@@ -214,7 +211,7 @@
                                 </label>
                             </div>
                             <div class="md:w-2/3">
-                                <input type="file" name="percorso_file" id="percorso_file" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" required>
+                                <input type="url" name="percorso_file" id="percorso_file" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" required>
                             </div>
                         </div>
 
@@ -245,7 +242,6 @@
             </section>
             <!--/Fine area principale-->
         </div>
-        <!--/Fine container-->
 
         <!-- Script per il menu e lo scrollspy -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
@@ -266,32 +262,26 @@
 
                 // User Menu
                 if (!checkParent(target, userMenuDiv)) {
-                    // click NOT on the menu
                     if (checkParent(target, userMenu)) {
-                        // click on the link
                         if (userMenuDiv.classList.contains("invisible")) {
                             userMenuDiv.classList.remove("invisible");
                         } else {
                             userMenuDiv.classList.add("invisible");
                         }
                     } else {
-                        // click both outside link and outside menu, hide menu
                         userMenuDiv.classList.add("invisible");
                     }
                 }
 
                 // Help Menu
                 if (!checkParent(target, helpMenuDiv)) {
-                    // click NOT on the menu
                     if (checkParent(target, helpMenu)) {
-                        // click on the link
                         if (helpMenuDiv.classList.contains("hidden")) {
                             helpMenuDiv.classList.remove("hidden");
                         } else {
                             helpMenuDiv.classList.add("hidden");
                         }
                     } else {
-                        // click both outside link and outside menu, hide menu
                         helpMenuDiv.classList.add("hidden");
                     }
                 }
@@ -311,9 +301,8 @@
             var lastId,
                 topMenu = $("#menu-content"),
                 topMenuHeight = topMenu.outerHeight() + 1,
-                // All list items
                 menuItems = topMenu.find("a"),
-                // Anchors corresponding to menu items
+                // Anchors
                 scrollItems = menuItems.map(function() {
                     var item = $($(this).attr("href"));
                     if (item.length) {
@@ -321,7 +310,7 @@
                     }
                 });
 
-            // Bind click handler to menu items
+            // Bind click
             menuItems.click(function(e) {
                 var href = $(this).attr("href"),
                     offsetTop = href === "#" ? 0 : $(href).offset().top - topMenuHeight + 113;
@@ -334,30 +323,26 @@
                 e.preventDefault();
             });
 
-            // Bind to scroll
+            // Bind
             $(window).scroll(function() {
-                // Get container scroll position
                 var fromTop = $(this).scrollTop() + topMenuHeight;
 
-                // Get id of current scroll item
                 var cur = scrollItems.map(function() {
                     if ($(this).offset().top < fromTop)
                         return this;
                 });
-                // Get the id of the current element
                 cur = cur[cur.length - 1];
                 var id = cur && cur.length ? cur[0].id : "";
 
                 if (lastId !== id) {
                     lastId = id;
-                    // Set/remove active class
                     menuItems
                         .parent().removeClass("font-bold border-yellow-600")
                         .end().filter("[href='#" + id + "']").parent().addClass("font-bold border-yellow-600");
                 }
             });
 
-            // Mostra il popup di successo
+            // Successo
             @if (session('success'))
                 Swal.fire({
                     icon: 'success',
@@ -368,7 +353,7 @@
                 });
             @endif
 
-            // Mostra il popup di errore
+            // Errore
             @if ($errors->any())
                 Swal.fire({
                     icon: 'error',

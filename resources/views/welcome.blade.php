@@ -15,31 +15,31 @@
 </head>
 <body class="antialiased">
 
-<div class="landing-page-container">
+    <div class="landing-page-container">
 
-    <!-- Logo -->
-    <div class="logo-container">
-        <img src="{{ asset('images/sma.png') }}" alt="Logo">
+        <!-- Logo -->
+        <div class="logo-container">
+            <img src="{{ asset('images/sma.png') }}" alt="Logo">
+        </div>
+
+        <!-- Testo grande sopra il logo -->
+        <h1 class="landing-page-header">Gestionale Museo Piero Leonardi</h1>
+
+        <!-- Pulsanti di autenticazione -->
+        <div class="auth-buttons text-center">
+            @if (Route::has('login'))
+                @auth
+                    <a href="{{ url('/dashboard') }}">Dashboard</a>
+                @else
+                    <a href="{{ route('login') }}">Log in</a>
+
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}">Register</a>
+                    @endif
+                @endauth
+            @endif
+        </div>
     </div>
-
-    <!-- Testo grande sopra il logo -->
-    <h1 class="landing-page-header">Gestionale Museo Piero Leonardi</h1>
-
-    <!-- Pulsanti di autenticazione -->
-    <div class="auth-buttons text-center">
-        @if (Route::has('login'))
-            @auth
-                <a href="{{ url('/dashboard') }}">Dashboard</a>
-            @else
-                <a href="{{ route('login') }}">Log in</a>
-
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}">Register</a>
-                @endif
-            @endauth
-        @endif
-    </div>
-</div>
 
 </body>
 </html>

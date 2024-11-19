@@ -1,69 +1,74 @@
-
-
 <x-app-layout>
-
-    <div>
-
+    <div class="container mx-auto px-4">
         <div class="flex justify-center mb-6 text-gray-700 dark:text-gray-400">
-            <p class="font-semibold" style="font-size: 1.5rem;">Total Searched Finds : <span id="total_records"></span></p>
+            <p class="font-semibold text-2xl">Total Searched Finds: <span id="total_records">0</span></p>
         </div>
 
-        <input style="width: 100%" type="text" name="search" id="search" class="form-control" placeholder="Search Finds..." />
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 " style="margin: 5px">
+        <input type="text" 
+               name="search" 
+               id="search" 
+               class="w-full p-4 mb-6 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200"
+               style="color: black"
+               placeholder="Search Finds..." />
 
-        <div id="results">
-             @foreach ($finds as $find)
+        <!-- Container per i risultati -->
+        <div id="results" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
+            @foreach ($finds as $find)
                 <x-findcard :find="$find" />
             @endforeach
         </div>
-        </div>
-
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
+            let timeout = null;
 
-            let timeout = null;  // Variabile per gestire il timeout
-
-            // Funzione che effettua la ricerca e popola i risultati
             function fetch_customer_data(query = '') {
                 $.ajax({
-                    url: "{{ route('finds.action') }}",  // Rotta verso il controller
+                    url: "{{ route('finds.action') }}", // Assicurati che questa rotta esista
                     method: 'GET',
-                    data: { query: query },  // Invia la query
+                    data: { query: query },
                     dataType: 'json',
-                    success: function(data) {
-                        // Log dei dati ricevuti per il debug
-                        console.log("Risposta ricevuta dal server:", data);
-
-                        // Popola i risultati nel DOM
-                        $('#results').html(data.table_data);
-                        // Aggiorna il numero totale di record
-                        $('#total_records').text(data.total_data);
+                    beforeSend: function() {
+                        
+                        $('#results').html('<div class="text-center col-span-3"><p>Caricamento...</p></div>');
+                    },
+                    success: function(response) {
+                        // Log per debugging
+                        console.log("Risposta ricevuta:", response);
+                        
+                        if(response.error) {
+                            $('#results').html('<div class="text-center col-span-3 text-red-500">' + response.error + '</div>');
+                            $('#total_records').text('0');
+                        } else {
+                            $('#results').html(response.table_data);
+                            $('#total_records').text(response.total_data);
+                        }
                     },
                     error: function(xhr, status, error) {
-                        // Log per il debug degli errori
-                        console.error("Errore durante la richiesta AJAX: ", error);
+                        console.error("Errore AJAX:", error);
+                        console.error("Status:", status);
+                        console.error("Response:", xhr.responseText);
+                        $('#results').html('<div class="text-center col-span-3 text-red-500">Errore durante la ricerca</div>');
                     }
                 });
             }
 
-            // Ascolta l'input nella barra di ricerca
+            // Evento keyup con debounce
             $('#search').on('keyup', function() {
-                var query = $(this).val();  // Ottieni il valore della ricerca
-
-                // Cancella il timeout precedente
                 clearTimeout(timeout);
-
-                // Imposta un nuovo timeout di 300 ms
+                
+                const query = $(this).val();
+                console.log("Query digitata:", query);
+                
                 timeout = setTimeout(function() {
-                    console.log("Query inviata:", query);  // Log della query per il debug
-                    fetch_customer_data(query);  // Esegui la ricerca dopo il timeout
-                }, 300);  // Attesa di 300 ms prima di eseguire la richiesta
+                    fetch_customer_data(query);
+                }, 500);
             });
+
+            // Carica i dati iniziali
+            fetch_customer_data();
         });
     </script>
-
-
-    </x-app-layout>
+</x-app-layout>

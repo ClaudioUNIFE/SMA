@@ -48,13 +48,21 @@ class FindViewController extends Controller
                         ->join('biological_entities', 'finds.id', '=', 'biological_entities.id_reperto')
                         ->join('collections', 'finds.id_collezione', '=', 'collections.id')
                         ->join('deposits', 'finds.id_deposito', '=', 'deposits.id')
-                        ->join('finds_catalogs', 'finds.id', '=', 'finds_catalogs.id_reperto')
-                        ->join('catalogs', 'catalogs.id', '=', 'finds_catalogs.id_catalogo')
+                        //->join('finds_catalogs', 'finds.id', '=', 'finds_catalogs.id_reperto')
+                        ->join('catalogs', 'finds.id', '=', 'catalogs.id_reperto')
                         ->join('compositions', 'finds.id', '=', 'compositions.id_reperto')
+                        ->select('finds.*', // Seleziona tutti i campi dalla tabella finds
+                            'biological_entities.*',
+                            'collections.*',
+                            'deposits.*',
+                            'catalogs.*',
+                            'compositions.*',
+                            'finds.descrizione as descrizione',// Rinomina il campo descrizione della tabella finds
+                            'collections.descrizione as collection_descrizione',)
                         ->where(function($q) use ($query) {
                             $q->where('finds.id_vecchio', 'like', '%' . $query . '%')
                               ->orWhere('finds.descrizione', 'like', '%' . $query . '%')
-                              ->orWhere('tipo_entita', 'like', '%' . $query . '%')
+                              //->orWhere('tipo_entita', 'like', '%' . $query . '%')
                               ->orWhere('riferimento_tassonomico', 'like', '%' . $query . '%')
                               ->orWhere('nome_comune', 'like', '%' . $query . '%')
                               ->orWhere('riferimento_cronologico', 'like', '%' . $query . '%')
@@ -63,7 +71,8 @@ class FindViewController extends Controller
                               ->orWhere('deposits.collocazione', 'like', '%' . $query . '%')
                               ->orWhere('deposits.codice_stanza', 'like', '%' . $query . '%')
                               ->orWhere('catalogs.catalogo', 'like', '%' . $query . '%')
-                              ->orWhere('compositions.materiale', 'like', '%' . $query . '%');
+                              ->orWhere('compositions.materiale', 'like', '%' . $query . '%')
+                              ->orWhere('catalogs.pater', 'like', '%' . $query . '%');
                         })
                         ->limit(50)  // Limita il numero di risultati
                         ->get();
@@ -260,13 +269,18 @@ public function showfindform(Request $request, $id){
 }
 
 public function showupdate($id){
-    $catalogs = Catalog::all();
-       $deposits = Deposit::all();
-       $museums = DB::table('museums')->get();
-       $collections = Collection::all();
-    return view('edit-find', compact('id' , 'catalogs' , 'deposits' ,'museums' , 'collections'));
-}
+    // Recupera il reperto esistente
+    $find = Find::findOrFail($id);
 
+    // Recupera gli altri dati necessari
+    $catalogs = Catalog::all();
+    $deposits = Deposit::all();
+    $museums = DB::table('museums')->get();
+    $collections = Collection::all();
+
+    // Passa $find e le altre variabili alla vista
+    return view('edit-find', compact('find', 'catalogs', 'deposits', 'museums', 'collections'));
+}
 
 public function update(Request $request, $id) {
     try {
