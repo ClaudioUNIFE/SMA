@@ -58,14 +58,16 @@ class DatabaseSeeder extends Seeder
         Permission::create(['name' => 'update-finds']);
         Permission::create(['name' => 'update-theses']);
         Permission::create(['name' => 'manages-attachments']);
+        Permission::create(['name' => 'validate-finds']);
+
     }
 
     public function seedRoles () {
         $role = Role::create(['name' => 'admin']);
-        $role->givePermissionTo('manages-roles', 'manages-deposits', 'manages-collections', 'add-finds', 'add-theses', 'delete-finds', 'delete-theses', 'update-finds', 'update-theses', 'manages-attachments');
+        $role->givePermissionTo('manages-roles', 'manages-deposits', 'manages-collections', 'add-finds', 'add-theses', 'delete-finds', 'delete-theses', 'update-finds', 'update-theses', 'manages-attachments', 'validate-finds');
 
         $role = Role::create(['name' => 'intern']);
-        $role->givePermissionTo('manages-deposits', 'manages-collections', 'add-finds', 'add-theses', 'delete-finds', 'delete-theses', 'update-finds', 'update-theses', 'manages-attachments');
+        $role->givePermissionTo('manages-deposits', 'manages-collections', 'add-finds', 'add-theses', 'delete-finds', 'delete-theses', 'update-finds', 'update-theses', 'manages-attachments', 'validate-finds');
 
         $role = Role::create(['name' => 'researcher']);
         $role->givePermissionTo( 'add-finds', 'add-theses', 'update-finds', 'update-theses');

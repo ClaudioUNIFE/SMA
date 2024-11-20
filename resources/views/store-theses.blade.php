@@ -100,7 +100,7 @@
                                 </label>
                             </div>
                             <div class="md:w-2/3">
-                                <input type="text" name="autore" id="autore" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" required>
+                                <input type="text" name="autore" id="autore" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" placeholder="Autore" required>
                             </div>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                                 </label>
                             </div>
                             <div class="md:w-2/3">
-                                <input type="text" name="titolo" id="titolo" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" required>
+                                <input type="text" name="titolo" id="titolo" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" placeholder="Titolo" required>
                             </div>
                         </div>
 
@@ -133,7 +133,7 @@
                                 </label>
                             </div>
                             <div class="md:w-2/3">
-                                <input type="text" name="anno_accademico" id="anno_accademico" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" required>
+                                <input type="text" name="anno_accademico" id="anno_accademico" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" placeholder="Anno Accademico" required>
                             </div>
                         </div>
 
@@ -145,7 +145,7 @@
                                 </label>
                             </div>
                             <div class="md:w-2/3">
-                                <input type="text" name="disciplina" id="disciplina" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" required>
+                                <input type="text" name="disciplina" id="disciplina" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" placeholder="Disciplina" required>
                             </div>
                         </div>
                     </div>
@@ -166,7 +166,7 @@
                                 </label>
                             </div>
                             <div class="md:w-2/3">
-                                <input type="text" name="relatore" id="relatore" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" required>
+                                <input type="text" name="relatore" id="relatore" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" placeholder="Relatori" required>
                             </div>
                         </div>
 
@@ -178,7 +178,7 @@
                                 </label>
                             </div>
                             <div class="md:w-2/3">
-                                <input type="text" name="correlatore" id="correlatore" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white">
+                                <input type="text" name="correlatore" id="correlatore" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" placeholder="Correlatore">
                             </div>
                         </div>
 
@@ -190,7 +190,7 @@
                                 </label>
                             </div>
                             <div class="md:w-2/3">
-                                <input type="text" name="contro_relatore" id="contro_relatore" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white">
+                                <input type="text" name="contro_relatore" id="contro_relatore" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" placeholder="Contro Relatore">
                             </div>
                         </div>
                     </div>
@@ -223,7 +223,7 @@
                                 </label>
                             </div>
                             <div class="md:w-2/3">
-                                <textarea name="note" id="note" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white"></textarea>
+                                <textarea name="note" id="note" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" placeholder="Note"></textarea>
                             </div>
                         </div>
                     </div>

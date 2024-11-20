@@ -103,7 +103,7 @@
                                 </label>
                             </div>
                             <div class="md:w-2/3">
-                                <input type="text" name="descrizione" id="descrizione" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" placeholder="Descrizione" />
+                                <input type="text" name="descrizione" id="descrizione" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" placeholder="Descrizione"/>
                             </div>
                         </div>
 
@@ -225,7 +225,7 @@
                     <!-- Divider -->
                     <hr class="bg-gray-300 my-12">
 
-                    <!-- Sezione 2: Stato e Attributi -->
+                    <!-- Sezione 2:  Stato -->
                     <h2 id='section2' class="font-sans font-bold break-normal text-white px-2 pb-8 text-xl">
                         Stato
                     </h2>
@@ -317,7 +317,7 @@
                     <!-- Divider -->
                     <hr class="bg-gray-300 my-12">
 
-                    <!-- Sezione 3: Informazioni Tassonomiche -->
+                    <!-- Sezione 3: Attributi -->
                     <h2 id='section3' class="font-sans font-bold break-normal text-white px-2 pb-8 text-xl">
                          Attributi
                     </h2>
@@ -563,7 +563,7 @@
                                 </label>
                             </div>
                             <div class="md:w-2/3">
-                                <input type="text" name="catalogo" id="catalogo" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" />
+                                <input type="text" name="catalogo" id="catalogo" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" placeholder="Catalogo"/>
                             </div>
                         </div>
 
@@ -575,7 +575,7 @@
                                 </label>
                             </div>
                             <div class="md:w-2/3">
-                                <input type="text" name="iccd" id="iccd" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" />
+                                <input type="text" name="iccd" id="iccd" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" placeholder="ICCD"/>
                             </div>
                         </div>
 
@@ -587,7 +587,7 @@
                                 </label>
                             </div>
                             <div class="md:w-2/3">
-                                <input type="text" name="pater" id="pater" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" />
+                                <input type="text" name="pater" id="pater" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" placeholder="PATER"/>
                             </div>
                         </div>
                         <!-- Vecchio DB sezione 1-->
@@ -598,7 +598,7 @@
                                 </label>
                             </div>
                             <div class="md:w-2/3">
-                                <input type="text" name="vecchio_db" id="vecchio_db" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" />
+                                <input type="text" name="vecchio_db" id="vecchio_db" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" placeholder="Vecchio DB"/>
                             </div>
                         </div>
                     </div>
@@ -618,7 +618,7 @@
                                 </label>
                             </div>
                             <div class="md:w-2/3">
-                                <input type="text" name="cartellino_storico" id="cartellino_storico" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" />
+                                <input type="text" name="cartellino_storico" id="cartellino_storico" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" placeholder="Cartellino Storico"/>
                             </div>
                         </div>
 
@@ -630,7 +630,7 @@
                                 </label>
                             </div>
                             <div class="md:w-2/3">
-                                <input type="text" name="cartellino_attuale" id="cartellino_attuale" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" />
+                                <input type="text" name="cartellino_attuale" id="cartellino_attuale" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" placeholder="Cartellino Attuale"/>
                             </div>
                         </div>
 
@@ -638,11 +638,11 @@
                         <div class="md:flex mb-6">
                             <div class="md:w-1/3">
                                 <label for="didascalia" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
-                                    Codice siglatura
+                                    Codice Siglatura
                                 </label>
                             </div>
                             <div class="md:w-2/3">
-                                <input type="text" name="didascalia" id="didascalia" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" />
+                                <input type="text" name="didascalia" id="didascalia" class="block w-full px-3 py-2 bg-gray-200 border border-gray-300 rounded-md focus:outline-none focus:bg-white" placeholder="Codice Siglatura"/>
                             </div>
                         </div>
 
