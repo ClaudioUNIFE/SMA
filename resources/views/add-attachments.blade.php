@@ -1,284 +1,758 @@
 <x-app-layout>
-
+    {{-- Include i tuoi file CSS --}}
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
     <!-- <link rel="stylesheet" href="{{ asset('css/standard.css') }}"> -->
 
-    <div class="form-container">
-        <form action="{{ route('attached.store', ['id' => $id]) }}" method="POST" enctype="multipart/form-data">
-            @csrf
+    {{-- Contenuto principale --}}
+    <div class="text-gray-900 tracking-wider leading-normal">
 
-            <table class="center-table">
+        <!-- Container principale -->
+        <div class="container w-full flex flex-wrap mx-auto px-2 pt-4 lg:pt-8 mt-8">
+            <!-- Menu laterale -->
+            <div class="w-full lg:w-1/5 px-6 text-xl text-gray-800 leading-normal">
+                <div class="block lg:hidden sticky inset-0 lg:hidden">
+                    <button id="menu-toggle" class="flex w-auto justify-center px-3 py-3 bg-gray-700 border rounded border-gray-600 hover:border-yellow-600 appearance-none focus:outline-none">
+                        <svg class="fill-current h-6 w-6 text-yellow-400" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="w-full sticky inset-0 hidden max-h-128 lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 my-2 lg:my-0 border border-gray-400 lg:border-transparent shadow lg:shadow-none lg:bg-transparent z-20" style="top:6em;" id="menu-content">
+                    <ul class="list-reset py-2 md:py-0">
+                        <li class="py-1 md:my-2 hover:bg-yellow-100 lg:hover:bg-transparent border-l-4 border-transparent font-bold border-yellow-600">
+                            <a href='#section1' class="block pl-4 align-middle text-white no-underline hover:text-yellow-600">
+                                <span class="pb-1 md:pb-0 text-sm">Informazioni Generali</span>
+                            </a>
+                        </li>
+                        <li class="py-1 md:my-2 hover:bg-yellow-100 lg:hover:bg-transparent border-l-4 border-transparent">
+                            <a href='#section2' class="block pl-4 align-middle text-white no-underline hover:text-yellow-600">
+                                <span class="pb-1 md:pb-0 text-sm">Metadati</span>
+                            </a>
+                        </li>
+                        <li class="py-1 md:my-2 hover:bg-yellow-100 lg:hover:bg-transparent border-l-4 border-transparent">
+                            <a href='#section3' class="block pl-4 align-middle text-white no-underline hover:text-yellow-600">
+                                <span class="pb-1 md:pb-0 text-sm">Paradati</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-                <tr>
-                    <th colspan="2">Dettagli Allegato </th>
-                </tr>
+            <!-- Area principale -->
+            <section class="w-full lg:w-4/5">
+                <!-- Titolo -->
+                <h1 class="flex items-center font-sans font-bold break-normal text-white px-2 text-2xl mt-12 lg:mt-0 md:text-2xl">
+                    Aggiungi Nuovo Allegato
+                </h1>
 
-                <tr>
-                    <th><label for="codice_reperto">Link</label></th>
-                    <td><input type="text" name="link" id="link" class="form-control" placeholder="Inserisci il link" value="{{ old('link', $metadata->codice_reperto ?? '') }}" required/></td>
-                </tr>
-                <tr>
-                    <th><label for="titolo">Tipo Acquisizione</label></th>
-                    <td><input type="text" name="tipo_acquisizione" id="tipo_acquisizione" class="form-control" placeholder="Tipo Acquisizione" value="{{ old('tipo_acquisizione', $metadata->titolo ?? '') }}" required/></td>
-            </tr>
+                <!-- Divider -->
+                <hr class="bg-gray-300 my-12">
 
-            </table>
-            <br>
-            <br>
-            <br>
+                <!-- Inizio del form -->
+                <form action="{{ route('attached.store', ['id' => $id]) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
 
+                    <!-- Sezione 1: Informazioni Generali -->
+                    <h2 id='section1' class="font-sans font-bold break-normal text-white px-2 pb-8 text-xl">
+                        Informazioni Generali
+                    </h2>
+                    <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+                        <!-- Link -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="link" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Link
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="link" id="link" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Inserisci il link" value="{{ old('link') }}" required />
+                            </div>
+                        </div>
+                        <!-- Tipo Acquisizione -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="tipo_acquisizione" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Tipo Acquisizione
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="tipo_acquisizione" id="tipo_acquisizione" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Tipo Acquisizione" value="{{ old('tipo_acquisizione') }}" required />
+                            </div>
+                        </div>
+                    </div>
 
-            <table class="center-table">
-                <tr>
-                    <th colspan="2">Inserisci Metadati </th>
-                </tr>
-                <tr>
-                    <td><label for="titolo">Titolo</label></td>
-                    <td><input type="text" name="titolo" id="titolo" class="form-control" placeholder="Titolo" required></td>
-                </tr>
-                <tr>
-                    <td><label for="autore">Autore</label></td>
-                    <td><input type="text" name="autore" id="autore" class="form-control" placeholder="Autore"></td>
-                </tr>
-                <tr>
-                    <td><label for="sogetto">Soggetto</label></td>
-                    <td><input type="text" name="soggetto" id="soggetto" class="form-control" placeholder="Soggetto"></td>
-                </tr>
-                <tr>
-                    <td><label for="descrizione">Descrizione</label></td>
-                    <td><textarea name="descrizione" id="descrizione" class="form-control" placeholder="Descrizione"></textarea></td>
-                </tr>
-                <tr>
-                    <td><label for="editore">Editore</label></td>
-                    <td><input type="text" name="editore" id="editore" class="form-control" placeholder="Editore"></td>
-                </tr>
-                <tr>
-                    <td><label for="autore_di_contributo">Autore di Contributo</label></td>
-                    <td><input type="text" name="autore_di_contributo" id="autore_di_contributo" class="form-control" placeholder="Autore di Contributo"></td>
-                </tr>
-                <tr>
-                    <td><label for="data">Data</label></td>
-                    <td><input type="date" name="data" id="data" class="form-control"></td>
-                </tr>
-                <tr>
-                    <td><label for="tipo">Tipo</label></td>
-                    <td><input type="text" name="tipo" id="tipo" class="form-control" placeholder="Tipo"></td>
-                </tr>
-                <tr>
-                    <td><label for="formato">Formato</label></td>
-                    <td><input type="text" name="formato" id="formato" class="form-control" placeholder="Formato"></td>
-                </tr>
-                <tr>
-                    <td><label for="identificatore">Identificatore</label></td>
-                    <td><input type="text" name="identificatore" id="identificatore" class="form-control" placeholder="Identificatore"></td>
-                </tr>
-                <tr>
-                    <td><label for="fonte">Fonte</label></td>
-                    <td><input type="text" name="fonte" id="fonte" class="form-control" placeholder="Fonte"></td>
-                </tr>
-                <tr>
-                    <td><label for="lingua">Lingua</label></td>
-                    <td><input type="text" name="lingua" id="lingua" class="form-control" placeholder="Lingua"></td>
-                </tr>
-                <tr>
-                    <td><label for="relazione">Relazione</label></td>
-                    <td><input type="text" name="relazione" id="relazione" class="form-control" placeholder="Relazione"></td>
-                </tr>
-                <tr>
-                    <td><label for="copertura">Copertura</label></td>
-                    <td><input type="text" name="copertura" id="copertura" class="form-control" placeholder="Copertura"></td>
-                </tr>
-                <tr>
-                    <td><label for="gestione_dei_diritti">Gestione dei Diritti</label></td>
-                    <td><input type="text" name="gestione_dei_diritti" id="gestione_dei_diritti" class="form-control" placeholder="Gestione dei Diritti"></td>
-                </tr>
+                    <!-- Divider -->
+                    <hr class="bg-gray-300 my-12">
 
-            </table>
-            <br>
-            <br>
-            <br>
+                    <!-- Sezione 2: Metadati -->
+                    <h2 id='section2' class="font-sans font-bold break-normal text-white px-2 pb-8 text-xl">
+                        Metadati
+                    </h2>
+                    <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+                        <!-- Titolo -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="titolo" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Titolo
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="titolo" id="titolo" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Titolo" required />
+                            </div>
+                        </div>
+                        <!-- Autore -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="autore" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Autore
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="autore" id="autore" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Autore" />
+                            </div>
+                        </div>
+                        <!-- Soggetto -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="soggetto" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Soggetto
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="soggetto" id="soggetto" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Soggetto" />
+                            </div>
+                        </div>
+                        <!-- Descrizione -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="descrizione" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Descrizione
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <textarea name="descrizione" id="descrizione" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Descrizione"></textarea>
+                            </div>
+                        </div>
+                        <!-- Editore -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="editore" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Editore
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="editore" id="editore" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Editore" />
+                            </div>
+                        </div>
+                        <!-- Autore di Contributo -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="autore_di_contributo" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Autore di Contributo
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="autore_di_contributo" id="autore_di_contributo" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Autore di Contributo" />
+                            </div>
+                        </div>
+                        <!-- Data -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="data" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Data
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="date" name="data" id="data" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" />
+                            </div>
+                        </div>
+                        <!-- Tipo -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="tipo" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Tipo
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="tipo" id="tipo" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Tipo" />
+                            </div>
+                        </div>
+                        <!-- Formato -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="formato" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Formato
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="formato" id="formato" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Formato" />
+                            </div>
+                        </div>
+                        <!-- Identificatore -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="identificatore" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Identificatore
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="identificatore" id="identificatore" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Identificatore" />
+                            </div>
+                        </div>
+                        <!-- Fonte -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="fonte" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Fonte
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="fonte" id="fonte" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Fonte" />
+                            </div>
+                        </div>
+                        <!-- Lingua -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="lingua" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Lingua
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="lingua" id="lingua" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Lingua" />
+                            </div>
+                        </div>
+                        <!-- Relazione -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="relazione" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Relazione
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="relazione" id="relazione" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Relazione" />
+                            </div>
+                        </div>
+                        <!-- Copertura -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="copertura" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Copertura
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="copertura" id="copertura" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Copertura" />
+                            </div>
+                        </div>
+                        <!-- Gestione dei Diritti -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="gestione_dei_diritti" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Gestione dei Diritti
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="gestione_dei_diritti" id="gestione_dei_diritti" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Gestione dei Diritti" />
+                            </div>
+                        </div>
+                    </div>
 
+                    <!-- Divider -->
+                    <hr class="bg-gray-300 my-12">
 
-            <table class="center-table">
-                <tr>
-                    <th colspan="2">Inserisci Paradati </th>
-                </tr>
+                    <!-- Sezione 3: Paradati -->
+                    <h2 id='section3' class="font-sans font-bold break-normal text-white px-2 pb-8 text-xl">
+                        Paradati
+                    </h2>
+                    <div class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">
+                        <!-- Stato Corrente -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="stato_corrente" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Stato Corrente
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="stato_corrente" id="stato_corrente" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Stato Corrente" />
+                            </div>
+                        </div>
+                        <!-- Responsabile Scelta Reperto -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="responsabile_scelta_reperto" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Responsabile Scelta Reperto
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="responsabile_scelta_reperto" id="responsabile_scelta_reperto" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Responsabile Scelta Reperto" />
+                            </div>
+                        </div>
+                        <!-- Scheda Validata -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="scheda_validata" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Scheda Validata
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="hidden" name="scheda_validata" value="0">
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="scheda_validata" id="scheda_validata" value="1" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                                    <span class="ml-2"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Validatore Scheda -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="validatore_scheda" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Validatore Scheda
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="validatore_scheda" id="validatore_scheda" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Validatore Scheda" />
+                            </div>
+                        </div>
+                        <!-- Note -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="note" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Note
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <textarea name="note" id="note" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Note"></textarea>
+                            </div>
+                        </div>
+                        <!-- Responsabile Acquisizione -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="responsabile_acquisizione" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Responsabile Acquisizione
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="responsabile_acquisizione" id="responsabile_acquisizione" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Responsabile Acquisizione" />
+                            </div>
+                        </div>
+                        <!-- Operatore -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="operatore" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Operatore
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="operatore" id="operatore" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Operatore" />
+                            </div>
+                        </div>
+                        <!-- Tipo Superfice -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="tipo_superfice" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Tipo Superficie
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="tipo_superfice" id="tipo_superfice" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Tipo Superficie" />
+                            </div>
+                        </div>
+                        <!-- Descrizione Complessità -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="descrizione_complessita" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Descrizione Complessità
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <textarea name="descrizione_complessita" id="descrizione_complessita" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Descrizione Complessità"></textarea>
+                            </div>
+                        </div>
+                        <!-- Fotocamera -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="fotocamera" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Fotocamera
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="fotocamera" id="fotocamera" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Fotocamera" />
+                            </div>
+                        </div>
+                        <!-- Impostazioni -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="impostazioni" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Impostazioni
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="impostazioni" id="impostazioni" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Impostazioni" />
+                            </div>
+                        </div>
+                        <!-- Obiettivo -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="obiettivo" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Obiettivo
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="obiettivo" id="obiettivo" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Obiettivo" />
+                            </div>
+                        </div>
+                        <!-- Illuminazione -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="illuminazione" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Illuminazione
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="illuminazione" id="illuminazione" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Illuminazione" />
+                            </div>
+                        </div>
+                        <!-- Light Box -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="light_box" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Light Box
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="hidden" name="light_box" value="0">
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="light_box" id="light_box" value="1" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                                    <span class="ml-2"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Tipo Supporto -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="tipo_supporto" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Tipo Supporto
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="tipo_supporto" id="tipo_supporto" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Tipo Supporto" />
+                            </div>
+                        </div>
+                        <!-- Numero Scatti -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="numero_scatti" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Numero Scatti
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="number" name="numero_scatti" id="numero_scatti" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Numero Scatti" />
+                            </div>
+                        </div>
+                        <!-- Software -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="software" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Software
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="software" id="software" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Software" />
+                            </div>
+                        </div>
+                        <!-- Output -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="output" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Output
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="output" id="output" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Output" />
+                            </div>
+                        </div>
+                        <!-- Strumentazione -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="strumentazione" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Strumentazione
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="strumentazione" id="strumentazione" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Strumentazione" />
+                            </div>
+                        </div>
+                        <!-- Risoluzione -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="risoluzione" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Risoluzione
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="risoluzione" id="risoluzione" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Risoluzione" />
+                            </div>
+                        </div>
+                        <!-- Modalità Scansione -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="modalita_scansione" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Modalità Scansione
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="modalita_scansione" id="modalita_scansione" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Modalità Scansione" />
+                            </div>
+                        </div>
+                        <!-- Ingrandimento -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="ingrandimento" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Ingrandimento
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="ingrandimento" id="ingrandimento" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Ingrandimento" />
+                            </div>
+                        </div>
+                        <!-- Luminosità -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="luminosita" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Luminosità
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="luminosita" id="luminosita" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Luminosità" />
+                            </div>
+                        </div>
+                        <!-- Fibra Ottica -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="fibra_ottica" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Fibra Ottica
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="hidden" name="fibra_ottica" value="0">
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="fibra_ottica" id="fibra_ottica" value="1" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                                    <span class="ml-2"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Tiling -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="tiling" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Tiling
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="hidden" name="tiling" value="0">
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="tiling" id="tiling" value="1" class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                                    <span class="ml-2"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Scala -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="scala" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Scala
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="scala" id="scala" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Scala" />
+                            </div>
+                        </div>
+                        <!-- Data Inizio -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="data_inizio" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Data Inizio
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="date" name="data_inizio" id="data_inizio" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" />
+                            </div>
+                        </div>
+                        <!-- Data Fine -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="data_fine" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Data Fine
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="date" name="data_fine" id="data_fine" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" />
+                            </div>
+                        </div>
+                        <!-- Tempo Totale -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="tempo_totale" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Tempo Totale
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="tempo_totale" id="tempo_totale" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Tempo Totale" />
+                            </div>
+                        </div>
+                        <!-- Luogo Acquisizione -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="luogo_acquisizione" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Luogo Acquisizione
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="text" name="luogo_acquisizione" id="luogo_acquisizione" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Luogo Acquisizione" />
+                            </div>
+                        </div>
+                        <!-- Temperatura -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="temperatura" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Temperatura
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <input type="number" name="temperatura" id="temperatura" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Temperatura in °C" step="0.1" />
+                            </div>
+                        </div>
+                        <!-- Condizioni Iniziali Conservazione -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="condizioni_iniziali_conservazione" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Condizioni Iniziali Conservazione
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <textarea name="condizioni_iniziali_conservazione" id="condizioni_iniziali_conservazione" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Condizioni Iniziali di Conservazione"></textarea>
+                            </div>
+                        </div>
+                        <!-- Condizioni Finali Conservazione -->
+                        <div class="md:flex mb-6">
+                            <div class="md:w-1/3">
+                                <label for="condizioni_finali_conservazione" class="block text-gray-600 font-bold md:text-left mb-3 md:mb-0 pr-4">
+                                    Condizioni Finali Conservazione
+                                </label>
+                            </div>
+                            <div class="md:w-2/3">
+                                <textarea name="condizioni_finali_conservazione" id="condizioni_finali_conservazione" class="bg-gray-200 border border-gray-300 rounded-md w-full px-3 py-2 focus:outline-none focus:bg-white" placeholder="Condizioni Finali di Conservazione"></textarea>
+                            </div>
+                        </div>
+                    </div>
 
-                <tr>
-                    <td><label for="stato_corrente">Stato Corrente</label></td>
-                    <td><input type="text" name="stato_corrente" id="stato_corrente" class="form-control" placeholder="Stato Corrente"></td>
-                </tr>
-                <tr>
-                    <td><label for="responsabile_scelta_reperto">Responsabile Scelta Reperto</label></td>
-                    <td><input type="text" name="responsabile_scelta_reperto" id="responsabile_scelta_reperto" class="form-control" placeholder="Responsabile Scelta Reperto"></td>
-                </tr>
-                <tr>
-                    <td><label for="scheda_validata">Scheda Validata</label></td>
-                    <td>
-                        <input type="hidden" name="scheda_validata" value="0">
-                        <input type="checkbox" name="scheda_validata" id="scheda_validata" value="1">
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="validatore_scheda">Validatore Scheda</label></td>
-                    <td><input type="text" name="validatore_scheda" id="validatore_scheda" class="form-control" placeholder="Validatore Scheda"></td>
-                </tr>
-                <tr>
-                    <td><label for="note">Note</label></td>
-                    <td><textarea name="note" id="note" class="form-control" placeholder="Note"></textarea></td>
-                </tr>
-                <tr>
-                    <td><label for="responsabile_acquisizione">Responsabile Acquisizione</label></td>
-                    <td><input type="text" name="responsabile_acquisizione" id="responsabile_acquisizione" class="form-control" placeholder="Responsabile Acquisizione"></td>
-                </tr>
-                <tr>
-                    <td><label for="operatore">Operatore</label></td>
-                    <td><input type="text" name="operatore" id="operatore" class="form-control" placeholder="Operatore"></td>
-                </tr>
-                <tr>
-                    <td><label for="tipo_superfice">Tipo Superfice</label></td>
-                    <td><input type="text" name="tipo_superfice" id="tipo_superfice" class="form-control" placeholder="Tipo Superfice"></td>
-                </tr>
-                <tr>
-                    <td><label for="descrizione_complessita">Descrizione Complessità</label></td>
-                    <td><textarea name="descrizione_complessita" id="descrizione_complessita" class="form-control" placeholder="Descrizione Complessità"></textarea></td>
-                </tr>
-                <tr>
-                    <td><label for="fotocamera">Fotocamera</label></td>
-                    <td><input type="text" name="fotocamera" id="fotocamera" class="form-control" placeholder="Fotocamera"></td>
-                </tr>
-                <tr>
-                    <td><label for="impostazioni">Impostazioni</label></td>
-                    <td><input type="text" name="impostazioni" id="impostazioni" class="form-control" placeholder="Impostazioni"></td>
-                </tr>
-                <tr>
-                    <td><label for="obiettivo">Obiettivo</label></td>
-                    <td><input type="text" name="obiettivo" id="obiettivo" class="form-control" placeholder="Obiettivo"></td>
-                </tr>
-                <tr>
-                    <td><label for="illuminazione">Illuminazione</label></td>
-                    <td><input type="text" name="illuminazione" id="illuminazione" class="form-control" placeholder="Illuminazione"></td>
-                </tr>
-                <tr>
-                    <td><label for="light_box">Light Box</label></td>
-                    <td>
-                        <input type="hidden" name="light_box" value="0">
-                        <input type="checkbox" name="light_box" id="light_box" value="1">
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="tipo_supporto">Tipo Supporto</label></td>
-                    <td><input type="text" name="tipo_supporto" id="tipo_supporto" class="form-control" placeholder="Tipo Supporto"></td>
-                </tr>
-                <tr>
-                    <td><label for="numero_scatti">Numero Scatti</label></td>
-                    <td><input type="text" name="numero_scatti" id="numero_scatti" class="form-control" placeholder="Numero Scatti"></td>
-                </tr>
-                <tr>
-                    <td><label for="software">Software</label></td>
-                    <td><input type="text" name="software" id="software" class="form-control" placeholder="Software"></td>
-                </tr>
-                <tr>
-                    <td><label for="output">Output</label></td>
-                    <td><input type="text" name="output" id="output" class="form-control" placeholder="Output"></td>
-                </tr>
-                <tr>
-                    <td><label for="strumentazione">Strumentazione</label></td>
-                    <td><input type="text" name="strumentazione" id="strumentazione" class="form-control" placeholder="Strumentazione"></td>
-                </tr>
-                <tr>
-                    <td><label for="risoluzione">Risoluzione</label></td>
-                    <td><input type="text" name="risoluzione" id="risoluzione" class="form-control" placeholder="Risoluzione"></td>
-                </tr>
-                <tr>
-                    <td><label for="modalita_scansione">Modalità Scansione</label></td>
-                    <td><input type="text" name="modalita_scansione" id="modalita_scansione" class="form-control" placeholder="Modalità Scansione"></td>
-                </tr>
-                <tr>
-                    <td><label for="ingrandimento">Ingrandimento</label></td>
-                    <td><input type="text" name="ingrandimento" id="ingrandimento" class="form-control" placeholder="Ingrandimento"></td>
-                </tr>
-                <tr>
-                    <td><label for="luminosita">Luminosità</label></td>
-                    <td><input type="text" name="luminosita" id="luminosita" class="form-control" placeholder="Luminosità"></td>
-                </tr>
-                <tr>
-                    <td><label for="fibra_ottica">Fibra Ottica</label></td>
-                    <td>
-                        <input type="hidden" name="fibra_ottica" value="0">
-                        <input type="checkbox" name="fibra_ottica" id="fibra_ottica" value="1">
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="tiling">Tiling</label></td>
-                    <td>
-                        <input type="hidden" name="tiling" value="0">
-                        <input type="checkbox" name="tiling" id="tiling" value="1">
-                    </td>
-                </tr>
-                <tr>
-                    <td><label for="scala">Scala</label></td>
-                    <td><input type="text" name="scala" id="scala" class="form-control" placeholder="Scala"></td>
-                </tr>
-                <tr>
-                    <td><label for="formato">Formato</label></td>
-                    <td><input type="text" name="formato" id="formato" class="form-control" placeholder="Formato"></td>
-                </tr>
-                <tr>
-                    <td><label for="data_inizio">Data Inizio</label></td>
-                    <td><input type="date" name="data_inizio" id="data_inizio" class="form-control"></td>
-                </tr>
-                <tr>
-                    <td><label for="data_fine">Data Fine</label></td>
-                    <td><input type="date" name="data_fine" id="data_fine" class="form-control"></td>
-                </tr>
-                <tr>
-                    <td><label for="tempo_totale">Tempo Totale</label></td>
-                    <td><input type="text" name="tempo_totale" id="tempo_totale" class="form-control" placeholder="Tempo Totale"></td>
-                </tr>
-                <tr>
-                    <td><label for="luogo_acquisizione">Luogo Acquisizione</label></td>
-                    <td><input type="text" name="luogo_acquisizione" id="luogo_acquisizione" class="form-control" placeholder="Luogo Acquisizione"></td>
-                </tr>
-                <tr>
-                    <td><label for="temperatura">Temperatura</label></td>
-                    <td><input type="text" name="temperatura" id="temperatura" class="form-control" placeholder="Temperatura"></td>
-                </tr>
-                <tr>
-                    <td><label for="condizioni_iniziali_conservazione">Condizioni Iniziali Conservazione</label></td>
-                    <td><textarea name="condizioni_iniziali_conservazione" id="condizioni_iniziali_conservazione" class="form-control" placeholder="Condizioni Iniziali Conservazione"></textarea></td>
-                </tr>
-                <tr>
-                    <td><label for="condizioni_finali_conservazione">Condizioni Finali Conservazione</label></td>
-                    <td><textarea name="condizioni_finali_conservazione" id="condizioni_finali_conservazione" class="form-control" placeholder="Condizioni Finali Conservazione"></textarea></td>
-                </tr>
-            </table>
+                    <!-- Pulsante di invio -->
+                    <div class="flex justify-end mt-6">
+                        <button type="submit" class="btn btn-primary bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">
+                            Salva
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </div>
 
+        <!-- Script per il menu e gli alert -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-            <button type="submit" class="btn btn-primary">Salva</button>
-        </form>
+        <script>
+            // Toggle menu
+            var helpMenuDiv = document.getElementById("menu-content");
+            var helpMenu = document.getElementById("menu-toggle");
+
+            helpMenu.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (helpMenuDiv.classList.contains("hidden")) {
+                    helpMenuDiv.classList.remove("hidden");
+                    helpMenuDiv.classList.add("block");
+                } else {
+                    helpMenuDiv.classList.add("hidden");
+                    helpMenuDiv.classList.remove("block");
+                }
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!checkParent(e.target, helpMenuDiv) && !checkParent(e.target, helpMenu)) {
+                    helpMenuDiv.classList.add("hidden");
+                    helpMenuDiv.classList.remove("block");
+                }
+            });
+
+            function checkParent(t, elm) {
+                while (t.parentNode) {
+                    if (t == elm) {
+                        return true;
+                    }
+                    t = t.parentNode;
+                }
+                return false;
+            }
+
+            // ScrollSpy
+            var lastId,
+                topMenu = $("#menu-content"),
+                topMenuHeight = topMenu.outerHeight() + 169,
+                menuItems = topMenu.find("a"),
+                scrollItems = menuItems.map(function() {
+                    var item = $($(this).attr("href"));
+                    if (item.length) {
+                        return item;
+                    }
+                });
+
+            menuItems.click(function(e) {
+                var href = $(this).attr("href"),
+                    offsetTop = href === "#" ? 0 : $(href).offset().top - topMenuHeight + 420;
+                $('html, body').stop().animate({
+                    scrollTop: offsetTop
+                }, 300);
+                if (!helpMenuDiv.classList.contains("hidden")) {
+                    helpMenuDiv.classList.add("hidden");
+                }
+                e.preventDefault();
+            });
+
+            $(window).scroll(function() {
+                var fromTop = $(this).scrollTop() + topMenuHeight;
+                var cur = scrollItems.map(function() {
+                    if ($(this).offset().top < fromTop)
+                        return this;
+                });
+                cur = cur[cur.length - 1];
+                var id = cur && cur.length ? cur[0].id : "";
+
+                if (lastId !== id) {
+                    lastId = id;
+                    menuItems
+                        .parent().removeClass("font-bold border-yellow-600")
+                        .end().filter("[href='#" + id + "']").parent().addClass("font-bold border-yellow-600");
+                }
+            });
+
+            // Mostra il popup di successo
+            @if (session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Successo',
+                    text: '{{ session('success') }}',
+                    timer: 3000,
+                    showConfirmButton: false
+                });
+            @endif
+
+            // Mostra il popup di errore
+            @if ($errors->any())
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Errore',
+                    html: '{!! implode('<br>', $errors->all()) !!}',
+                });
+            @endif
+        </script>
+
     </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-<script>
-    // Mostra il popup di successo
-    @if (session('success'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Successo',
-            text: '{{ session('success') }}',
-            timer: 3000,
-            showConfirmButton: false
-        });
-    @endif
-
-    // Mostra il popup di errore
-    @if ($errors->any())
-        Swal.fire({
-            icon: 'error',
-            title: 'Errore',
-            html: '{!! implode('<br>', $errors->all()) !!}',
-        });
-    @endif
-</script>
-
 </x-app-layout>

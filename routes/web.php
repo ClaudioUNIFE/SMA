@@ -94,6 +94,7 @@ Route::get('/attachments/{id}', [AttachmentsController::class, 'edit'])->name('a
 Route::post('/attachments/{id}', [AttachmentsController::class, 'update'])->name('attached.update');
 Route::delete('/attachments/{attachmentId}', [AttachmentsController::class, 'destroy'])->name('attached.destroy');
 Route::get('/attachments-manage/{id}', [AttachmentsController::class, 'manage'])->name('attached.manage');
+Route::get('/attachments/{id}/show', [AttachmentsController::class, 'show'])->name('attached.show');
 
 
 

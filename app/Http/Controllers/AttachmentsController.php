@@ -314,7 +314,22 @@ class AttachmentsController extends Controller
     /**
      * Elimina un allegato dal database.
      */
-    public function destroy($id)
+    
+    public function show($id)
+    {
+        // Recupera l'allegato
+        $attached = Attached::findOrFail($id);
+
+        // Recupera metadati e paradati associati
+        $metadata = Metadata::where('id_allegato', $id)->first();
+        $paradata = Paradata::where('id_allegato', $id)->first();
+
+        // Passa i dati alla vista
+        return view('show-attachments', compact('attached', 'metadata', 'paradata'));
+    }
+
+
+     public function destroy($id)
     {
         // Utilizza una transazione per garantire consistenza
         DB::beginTransaction();
