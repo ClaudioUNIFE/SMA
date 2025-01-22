@@ -14,6 +14,8 @@ class Xit extends Model
 {
     use  HasFactory;
 
+    protected $table = 'xits';
+
     /**
      * The attributes that are mass assignable.
      *

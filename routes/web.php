@@ -12,7 +12,7 @@ use App\Http\Controllers\ExportController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AttachmentsController;
 use App\Http\Controllers\ChartController;
-
+use App\Http\Controllers\XitsController;
 
 
 /*
@@ -99,6 +99,10 @@ Route::get('/attachments/{id}/show', [AttachmentsController::class, 'show'])->na
 
 
 Route::get('/dashboard/data', [ChartController::class, 'getChartData'])->name('dashboard.data');
+
+
+
+Route::get('/manage-xits/{id}', [XitsController::class, 'show'])->name('managexits.show');
 
 
 

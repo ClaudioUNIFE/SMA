@@ -555,10 +555,12 @@
 
                 <!-- Bottoni di azione -->
                 <div class="pt-8 flex justify-center">
-                    <!-- Pulsanti per azioni aggiuntive -->
-                        {{-- <a href="{{ route('finds.export', $find->id) }}" class="button">Esporta</a> --}}
-                    <a href="{{ route('attached.manage', $find->id) }}" class="btn-primary">Gestisci Allegati</a>
+                    <div class="flex space-x-4">
+                        <a href="{{ route('attached.manage', $find->id) }}" class="btn-primary">Gestisci Allegati</a>
+                        <a href="{{ route('managexits.show', $find->id) }}" class="btn-primary">Gestisci Uscite</a>
+                    </div>
                 </div>
+
             </section>
             <!--/Fine area principale-->
         </div>
