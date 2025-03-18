@@ -43,7 +43,7 @@
         </table>
 
         <div style="text-align: center; margin-top: 20px;">
-            <a href="{{ route('deposits.create') }}" style="color: white; background-color: #619ee4; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Aggiungi un Deposito</a>
+            <a href="{{ route('deposits.create') }}" class="btn-primary">Aggiungi un Deposito</a>
         </div>
     </div>
     </div>

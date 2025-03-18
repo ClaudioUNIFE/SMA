@@ -72,8 +72,8 @@ class DatabaseSeeder extends Seeder
         $role = Role::create(['name' => 'researcher']);
         $role->givePermissionTo( 'add-finds', 'add-theses', 'update-finds', 'update-theses');
 
-        // $role = Role::create(['name' => 'visitor']);
-        // $role->givePermissionTo();
+        $role = Role::create(['name' => 'visitor']);
+        $role->givePermissionTo();
     }
 
 

@@ -51,7 +51,7 @@
 
             <div style="margin: 20px">
                 <div style="text-align: center; margin-bottom: 20px;">
-                    <a href="{{ route('collection.create') }}" style="color: white; background-color: #619ee4; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Aggiungi Collezione</a>
+                    <a href="{{ route('collection.create') }}" class="btn-primary">Aggiungi Collezione</a>
                </div>
             </div>
         </div>

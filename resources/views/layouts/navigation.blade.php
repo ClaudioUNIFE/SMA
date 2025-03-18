@@ -2,10 +2,9 @@
     <div class="max-w-none px-4 sm:px-6 lg:px-8">        
         <div class="flex justify-between items-center h-16 w-full">
             <!-- Logo -->
+            <!-- Logo -->
             <div class="shrink-0 flex items-center">
-                <a href="{{ route('dashboard') }}" class="bg-transparent text-inherit"></a>
-                    <img src="{{ asset('images/sma.png') }}" alt="SMA" class="w-16 h-auto">
-                </a>
+                <img src="{{ asset('images/sma.png') }}" alt="SMA" class="w-16 h-auto block">
             </div>
 
             <!-- Burger Button -->

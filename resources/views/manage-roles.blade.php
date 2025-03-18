@@ -1,3 +1,4 @@
+@if (Auth::user()->hasPermissionTo('manages-roles'))
 <x-app-layout>
     <head>
         <!-- <link rel="stylesheet" href="{{ asset('css/standard.css') }}"> -->
@@ -81,3 +82,8 @@
     </script>
 
 </x-app-layout>
+@else
+    @php
+        abort(404);
+    @endphp
+@endif

@@ -1,3 +1,4 @@
+@if (!Auth::user()->hasRole('visitor'))
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -122,3 +123,15 @@
         </div>
     </div>
 </x-app-layout>
+@else
+<head>
+    <link rel="stylesheet" href="{{ asset('css/standard.css') }}">
+</head>
+<div class="flex items-center justify-center min-h-screen bg-gray-900">
+    <div class="text-center">
+        <h1 class="text-3xl font-bold text-white">
+            Attendi che un admin cambi il tuo ruolo per accedere al sito.
+        </h1>
+    </div>
+</div>
+@endif

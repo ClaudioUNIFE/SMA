@@ -1,6 +1,13 @@
 /* Body */
 body {
-    background: linear-gradient(to top, rgb(196, 34, 34), rgb(72, 80, 100));
+    /* Erbario */
+    /* background: linear-gradient(to top, #8CC64B, #8CC64B, #c4b81c); */
+    /* Leonardi */
+    background: linear-gradient(to top, #317DAE, #317DAE, #223D72); 
+    /* Farmacia */
+    /* background: linear-gradient(to top, #c58b0e, #eba90f, #223D72); */
+    /* Fisica */
+    /* background: linear-gradient(to top, #642D93, #642D93, #223D72); */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0; 
     max-width: 100%; 
@@ -10,7 +17,7 @@ body {
 
 /* Navbar */
 .navbar {
-    background-color: var(--navbar-bg, rgb(48, 54, 78));
+    background-color: var(--navbar-bg, #1f3766);
     border-bottom: none; /* Rimuove il bordo inferiore */
     margin-bottom: 0; /* Assicura che non ci sia un margine sotto la navbar */
     position: fixed;
@@ -58,7 +65,7 @@ button[type="submit"], button, .btn-primary, .btn-danger {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 .btn-primary {
-    background-color: #3d86da;
+    background-color: #2f668a;
     border-color: #1d5897;
     color: white;
 }
@@ -69,7 +76,7 @@ button[type="submit"], button, .btn-primary, .btn-danger {
 }
 .btn-primary:hover, .btn-danger:hover, button[type="submit"]:hover {
     opacity: 0.8;
-    background-color: #2980b9; /* Cambia il colore al passaggio del mouse */
+    background-color: #1d6494; /* Cambia il colore al passaggio del mouse */
 }
 .home-button {
     background-color: #2d3748; /* bg-gray-800 */
@@ -91,6 +98,34 @@ button[type="submit"], button, .btn-primary, .btn-danger {
 .home-button:hover {
     background-color: #1a202c; /* hover:bg-gray-900 */
     transform: scale(1.05);
+}
+.auth-buttons a {
+    margin: 0 15px;
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    /* Erbario */
+    /* background-color: #1d6414; */
+    /* Leonardi */
+    background-color: #154081;
+    /* Anatomico */
+    /* background-color: #692427; */
+    /* Farmacia */
+    /* background-color: #af7d06; */
+    /* Fisica */
+    /* background-color: #431c64; */
+
+    /*  */
+    /*  */
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.auth-buttons a:hover {
+    background-color: #236794; /* Effetto hover */
+    transform: scale(1.05); /* Leggero effetto zoom */
 }
 
 
@@ -243,22 +278,6 @@ h2 {
     margin-bottom: 1.5rem;
 }
 
-.auth-buttons a {
-    margin: 0 15px;
-    padding: 15px 30px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    background-color: #3498db;
-    color: white;
-    border-radius: 10px;
-    text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.auth-buttons a:hover {
-    background-color: #2980b9; /* Effetto hover */
-    transform: scale(1.05); /* Leggero effetto zoom */
-}
 .max-h-64 {
     max-height: 16rem;
 }
